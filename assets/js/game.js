@@ -23,6 +23,7 @@ window.onload = gameInit();
 function gameInit() {
     randomizeWallpaper();
     updateScreenSize();
+    updateDoorPositions();
 }
 
 
@@ -35,6 +36,7 @@ function updateScreenSize() {
     let width = window.innerWidth;
     let height = window.innerHeight;
 
+    // Categorizing the size of the screen
     let screenSize = null;
     if (width < 600) {
         screenSize = screenSmall;
@@ -72,8 +74,49 @@ function updateScreenSize() {
     floor.style.height = `${cellSize / 8}px`;
     floor.style.backgroundSize = `${cellSize * 2}px`;
 
-    // Then updating the wallpaper to match the new grid
+    // Then updating the rest of the room components to match the new grid
     updateWallpaper(getWallpaper());
+    updateDoorPositions();
+}
+
+
+/**
+ * Gets the information of the grid
+ * @returns {Object} { width: The width of the grid in cells, height: The height of the grid in cells,
+ * cellSize: How big a cell is in pixels }
+ */
+function getGridSize() {
+    let gameContainer = document.getElementById('game-container');
+    let gridCols = gameContainer.style.gridTemplateColumns;
+    let gridRows = gameContainer.style.gridTemplateRows;
+
+    gridCols = gridCols.split(' ');
+    gridRows = gridRows.split(' ');
+
+    return {
+        width: gridCols.length,
+        height: gridRows.length,
+        cellSize: gridCols[0]
+    };
+}
+
+
+/**
+ * Gets the real coordinate of a cell in pixels
+ * @param {Integer} index The Y position of the cell in the grid. Negative numbers start at the end
+ * of the grid and move backwards
+ * @returns {Float} The Y coordinate of the cell
+ */
+function getYCellPosition(index) {
+    let gameContainer = document.getElementById('game-container');
+    let gridInfo = gameContainer.style.gridTemplateRows;
+    gridInfo = gridInfo.split(' ');
+    // Converting 
+    let finalIndex = index;
+    if (finalIndex < 0) {
+        finalIndex += gridInfo.length - 1;
+    }
+    return parseFloat(gridInfo[0]) * finalIndex;
 }
 
 
@@ -117,7 +160,7 @@ function updateWallpaper(wallpaperName) {
 
         let gridInfo = gameContainer.style.gridTemplateRows;
         gridInfo = gridInfo.split(' ');
-        let bottomCellPosition = parseFloat(gridInfo[0]) * (gridInfo.length - 2);
+        let bottomCellPosition = getYCellPosition(-1);
         gameContainer.style.backgroundPositionY = `${bottomCellPosition}px`;
     }
 }
@@ -139,4 +182,33 @@ function getWallpaper() {
     // Then removing the "url(./assets/images/game/wallpapers/wallpaper-" part
     wallpaperStyle = wallpaperStyle.slice(47);
     return wallpaperStyle;
+}
+
+
+/**
+ * 
+ */
+function updateDoorPositions() {
+    let doors = document.getElementsByClassName('door');
+    let gridSize = getGridSize();
+
+    for (let i = 0; i < doors.length; i++) {
+        let door = doors[i];
+        door.style.gridRowStart = gridSize.height - 1;
+        door.style.gridRowEnd = gridSize.height + 1;
+        door.style.backgroundColor = 'black';
+
+        if (i === 0) {
+            door.style.gridColumnStart = (gridSize.width / 4);
+            door.style.gridColumnEnd = (gridSize.width / 4) + 2;
+        }
+        else if (i === 1) {
+            door.style.gridColumnStart = (gridSize.width / 2);
+            door.style.gridColumnEnd = (gridSize.width / 2) + 2;
+        }
+        else {
+            door.style.gridColumnStart = (gridSize.width / 4) * 3;
+            door.style.gridColumnEnd = ((gridSize.width / 4) * 3) + 2;
+        }
+    }
 }

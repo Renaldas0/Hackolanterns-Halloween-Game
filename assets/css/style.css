@@ -36,3 +36,10 @@ body {
 .door {
     background-size: cover;
 }
+
+.barricade {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/game/doors/door-boards.png');
+    background-size: cover;
+}

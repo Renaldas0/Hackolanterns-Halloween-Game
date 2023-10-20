@@ -5,7 +5,7 @@ const screenSmall = {
 }
 const screenMedium = {
     cells: 12,
-    floorHeight: 2,
+    floorHeight: 3,
 }
 const screenLarge = {
     cells: 16,
@@ -26,6 +26,7 @@ function gameInit() {
     setDoor('door-1', getRandomDoor());
     setDoor('door-2', getRandomDoor());
     setDoor('door-3', getRandomDoor());
+    barricadeDoor('door-3');
 }
 
 
@@ -40,10 +41,11 @@ function updateScreenSize() {
 
     // Categorizing the size of the screen
     let screenSize = null;
-    if (width < 600) {
+    let aspectRatio = width / height;
+    if (aspectRatio < 0.8) {
         screenSize = screenSmall;
     }
-    else if (width < 1200) {
+    else if (aspectRatio < 4 / 3) {
         screenSize = screenMedium;
     }
     else {
@@ -233,4 +235,16 @@ function setDoor(doorId, doorName) {
 function getRandomDoor() {
     let doors = ['easy', 'medium', 'hard', 'puzzle'];
     return doors[Math.floor(Math.random() * doors.length)];
+}
+
+
+/**
+ * Adds a barricade to a door
+ * @param {String} doorId The door you wish to barricade
+ */
+function barricadeDoor(doorId) {
+    let door = document.getElementById(doorId);
+    let barricade = document.createElement('div');
+    barricade.className = 'barricade';
+    door.appendChild(barricade);
 }

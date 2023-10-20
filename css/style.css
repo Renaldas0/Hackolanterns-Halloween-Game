@@ -12,14 +12,13 @@ body {
 
 /* Game */
 
-#game-container {
-    padding: 0;
+#game-outer {
     height: 100vh;
+    background-color: black;
+}
+
+#game-container {
     display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    background-image: url("../images/game/wallpapers/wallpaper-zig-zag.png");
-    /* 100% of the screen width divided by 16 */
-    background-size: 12.5%;
 }
 
 .grid-cell {

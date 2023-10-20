@@ -84,5 +84,5 @@ function randomizeWallpaper() {
  */
 function setWallpaper(wallpaperName) {
     let gameContainer = document.getElementById('game-container');
-    gameContainer.style.backgroundImage = `url(./images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
+    gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
 }

@@ -164,7 +164,7 @@ const questions = [
     points: 2,
    },
    {
-    question: "What is the name of the fictional hotel in Stephen King's 'The Shining' known for its supernatural occurrences?",
+    question: "What is the name of the fictional hotel in Stephen King's 'The Shining,' known for its supernatural occurrences?",
     answers : [
         {text: 'Overlook Hotel', correct: true},
         {text: 'The Shady Rest Inn', correct: false},

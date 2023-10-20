@@ -21,8 +21,9 @@ window.onload = gameInit();
  * Is called when the page is loaded. Sets up the game
  */
 function gameInit() {
-    randomizeWallpaper();
+    //randomizeWallpaper();
     updateScreenSize();
+    setWallpaper('ribbon');
 }
 
 
@@ -78,7 +79,7 @@ function updateScreenSize() {
  * Chooses a random wallpaper and applies it
  */
 function randomizeWallpaper() {
-    let wallpapers = ['m', 'squares', 'stripes', 'zig-zag'];
+    let wallpapers = ['m', 'ribbon', 'squares', 'stripes', 'zig-zag'];
     let selectedPaper = wallpapers[Math.floor(Math.random() * wallpapers.length)];
     setWallpaper(selectedPaper);
 }
@@ -91,4 +92,16 @@ function randomizeWallpaper() {
 function setWallpaper(wallpaperName) {
     let gameContainer = document.getElementById('game-container');
     gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
+
+    // The ribbon wallpaper only repeats along the Y axis once and sits at the bottom of the wall
+    if (wallpaperName === 'ribbon') {
+        gameContainer.style.backgroundRepeat = 'repeat-x';
+        gameContainer.style.backgroundColor = 'rgb(40, 14, 50)';
+
+        let gridInfo = gameContainer.style.gridTemplateRows;
+        gridInfo = gridInfo.split(' ');
+        let bottomCellPosition = parseFloat(gridInfo[0]) * (gridInfo.length - 2);
+        gameContainer.style.backgroundPositionY = `${bottomCellPosition}px`;
+        console.log(bottomCellPosition);
+    }
 }

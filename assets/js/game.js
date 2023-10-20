@@ -11,8 +11,6 @@ const screenLarge = {
     cells: 16,
     floorHeight: 1,
 }
-
-
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
 
@@ -24,6 +22,10 @@ function gameInit() {
     randomizeWallpaper();
     updateScreenSize();
     updateDoorPositions();
+
+    setDoor('door-1', getRandomDoor());
+    setDoor('door-2', getRandomDoor());
+    setDoor('door-3', getRandomDoor());
 }
 
 
@@ -196,7 +198,6 @@ function updateDoorPositions() {
         let door = doors[i];
         door.style.gridRowStart = gridSize.height - 1;
         door.style.gridRowEnd = gridSize.height + 1;
-        door.style.backgroundColor = 'black';
 
         if (i === 0) {
             door.style.gridColumnStart = (gridSize.width / 4);
@@ -211,4 +212,25 @@ function updateDoorPositions() {
             door.style.gridColumnEnd = ((gridSize.width / 4) * 3) + 2;
         }
     }
+}
+
+
+/**
+ * Sets a certain door to a certain image
+ * @param {String} doorId The id of the door to be updated
+ * @param {String} doorName The name of the door
+ */
+function setDoor(doorId, doorName) {
+    let door = document.getElementById(doorId);
+    door.style.backgroundImage = `url(./assets/images/game/doors/door-${doorName}.png)`;
+}
+
+
+/**
+ * Picks a random door and returns it
+ * @returns {String} The name of the chosen door
+ */
+function getRandomDoor() {
+    let doors = ['easy', 'medium', 'hard', 'puzzle'];
+    return doors[Math.floor(Math.random() * doors.length)];
 }

@@ -32,3 +32,7 @@ body {
     background-image: url('../images/game/floor.png');
     background-repeat: repeat-x;
 }
+
+.door {
+    background-size: cover;
+}

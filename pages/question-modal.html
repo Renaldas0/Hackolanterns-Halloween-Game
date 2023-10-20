@@ -8,16 +8,29 @@
 </head>
 <body>
     <div class="background">
-        <div class="question-container">
-            <div class="question-box">
-                <p>Question goes here</p>
+        <div id="quiz-container">
+
+            <!--Area that displays the question-->
+            <div id="question-box">
+                <h2 id="question">Question will go here</h2>
             </div>
-            <ul class="answer-box">
-                <li>Answer 1 </li>
-                <li>Answer 2</li>
-                <li>Answer 3</li>
-            </ul>
+    
+            <!--Answer Buttons-->
+            <div id="answer-box">
+                <button class="answer-btn">Answer 1</button>
+                <button class="answer-btn">Answer 2</button>
+                <button class="answer-btn">Answer 3</button>
+            </div>
+    
+            <div id="submit-box">
+                <button class="btn" id="submit">Submit answer</button>
+            </div>
+    
+            <div class="score-box">
+                <p id="score">Steps you're safe by:</p>
+            </div>
         </div>
     </div>
+    
 </body>
 </html>

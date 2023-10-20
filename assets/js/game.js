@@ -23,9 +23,9 @@ function gameInit() {
     updateScreenSize();
     updateDoorPositions();
 
-    setDoor('door-1', getRandomDoor());
-    setDoor('door-2', getRandomDoor());
-    setDoor('door-3', getRandomDoor());
+    setImageById('door-1', getRandomDoor());
+    setImageById('door-2', getRandomDoor());
+    setImageById('door-3', getRandomDoor());
     barricadeDoor('door-3');
 }
 
@@ -233,13 +233,23 @@ function updateDoorPositions() {
 
 
 /**
- * Sets a certain door to a certain image
- * @param {String} doorId The id of the door to be updated
- * @param {String} doorName The name of the door
+ * Sets a certain element to a specified image
+ * @param {String} element The element to be updated
+ * @param {String} imageName The name of the image. Starts from the "assets/images/game/" directory
  */
-function setDoor(doorId, doorName) {
-    let door = document.getElementById(doorId);
-    door.style.backgroundImage = `url(./assets/images/game/doors/door-${doorName}.png)`;
+function setImage(element, imageName) {
+    element.style.backgroundImage = `url(./assets/images/game/${imageName}.png)`;
+}
+
+
+/**
+ * Sets an element with the specified id to a given image
+ * @param {String} element The element to be updated
+ * @param {String} imageName The name of the image. Starts from the "assets/images/game/" directory
+ */
+function setImageById(id, imageName) {
+    let element = document.getElementById(id);
+    setImage(element, imageName);
 }
 
 
@@ -248,7 +258,7 @@ function setDoor(doorId, doorName) {
  * @returns {String} The name of the chosen door
  */
 function getRandomDoor() {
-    let doors = ['easy', 'medium', 'hard', 'puzzle'];
+    let doors = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
     return doors[Math.floor(Math.random() * doors.length)];
 }
 
@@ -275,5 +285,6 @@ function populateRoom() {
     //Paintings
     let painting = document.createElement('div');
     painting.id = wallPositions[0];
+    painting.classList = 'prop painting';
     gameContainer.appendChild(painting);
 }

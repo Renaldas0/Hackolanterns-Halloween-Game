@@ -47,3 +47,7 @@ body {
     background-image: url('../images/game/doors/door-boards.png');
     background-size: cover;
 }
+
+.prop {
+    background-size: cover;
+}

@@ -6,6 +6,10 @@ body {
     margin: 0;
 }
 
+.clickable:hover {
+    cursor: pointer;
+}
+
 
 /* Landing Page */
 

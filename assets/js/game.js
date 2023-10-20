@@ -125,6 +125,21 @@ function getYCellPosition(index) {
 
 
 /**
+ * Gets the position of an element in the game grid
+ * @param {Object} element The element that you want to get the coordinates from
+ */
+function getElementGridPosition(element) {
+    let x = element.style.gridColumnStart;
+    let y = element.style.gridRowStart;
+
+    return {
+        x: x,
+        y: y
+    };
+}
+
+
+/**
  * Chooses a random wallpaper and applies it
  */
 function randomizeWallpaper() {
@@ -247,4 +262,18 @@ function barricadeDoor(doorId) {
     let barricade = document.createElement('div');
     barricade.className = 'barricade';
     door.appendChild(barricade);
+}
+
+
+function populateRoom() {
+    let gameContainer = document.getElementById('game-container');
+
+    // Setting positions where props can be placed. These will be ids assigned to the components
+    let wallPositions = ['wall-left', 'wall-mid-left', 'wall-mid', 'wall-mid-right', 'wall-right'];
+    let floorPositions = [];
+
+    //Paintings
+    let painting = document.createElement('div');
+    painting.id = wallPositions[0];
+    gameContainer.appendChild(painting);
 }

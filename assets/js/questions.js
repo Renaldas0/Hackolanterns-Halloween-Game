@@ -1,4 +1,5 @@
 const questions = [
+    // Easy Questions
    {
     question: 'Which friendly ghost is known for being a classic Halloween character?',
     answers : [
@@ -98,6 +99,7 @@ const questions = [
     ],
     points: 1,
    },
+   // Medium Questions
    {
     question: "What is the name of the town where the events of Washington Irving's 'The Legend of Sleepy Hollow' take place?",
     answers : [
@@ -162,7 +164,7 @@ const questions = [
     points: 2,
    },
    {
-    question: "What is the name of the fictional hotel in Stephen King's 'The Shining' known for its supernatural occurrences?",
+    question: "What is the name of the fictional hotel in Stephen King's 'The Shining,' known for its supernatural occurrences?",
     answers : [
         {text: 'Overlook Hotel', correct: true},
         {text: 'The Shady Rest Inn', correct: false},
@@ -197,13 +199,113 @@ const questions = [
     ],
     points: 2,
    },
+   // Hard Questions
    {
-    question: 'What is the title of the 1973 horror film about a possessed young girl, directed by William Friedkin?',
+    question: 'What is the name of the ancient Celtic festival that is believed to have inspired Halloween?',
     answers : [
-        {text: 'The Exorcist', correct: true},
-        {text: "Rosemary's Baby", correct: false},
-        {text: 'Poltergeist', correct: false},
+        {text: 'Beltane', correct: false},
+        {text: 'Samhain', correct: true},
+        {text: 'Yule', correct: false},
     ],
-    points: 2,
+    points: 3,
+   },
+   {
+    question: 'Which author wrote the short story "The Tell-Tale Heart," known for its eerie depiction of guilt and paranoia?',
+    answers : [
+        {text: 'Edgar Allan Poe', correct: true},
+        {text: 'H.P. Lovecraft', correct: false},
+        {text: 'Shirley Jackson', correct: false},
+    ],
+    points: 3,
+   },
+   {
+    question: 'What is the term for the practice of dressing up in costumes to mimic the appearance of the deceased during Halloween?',
+    answers : [
+        {text: 'Ghosting', correct: false},
+        {text: 'Cosplay', correct: false},
+        {text: 'Mummery', correct: true},
+    ],
+    points: 3,
+   },
+   {
+    question: 'What is the name of the spectral ship commanded by the fictional pirate Captain Davy Jones?',
+    answers : [
+        {text: 'The Flying Dutchman', correct: true},
+        {text: 'The Jolly Roger', correct: false},
+        {text: 'The Black Pearl', correct: false},
+    ],
+    points: 3,
+   },
+   {
+    question: 'In the legend of the Headless Horseman, what is the name of the character who encounters the ghostly rider?',
+    answers : [
+        {text: 'Rip Van Winkle', correct: false},
+        {text: 'Ichabod Crane', correct: true},
+        {text: 'Brom Bones', correct: false},
+    ],
+    points: 3,
+   },
+   {
+    question: 'What is the name of the protagonist in the film "The Sixth Sense," who can see and communicate with the dead?',
+    answers : [
+        {text: 'Norman Bates', correct: false},
+        {text: 'Danny Torrance', correct: false},
+        {text: 'Cole Sear', correct: true},
+    ],
+    points: 3,
+   },
+   {
+    question: "In the classic 1931 film 'Frankenstein' who portrayed the iconic character of Dr. Frankenstein's monster?",
+    answers : [
+        {text: 'Boris Karloff', correct: true},
+        {text: 'Bela Lugosi', correct: false},
+        {text: 'Lon Chaney', correct: false},
+    ],
+    points: 3,
+   },
+   {
+    question: 'What is the name of the legendary Scottish castle that is believed to be haunted by a ghostly piper and a headless drummer?',
+    answers : [
+        {text: 'Balmoral Castle', correct: false},
+        {text: 'Glamis Castle', correct: true},
+        {text: 'Edinburgh Castle', correct: false},
+    ],
+    points: 3,
+   },
+   {
+    question: "In Bram Stoker's 'Dracula,' who is the first character to be turned into a vampire by Count Dracula?",
+    answers : [
+        {text: 'Jonathan Harker', correct: false},
+        {text: 'Mina Harker', correct: false},
+        {text: 'Lucy Westenra', correct: true},
+    ],
+    points: 3,
+   },
+   {
+    question: "What is the name of the vengeful spirit in Japanese folklore known for crawling out of the television in the horror film 'Ringu' and its American adaptation, 'The Ring'?",
+    answers : [
+        {text: 'Kayako Saeki', correct: false},
+        {text: 'Sadako Yamamura', correct: true},
+        {text: 'Samara Morgan', correct: false},
+    ],
+    points: 3,
+   },
+   {
+    question: 'What is the title of the 1974 horror film, based on a novel by Stephen King, that features a telekinetic teenage girl with psychic abilities?',
+    answers : [
+        {text: 'Carrie', correct: true},
+        {text: 'The Shining', correct: false},
+        {text: 'The Omen', correct: false},
+    ],
+    points: 3,
+   },
+   {
+    question: 'In the classic short story "The Tell-Tale Heart" by Edgar Allan Poe, what causes the narrator to confess his crime to the police?',
+    answers : [
+        {text: 'The relentless sound of a heartbeat', correct: true},
+        {text: 'The presence of a ghostly figure', correct: false},
+        {text: 'A sudden bout of remorse', correct: false},
+    ],
+    points: 3,
    },
 ]

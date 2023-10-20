@@ -12,6 +12,7 @@ const screenLarge = {
     floorHeight: 1,
 }
 
+
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
 

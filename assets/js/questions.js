@@ -1,4 +1,5 @@
 const questions = [
+    // Easy Questions
    {
     question: 'Which friendly ghost is known for being a classic Halloween character?',
     answers : [
@@ -98,6 +99,7 @@ const questions = [
     ],
     points: 1,
    },
+   // Medium Questions
    {
     question: "What is the name of the town where the events of Washington Irving's 'The Legend of Sleepy Hollow' take place?",
     answers : [
@@ -197,13 +199,14 @@ const questions = [
     ],
     points: 2,
    },
+   // Hard Questions
    {
-    question: 'What is the title of the 1973 horror film about a possessed young girl, directed by William Friedkin?',
+    question: '',
     answers : [
-        {text: 'The Exorcist', correct: true},
-        {text: "Rosemary's Baby", correct: false},
-        {text: 'Poltergeist', correct: false},
+        {text: '', correct: true},
+        {text: '', correct: false},
+        {text: '', correct: false},
     ],
-    points: 2,
+    points: 3,
    },
 ]

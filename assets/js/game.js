@@ -31,6 +31,7 @@ function gameInit() {
  */
 function updateScreenSize() {
     let gameContainer = document.getElementById('game-container');
+    let floor = document.getElementById('floor');
     let width = window.innerWidth;
     let height = window.innerHeight;
 
@@ -66,6 +67,13 @@ function updateScreenSize() {
     gameContainer.style.gridTemplateColumns = columnStyle;
     gameContainer.style.gridTemplateRows = rowStyle;
     gameContainer.style.backgroundSize = `${cellSize * 2}px`;
+
+    // Adjusting the floor
+    floor.style.height = `${cellSize / 8}px`;
+    floor.style.backgroundSize = `${cellSize * 2}px`;
+
+    // Then updating the wallpaper to match the new grid
+    updateWallpaper(getWallpaper());
 }
 
 
@@ -73,7 +81,7 @@ function updateScreenSize() {
  * Chooses a random wallpaper and applies it
  */
 function randomizeWallpaper() {
-    let wallpapers = ['squares', 'stripes', 'zig-zag'];
+    let wallpapers = ['m', 'ribbon', 'squares', 'stripes', 'zig-zag'];
     let selectedPaper = wallpapers[Math.floor(Math.random() * wallpapers.length)];
     setWallpaper(selectedPaper);
 }
@@ -86,4 +94,49 @@ function randomizeWallpaper() {
 function setWallpaper(wallpaperName) {
     let gameContainer = document.getElementById('game-container');
     gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
+
+    updateWallpaper(wallpaperName);
+}
+
+
+/**
+ * Updates the properties of the wallpaper background
+ * @param {String} wallpaperName The name of the wallpaper that is set
+ */
+function updateWallpaper(wallpaperName) {
+    let gameContainer = document.getElementById('game-container');
+
+    // Clearing any previously set variables
+    gameContainer.style.backgroundRepeat = 'repeat';
+    gameContainer.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+
+    // The ribbon wallpaper only repeats along the Y axis once and sits at the bottom of the wall
+    if (wallpaperName === 'ribbon') {
+        gameContainer.style.backgroundRepeat = 'repeat-x';
+        gameContainer.style.backgroundColor = 'rgb(40, 14, 50)';
+
+        let gridInfo = gameContainer.style.gridTemplateRows;
+        gridInfo = gridInfo.split(' ');
+        let bottomCellPosition = parseFloat(gridInfo[0]) * (gridInfo.length - 2);
+        gameContainer.style.backgroundPositionY = `${bottomCellPosition}px`;
+    }
+}
+
+
+/**
+ * Finds the wallpaper that is currently decorating the room
+ * @returns {String} The found wallpaper
+ */
+function getWallpaper() {
+    let gameContainer = document.getElementById('game-container');
+    let wallpaperStyle = gameContainer.style.backgroundImage;
+
+    if (wallpaperStyle === '') {
+        return '';
+    }
+    // Removing the ".png)" part of the style property
+    wallpaperStyle = wallpaperStyle.slice(0, wallpaperStyle.length - 6);
+    // Then removing the "url(./assets/images/game/wallpapers/wallpaper-" part
+    wallpaperStyle = wallpaperStyle.slice(47);
+    return wallpaperStyle;
 }

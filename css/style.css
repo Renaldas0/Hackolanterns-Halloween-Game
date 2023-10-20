@@ -1,0 +1,29 @@
+/* General */
+
+body {
+    /* Remove default margins and padding */
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Landing Page */
+
+
+/* Game */
+
+#game-container {
+    padding: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    background-image: url("../images/game/wallpapers/wallpaper-zig-zag.png");
+    /* 100% of the screen width divided by 16 */
+    background-size: 12.5%;
+}
+
+.grid-cell {
+    width: calc(100% - 2px);
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+}

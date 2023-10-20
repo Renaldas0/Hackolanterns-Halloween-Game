@@ -30,6 +30,7 @@ function gameInit() {
  */
 function updateScreenSize() {
     let gameContainer = document.getElementById('game-container');
+    let floor = document.getElementById('floor');
     let width = window.innerWidth;
     let height = window.innerHeight;
 
@@ -65,6 +66,10 @@ function updateScreenSize() {
     gameContainer.style.gridTemplateColumns = columnStyle;
     gameContainer.style.gridTemplateRows = rowStyle;
     gameContainer.style.backgroundSize = `${cellSize * 2}px`;
+
+    // Adjusting the floor
+    floor.style.height = `${cellSize / 8}px`;
+    floor.style.backgroundSize = `${cellSize * 2}px`;
 }
 
 
@@ -72,7 +77,7 @@ function updateScreenSize() {
  * Chooses a random wallpaper and applies it
  */
 function randomizeWallpaper() {
-    let wallpapers = ['squares', 'stripes', 'zig-zag'];
+    let wallpapers = ['m', 'squares', 'stripes', 'zig-zag'];
     let selectedPaper = wallpapers[Math.floor(Math.random() * wallpapers.length)];
     setWallpaper(selectedPaper);
 }

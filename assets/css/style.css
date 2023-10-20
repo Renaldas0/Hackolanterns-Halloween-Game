@@ -26,3 +26,9 @@ body {
     aspect-ratio: 1/1;
     border: 1px solid black;
 }
+
+#floor {
+    width: 100%;
+    background-image: url('../images/game/floor.png');
+    background-repeat: repeat-x;
+}

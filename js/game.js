@@ -1,7 +1,16 @@
-// How many cells span across the width of the screen
-const cellScreenLarge = 16;
-const cellScreenMedium = 12;
-const cellScreenSmall = 6;
+// Different properties for different screen sizes
+const screenSmall = {
+    cells: 6,
+    floorHeight: 0,
+}
+const screenMedium = {
+    cells: 12,
+    floorHeight: 2,
+}
+const screenLarge = {
+    cells: 16,
+    floorHeight: 1,
+}
 
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
@@ -23,19 +32,20 @@ function updateScreenSize() {
     let gameContainer = document.getElementById('game-container');
     let width = window.innerWidth;
     let height = window.innerHeight;
-    let xCells = 0;
 
+    let screenSize = null;
     if (width < 600) {
-        xCells = cellScreenSmall;
+        screenSize = screenSmall;
     }
     else if (width < 1200) {
-        xCells = cellScreenMedium;
+        screenSize = screenMedium;
     }
     else {
-        xCells = cellScreenLarge;
+        screenSize = screenLarge;
     }
+    let xCells = screenSize.cells;
     let cellSize = width / xCells;
-    let yCells = Math.floor(height / cellSize);
+    let yCells = Math.floor(height / cellSize) - screenSize.floorHeight;
 
     // Adjusting the css grid
     let columnStyle = ""

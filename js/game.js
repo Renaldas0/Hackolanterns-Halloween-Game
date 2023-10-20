@@ -11,6 +11,7 @@ window.onload = gameInit();
  * Is called when the page is loaded. Sets up the game
  */
 function gameInit() {
+    randomizeWallpaper();
     updateScreenSize();
 }
 
@@ -54,4 +55,24 @@ function updateScreenSize() {
     gameContainer.style.gridTemplateColumns = columnStyle;
     gameContainer.style.gridTemplateRows = rowStyle;
     gameContainer.style.backgroundSize = `${cellSize * 2}px`;
+}
+
+
+/**
+ * Chooses a random wallpaper and applies it
+ */
+function randomizeWallpaper() {
+    let wallpapers = ['squares', 'stripes', 'zig-zag'];
+    let selectedPaper = wallpapers[Math.floor(Math.random() * wallpapers.length)];
+    setWallpaper(selectedPaper);
+}
+
+
+/**
+ * Applies a specific wallpaper to the game container
+ * @param {String} wallpaperName The name of the wallpaper
+ */
+function setWallpaper(wallpaperName) {
+    let gameContainer = document.getElementById('game-container');
+    gameContainer.style.backgroundImage = `url(./images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
 }

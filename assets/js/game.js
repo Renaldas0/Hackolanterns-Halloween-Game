@@ -50,6 +50,7 @@ function updateScreenSize() {
     let gameContainer = document.getElementById('game-grid');
     let floors = document.getElementsByClassName('floor');
     let width = window.innerWidth;
+    let currentWallpaper = getWallpaper();
     let screen = '';
 
     let cellWidth = 0;
@@ -71,39 +72,46 @@ function updateScreenSize() {
     let columnStyle = ""
     let rowStyle = "";
     for (let i = 0; i < cellWidth; i++) {
-        columnStyle += `${cellSize}px`;
+        columnStyle += numberPixels(cellSize);
         if (i < cellWidth - 1) {
             columnStyle += " ";
         }
     }
     for (let i = 0; i < cellHeight; i++) {
-        rowStyle += `${cellSize}px`;
+        rowStyle += numberPixels(cellSize);
         if (i < cellHeight - 1) {
             rowStyle += " ";
         }
     }
     gameContainer.style.gridTemplateColumns = columnStyle;
     gameContainer.style.gridTemplateRows = rowStyle;
-    gameContainer.style.backgroundSize = `${cellSize * 2}px`;
+    gameContainer.style.backgroundSize = numberPixels(cellSize * 2);
 
     // Adjusting the floor
     for (let floor of floors) {
-        floor.style.height = `${cellSize / 8}px`;
-        floor.style.backgroundSize = `${cellSize * 2}px`;
+        floor.style.height = numberPixels(cellSize / 8);
+        floor.style.backgroundSize = numberPixels(cellSize * 2);
 
-        // Positiong the other 2 doors on mobile devices
-        if (screen === 'mobile') {
-            if (floor.id === 'floor-1') {
-                floor.style.top = `${getYCellPosition(4)}px`;
+        // Positiong the other 2 floors on mobile devices
+        if (floor.id !== 'floor-3') {
+            if (screen === 'mobile') {
+                if (floor.id === 'floor-1') {
+                    floor.style.top = numberPixels(getYCellPosition(4));
+                }
+                else if (floor.id === 'floor-2') {
+                    floor.style.top = numberPixels(getYCellPosition(8));
+                }
+                if (currentWallpaper === 'ribbon') {
+                    let wallpaperChild = floor.children[0];
+                    wallpaperChild.style.height = numberPixels(cellSize * 2);
+                    wallpaperChild.style.top = numberPixels(-cellSize * 2);
+                    wallpaperChild.style.backgroundSize = numberPixels(cellSize * 2);
+                }
             }
-            else if (floor.id === 'floor-2') {
-                floor.style.top = `${getYCellPosition(8)}px`;
-            } 
         }
     }
-
     // Then updating the rest of the room components to match the new grid
-    updateWallpaper(getWallpaper());
+    updateWallpaper(currentWallpaper);
 }
 
 
@@ -158,9 +166,7 @@ function randomizeWallpaper() {
  */
 function setWallpaper(wallpaperName) {
     let gameContainer = document.getElementById('game-grid');
-    //if (wallpaperName !== 'ribbon') {
-        gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
-    //}
+    gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
     
     updateWallpaper(wallpaperName);
 }
@@ -181,7 +187,7 @@ function updateWallpaper(wallpaperName) {
         let gridInfo = gameContainer.style.gridTemplateRows;
         gridInfo = gridInfo.split(' ');
         let bottomCellPosition = getYCellPosition(-1);
-        gameContainer.style.backgroundPositionY = `${bottomCellPosition}px`;
+        gameContainer.style.backgroundPositionY = numberPixels(bottomCellPosition);
     }
 }
 
@@ -223,6 +229,16 @@ function setImage(element, imageName) {
 function setImageById(id, imageName) {
     let element = document.getElementById(id);
     setImage(element, imageName);
+}
+
+
+/**
+ * Turns a number into a css-style value in pixels
+ * @param {Float} number The number to convert to pixels
+ * @returns {String} The css style
+ */
+function numberPixels(number) {
+    return `${number}px`;
 }
 
 

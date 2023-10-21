@@ -66,6 +66,7 @@ body {
     background-size: cover;
     grid-row-start: 6;
     grid-row-end: 8;
+    z-index: 1;
 }
 
 #door-1 {
@@ -92,6 +93,7 @@ body {
 
 .prop {
     background-size: cover;
+    z-index: 1;
 }
 
 /* Individual prop positions. Works off a 16x7 grid */
@@ -164,5 +166,11 @@ body {
     #floor-1, #floor-2 {
         display: inline-block;
         width: 100%;
+    }
+
+    /* The extra ribbon wallpapers for mobile will exist in the floor elements */
+    .wallpaper-mobile {
+        background-image: url('../images/game/wallpapers/wallpaper-ribbon.png');
+        position: relative;
     }
 }

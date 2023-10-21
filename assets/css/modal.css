@@ -3,6 +3,7 @@
 }
 
 .question-container {
+    z-index: 2;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -15,7 +16,7 @@
     align-items: center;
     justify-content: space-between;
     border: 0.2rem solid;
-    background: rgba(94, 50, 186, 0.7);
+    background: rgba(94, 50, 186, 0.8);
     border-radius: 3rem;
 }
 

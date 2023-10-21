@@ -1,17 +1,21 @@
-// Different properties for different screen sizes
-const screenSmall = {
-    cells: 6,
-    floorHeight: 0,
-}
-const screenMedium = {
-    cells: 12,
-    floorHeight: 3,
-}
-const screenLarge = {
-    cells: 16,
-    floorHeight: 1,
-}
-// window.addEventListener('resize', updateScreenSize);
+// How many cells span across the width and height of the screen
+const xCells = 16;
+const yCells = 7;
+
+// List of image files
+const doorImages = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
+const paintingImages = [
+    'paintings/painting-blank',
+    'paintings/painting-man-headless',
+    'paintings/painting-man-shadow',
+    'paintings/painting-man',
+    'paintings/painting-skeleton',
+    'paintings/painting-woman-zombie',
+    'paintings/painting-woman',
+    'paintings/painting-zombie-head',
+]
+
+window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
 
 
@@ -21,12 +25,12 @@ window.onload = gameInit();
 function gameInit() {
     randomizeWallpaper();
     updateScreenSize();
-    updateDoorPositions();
 
     setImageById('door-1', getRandomDoor());
     setImageById('door-2', getRandomDoor());
     setImageById('door-3', getRandomDoor());
     barricadeDoor('door-3');
+    populateRoom();
 }
 
 
@@ -37,23 +41,7 @@ function updateScreenSize() {
     let gameContainer = document.getElementById('game-grid');
     let floor = document.getElementById('floor');
     let width = window.innerWidth;
-    let height = window.innerHeight;
-
-    // Categorizing the size of the screen
-    let screenSize = null;
-    let aspectRatio = width / height;
-    if (aspectRatio < 0.8) {
-        screenSize = screenSmall;
-    }
-    else if (aspectRatio < 4 / 3) {
-        screenSize = screenMedium;
-    }
-    else {
-        screenSize = screenLarge;
-    }
-    let xCells = screenSize.cells;
     let cellSize = width / xCells;
-    let yCells = Math.floor(height / cellSize) - screenSize.floorHeight;
 
     // Adjusting the css grid
     let columnStyle = ""
@@ -80,7 +68,22 @@ function updateScreenSize() {
 
     // Then updating the rest of the room components to match the new grid
     updateWallpaper(getWallpaper());
-    updateDoorPositions();
+}
+
+
+/**
+ * Chooses an element from an array at random
+ * @param {Array} myArray The array to choose from
+ * @param {Boolean} deleteElement If true, the element will be deleted from the array
+ * @returns {Any} The chosen element from the array
+ */
+function chooseFromArray(myArray, deleteElement) {
+    let index = Math.floor(Math.random() * myArray.length);
+    let element = myArray[index];
+    if (deleteElement) {
+        myArray.splice(index, 1);
+    }
+    return element;
 }
 
 
@@ -205,34 +208,6 @@ function getWallpaper() {
 
 
 /**
- * 
- */
-function updateDoorPositions() {
-    let doors = document.getElementsByClassName('door');
-    let gridSize = getGridSize();
-
-    for (let i = 0; i < doors.length; i++) {
-        let door = doors[i];
-        door.style.gridRowStart = gridSize.height - 1;
-        door.style.gridRowEnd = gridSize.height + 1;
-
-        if (i === 0) {
-            door.style.gridColumnStart = (gridSize.width / 4);
-            door.style.gridColumnEnd = (gridSize.width / 4) + 2;
-        }
-        else if (i === 1) {
-            door.style.gridColumnStart = (gridSize.width / 2);
-            door.style.gridColumnEnd = (gridSize.width / 2) + 2;
-        }
-        else {
-            door.style.gridColumnStart = (gridSize.width / 4) * 3;
-            door.style.gridColumnEnd = ((gridSize.width / 4) * 3) + 2;
-        }
-    }
-}
-
-
-/**
  * Sets a certain element to a specified image
  * @param {String} element The element to be updated
  * @param {String} imageName The name of the image. Starts from the "assets/images/game/" directory
@@ -258,8 +233,7 @@ function setImageById(id, imageName) {
  * @returns {String} The name of the chosen door
  */
 function getRandomDoor() {
-    let doors = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
-    return doors[Math.floor(Math.random() * doors.length)];
+    return doorImages[Math.floor(Math.random() * doorImages.length)];
 }
 
 
@@ -279,13 +253,25 @@ function populateRoom() {
     let gameContainer = document.getElementById('game-grid');
 
     // Setting positions where props can be placed. These will be ids assigned to the components
-    let wallPositions = ['wall-left', 'wall-mid-left', 'wall-mid', 'wall-mid-right', 'wall-right'];
-    let floorPositions = [];
-
+    let wallPositions = [
+        'prop-wall prop-left',
+        'prop-wall prop-mid-left',
+        'prop-wall prop-mid',
+        'prop-wall prop-mid-right',
+        'prop-wall prop-right'
+    ];
+    let floorPositions = [
+        'prop-floor prop-left',
+        'prop-floor prop-mid-left',
+        'prop-floor prop-mid-right',
+        'prop-floor prop-right'
+    ];
     //Paintings
     let painting = document.createElement('div');
-    painting.id = wallPositions[0];
-    painting.classList = 'prop painting';
+    let chosenPosition = chooseFromArray(wallPositions, true);
+    painting.classList = 'prop ' + chosenPosition;
+    let paintingType = chooseFromArray(paintingImages, false);
+    painting.style.backgroundImage = `url(./assets/images/game/${paintingType}.png)`;
     gameContainer.appendChild(painting);
 }
 

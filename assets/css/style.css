@@ -32,7 +32,6 @@ body {
 
 /* Game */
 
-
 #game-outer {
     height: 100vh;
     background-color: black;
@@ -46,20 +45,33 @@ body {
     display: grid;
 }
 
-.grid-cell {
-    width: calc(100% - 2px);
-    aspect-ratio: 1/1;
-    border: 1px solid black;
-}
-
 #floor {
     width: 100%;
     background-image: url('../images/game/floor.png');
     background-repeat: repeat-x;
 }
 
+/* Doors */
+
 .door {
     background-size: cover;
+    grid-row-start: 6;
+    grid-row-end: 8;
+}
+
+#door-1 {
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+
+#door-2 {
+    grid-column-start: 8;
+    grid-column-end: 10;
+}
+
+#door-3 {
+    grid-column-start: 12;
+    grid-column-end: 14;
 }
 
 .barricade {
@@ -71,4 +83,43 @@ body {
 
 .prop {
     background-size: cover;
+}
+
+/* Individual prop positions. Works off a 16x7 grid */
+
+/* Wall and floor props will have different y coordinates */
+.prop-wall {
+    grid-row-start: 4;
+    grid-row-end: 6;
+}
+
+.prop-floor {
+    grid-row-start: 6;
+    grid-row-end: 8;
+}
+
+/* The horizontal position of the prop */
+.prop-left {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.prop-mid-left {
+    grid-column-start: 6;
+    grid-column-end: 8;
+}
+
+.prop-mid {
+    grid-column-start: 8;
+    grid-column-end: 10;
+}
+
+.prop-mid-right {
+    grid-column-start: 10;
+    grid-column-end: 12;
+}
+
+.prop-right {
+    grid-column-start: 14;
+    grid-column-end: 16;
 }

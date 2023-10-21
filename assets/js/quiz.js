@@ -1,5 +1,6 @@
+const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
-let answerButtonsElement = document.getElementById('answer-btn')
+const answerButtonsElement = document.getElementById('answer-box')
 const submitButtonElement = document.getElementById('submit')
 
 const easyDoor = document.getElementById('door-1')
@@ -21,7 +22,14 @@ function startQuiz() {
 
 // Show questions and answers
 function showQuestion(question) {
-    questionElement.innerText = question.question
+  questionElement.innerText = question.question;
+  question.answers.forEach(answer => {
+    const button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('btn')
+    answerButtonsElement.appendChild(button)
+    console.log(answer.text)
+  })
 }
 
 const questions = [

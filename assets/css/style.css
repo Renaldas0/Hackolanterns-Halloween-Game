@@ -151,6 +151,20 @@ body {
     grid-column-end: 16;
 }
 
+/* Puzzles */
+
+/* Overlay that covers the entire screen */
+#puzzle-overlay {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+
 /* Media Queries */
 
 /* Media query for large screen widths */

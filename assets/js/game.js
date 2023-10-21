@@ -12,6 +12,9 @@ const yCells = {
     small: 12
 };
 
+// How many milliseconds does the fadeout take
+const fadeMilliseconds = 800;
+
 // List of image files
 const doorImages = ['door-easy', 'door-medium', 'door-hard', 'door-puzzle'];
 const bookshelfImages = ['bookshelves/bookshelf-empty', 'bookshelves/bookshelf-broom', 'bookshelves/bookshelf-pumpkin'];
@@ -245,6 +248,9 @@ function numberPixels(number) {
 }
 
 
+/**
+ * Sets the 3 doors to a random door type
+ */
 function setDoors() {
     let availableDoors = [...doorImages];
 
@@ -315,6 +321,35 @@ function setProp(imageArray, positionArray) {
 }
 
 
+/**
+ * Starts the puzzle overlay fadeout
+ */
+function startFadeOut() {
+    let fadeOverlay = document.getElementById('puzzle-overlay');
+    fadeOverlay.style.display = 'block';
+    let currentTime = Date.now();
+    fadeOut(currentTime);
+}
+
+
+/**
+ * Iterates through a fadeout animation until it has completely faded to black
+ * @param {Integer} startingTime The date.now() time the fadeout started
+ */
+function fadeOut(startingTime) {
+    let fadeOverlay = document.getElementById('puzzle-overlay');
+    let currentTime = Date.now();
+    if (currentTime >= startingTime + fadeMilliseconds) {
+        fadeOverlay.style.backgroundColor = 'black';
+    }
+    else {
+        setTimeout(fadeOut, 1, startingTime);
+        let fadeAmount = (currentTime - startingTime) / fadeMilliseconds;
+        fadeOverlay.style.backgroundColor = `rgba(0, 0, 0, ${fadeAmount})`;
+    }
+}
+
+
 // Function to open the question modal
 const doors = document.getElementsByClassName('door');
 const divElement = document.querySelector('#overlay');
@@ -341,6 +376,7 @@ function clickDoor(event) {
     }
     else {
         // Puzzle logic goes here
+        startFadeOut();
     }
 }
 for (let door of doors) {

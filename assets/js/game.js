@@ -13,7 +13,7 @@ const yCells = {
 };
 
 // List of image files
-const doorImages = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
+const doorImages = ['door-easy', 'door-medium', 'door-hard', 'door-puzzle'];
 const bookshelfImages = ['bookshelves/bookshelf-empty', 'bookshelves/bookshelf-broom', 'bookshelves/bookshelf-pumpkin'];
 const paintingImages = [
     'paintings/painting-blank',
@@ -37,11 +37,7 @@ window.onload = gameInit();
 function gameInit() {
     randomizeWallpaper();
     updateScreenSize();
-
-    setImageById('door-1', getRandomDoor());
-    setImageById('door-2', getRandomDoor());
-    setImageById('door-3', getRandomDoor());
-    barricadeDoor('door-3');
+    setDoors();
     populateRoom();
 }
 
@@ -249,12 +245,15 @@ function numberPixels(number) {
 }
 
 
-/**
- * Picks a random door and returns it
- * @returns {String} The name of the chosen door
- */
-function getRandomDoor() {
-    return doorImages[Math.floor(Math.random() * doorImages.length)];
+function setDoors() {
+    let availableDoors = [...doorImages];
+
+    for (let i = 1; i <= 3; i++) {
+        let currentDoor = document.getElementById(`door-${i}`);
+        let chosenDoor = chooseFromArray(availableDoors, true);
+        currentDoor.className = `door clickable ${chosenDoor}`;
+        setImage(currentDoor, `doors/${chosenDoor}`);
+    }
 }
 
 

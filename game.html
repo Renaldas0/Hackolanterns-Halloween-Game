@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="./assets/css/modal.css" type="text/css">
     <title>The Haunted House</title>
 </head>
 <body>
@@ -14,8 +15,34 @@
             <div class="door clickable" id="door-2"></div>
             <div class="door clickable" id="door-3"></div>
         </div>
-        <div id="floor"></div>
+        <div id="floor">
+        </div>
     </div>
+
+    <!--Question Overlay-->
+    <div class="background hide" id="overlay">
+        <div class="question-container">
+            <!--Area that displays the question-->
+            <div class="question-box">
+                <h2 id="question">Question will go here, testing the length of the question for size purposes?</h2>
+            </div>
+    
+            <!--Answer Buttons-->
+            <div class="answer-box">
+                <button class="answer-btn">Answer 1 testing the length</button>
+                <button class="answer-btn">Answer 2 testing the length</button>
+                <button class="answer-btn">Answer 3 testing the length</button>
+            </div>
+    
+            <div class="submit-box">
+                <p id="score">Steps you're safe by: 3</p>
+                <button class="submit-btn" id="submit">
+                    Submit answer
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <!-- JavaScript file -->
     <script src="./assets/js/game.js"></script>
 </body>

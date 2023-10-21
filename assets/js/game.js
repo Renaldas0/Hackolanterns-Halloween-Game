@@ -288,3 +288,11 @@ function populateRoom() {
     painting.classList = 'prop painting';
     gameContainer.appendChild(painting);
 }
+
+// Function to open the question modal
+const door = document.querySelector('.door');
+const divElement = document.querySelector('#overlay');
+function showOverlay(door) {
+    divElement.classList.remove('hide');
+}
+door.addEventListener('click', showOverlay);

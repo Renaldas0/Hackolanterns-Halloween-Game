@@ -2,6 +2,9 @@
 const xCells = 16;
 const yCells = 7;
 
+// List of image files
+const doorImages = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
+
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
 
@@ -12,12 +15,12 @@ window.onload = gameInit();
 function gameInit() {
     randomizeWallpaper();
     updateScreenSize();
-    updateDoorPositions();
 
     setImageById('door-1', getRandomDoor());
     setImageById('door-2', getRandomDoor());
     setImageById('door-3', getRandomDoor());
     barricadeDoor('door-3');
+    populateRoom();
 }
 
 
@@ -55,8 +58,22 @@ function updateScreenSize() {
 
     // Then updating the rest of the room components to match the new grid
     updateWallpaper(getWallpaper());
-    updateDoorPositions();
-    populateRoom();
+}
+
+
+/**
+ * Chooses an element from an array at random
+ * @param {Array} myArray The array to choose from
+ * @param {Boolean} deleteElement If true, the element will be deleted from the array
+ * @returns {Any} The chosen element from the array
+ */
+function chooseFromArray(myArray, deleteElement) {
+    let index = Math.floor(Math.random() * myArray.length);
+    let element = myArray[index];
+    if (deleteElement) {
+        myArray.splice(index, 1);
+    }
+    return element;
 }
 
 
@@ -181,34 +198,6 @@ function getWallpaper() {
 
 
 /**
- * 
- */
-function updateDoorPositions() {
-    let doors = document.getElementsByClassName('door');
-    let gridSize = getGridSize();
-
-    for (let i = 0; i < doors.length; i++) {
-        let door = doors[i];
-        door.style.gridRowStart = gridSize.height - 1;
-        door.style.gridRowEnd = gridSize.height + 1;
-
-        if (i === 0) {
-            door.style.gridColumnStart = (gridSize.width / 4);
-            door.style.gridColumnEnd = (gridSize.width / 4) + 2;
-        }
-        else if (i === 1) {
-            door.style.gridColumnStart = (gridSize.width / 2);
-            door.style.gridColumnEnd = (gridSize.width / 2) + 2;
-        }
-        else {
-            door.style.gridColumnStart = (gridSize.width / 4) * 3;
-            door.style.gridColumnEnd = ((gridSize.width / 4) * 3) + 2;
-        }
-    }
-}
-
-
-/**
  * Sets a certain element to a specified image
  * @param {String} element The element to be updated
  * @param {String} imageName The name of the image. Starts from the "assets/images/game/" directory
@@ -234,8 +223,7 @@ function setImageById(id, imageName) {
  * @returns {String} The name of the chosen door
  */
 function getRandomDoor() {
-    let doors = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
-    return doors[Math.floor(Math.random() * doors.length)];
+    return doorImages[Math.floor(Math.random() * doorImages.length)];
 }
 
 
@@ -266,13 +254,15 @@ function populateRoom() {
         'prop-floor prop-left',
         'prop-floor prop-mid-left',
         'prop-floor prop-mid-right',
-        'prop-floor prop-right'];
-
+        'prop-floor prop-right'
+    ];
     //Paintings
     let painting = document.createElement('div');
-    painting.classList = 'prop ' + wallPositions[0];
+    let chosenPosition = chooseFromArray(wallPositions, true);
+    painting.classList = 'prop ' + chosenPosition;
     painting.style.backgroundImage = 'url(./assets/images/game/paintings/painting-man.png)';
     gameContainer.appendChild(painting);
+    console.log(wallPositions);
 }
 
 // Function to open the question modal

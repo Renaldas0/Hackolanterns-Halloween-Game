@@ -51,8 +51,27 @@ body {
     background-repeat: repeat-x;
 }
 
+/* Doors */
+
 .door {
     background-size: cover;
+    grid-row-start: 6;
+    grid-row-end: 8;
+}
+
+#door-1 {
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+
+#door-2 {
+    grid-column-start: 8;
+    grid-column-end: 10;
+}
+
+#door-3 {
+    grid-column-start: 12;
+    grid-column-end: 14;
 }
 
 .barricade {
@@ -101,6 +120,6 @@ body {
 }
 
 .prop-right {
-    grid-column-start: 12;
-    grid-column-end: 14;
+    grid-column-start: 14;
+    grid-column-end: 16;
 }

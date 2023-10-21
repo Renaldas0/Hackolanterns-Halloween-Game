@@ -291,9 +291,13 @@ function populateRoom() {
     // Paintings
     setProp(paintingImages, wallPositions);
     // Shelves
-    setProp(shelfImages, wallPositions);
+    while (wallPositions.length > 0) {
+        setProp(shelfImages, wallPositions);
+    }
     // Bookshelves
-    setProp(bookshelfImages, floorPositions);
+    while (floorPositions.length > 0) {
+        setProp(bookshelfImages, floorPositions);
+    }
 }
 
 

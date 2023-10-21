@@ -4,6 +4,16 @@ const yCells = 7;
 
 // List of image files
 const doorImages = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
+const paintingImages = [
+    'paintings/painting-blank',
+    'paintings/painting-man-headless',
+    'paintings/painting-man-shadow',
+    'paintings/painting-man',
+    'paintings/painting-skeleton',
+    'paintings/painting-woman-zombie',
+    'paintings/painting-woman',
+    'paintings/painting-zombie-head',
+]
 
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
@@ -260,9 +270,9 @@ function populateRoom() {
     let painting = document.createElement('div');
     let chosenPosition = chooseFromArray(wallPositions, true);
     painting.classList = 'prop ' + chosenPosition;
-    painting.style.backgroundImage = 'url(./assets/images/game/paintings/painting-man.png)';
+    let paintingType = chooseFromArray(paintingImages, false);
+    painting.style.backgroundImage = `url(./assets/images/game/${paintingType}.png)`;
     gameContainer.appendChild(painting);
-    console.log(wallPositions);
 }
 
 // Function to open the question modal

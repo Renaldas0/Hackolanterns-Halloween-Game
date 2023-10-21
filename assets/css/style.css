@@ -27,10 +27,6 @@ body {
 
 /* Game */
 
-/* Question overlay */
-.background {
-    display: none;
-}
 
 #game-outer {
     height: 100vh;

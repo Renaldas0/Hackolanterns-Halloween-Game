@@ -1,12 +1,12 @@
-.background {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: url('../images/questions-bg.jpg');
+#hide {
+    display: none;
 }
 
 .question-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: .5rem;
     min-width: 70%;
     height: 95vh;
@@ -70,7 +70,7 @@
     font-weight: 600;
 }
 
-.submit-box .submit-btn {
+.submit-btn {
     background: var(--main-orange);
     color: var(--main-black);
     padding: 1rem;
@@ -89,15 +89,33 @@
     .submit-box {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
     }
 
     .answer-box {
-        margin-top: 1rem;
+        margin-top: .5rem;
     }
 
     .submit-box p {
         text-align: center;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .question-box {
+        padding: .4rem;
+    }
+
+    .question-box h2 {
+        font-size: 1.2rem;
+    }
+
+    .answer-box button {
+        font-size: 1.1rem;
+        padding: .7rem;
+    }
+
+    .submit-box p {
+        margin-bottom: 1rem;
     }
 }
 
@@ -108,15 +126,20 @@
     }
 
     .question-box h2 {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
+    .submit-box p,
+    .submit-box button {
+        font-size: 1rem;
+        margin-bottom: .5rem;
+    }
+}
+
+@media screen and (max-width:280px) {
+
+    .question-box p,
     .answer-box button {
-        font-size: 1.2rem;
-        padding: 0.5rem 1rem;
-    }
-
-    .submit-box p {
-        font-size: 1.2rem;
+        font-size: .8rem;
     }
 }

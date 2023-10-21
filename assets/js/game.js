@@ -1,3 +1,7 @@
+// How many cells span across the width and height of the screen
+const xCells = 16;
+const yCells = 6;
+
 // Different properties for different screen sizes
 const screenSmall = {
     cells: 6,
@@ -11,7 +15,7 @@ const screenLarge = {
     cells: 16,
     floorHeight: 1,
 }
-// window.addEventListener('resize', updateScreenSize);
+window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
 
 
@@ -39,21 +43,7 @@ function updateScreenSize() {
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    // Categorizing the size of the screen
-    let screenSize = null;
-    let aspectRatio = width / height;
-    if (aspectRatio < 0.8) {
-        screenSize = screenSmall;
-    }
-    else if (aspectRatio < 4 / 3) {
-        screenSize = screenMedium;
-    }
-    else {
-        screenSize = screenLarge;
-    }
-    let xCells = screenSize.cells;
     let cellSize = width / xCells;
-    let yCells = Math.floor(height / cellSize) - screenSize.floorHeight;
 
     // Adjusting the css grid
     let columnStyle = ""

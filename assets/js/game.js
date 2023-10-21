@@ -1,20 +1,7 @@
 // How many cells span across the width and height of the screen
 const xCells = 16;
-const yCells = 6;
+const yCells = 7;
 
-// Different properties for different screen sizes
-const screenSmall = {
-    cells: 6,
-    floorHeight: 0,
-}
-const screenMedium = {
-    cells: 12,
-    floorHeight: 3,
-}
-const screenLarge = {
-    cells: 16,
-    floorHeight: 1,
-}
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
 
@@ -41,8 +28,6 @@ function updateScreenSize() {
     let gameContainer = document.getElementById('game-grid');
     let floor = document.getElementById('floor');
     let width = window.innerWidth;
-    let height = window.innerHeight;
-
     let cellSize = width / xCells;
 
     // Adjusting the css grid
@@ -71,6 +56,7 @@ function updateScreenSize() {
     // Then updating the rest of the room components to match the new grid
     updateWallpaper(getWallpaper());
     updateDoorPositions();
+    populateRoom();
 }
 
 
@@ -269,13 +255,23 @@ function populateRoom() {
     let gameContainer = document.getElementById('game-grid');
 
     // Setting positions where props can be placed. These will be ids assigned to the components
-    let wallPositions = ['wall-left', 'wall-mid-left', 'wall-mid', 'wall-mid-right', 'wall-right'];
-    let floorPositions = [];
+    let wallPositions = [
+        'prop-wall prop-left',
+        'prop-wall prop-mid-left',
+        'prop-wall prop-mid',
+        'prop-wall prop-mid-right',
+        'prop-wall prop-right'
+    ];
+    let floorPositions = [
+        'prop-floor prop-left',
+        'prop-floor prop-mid-left',
+        'prop-floor prop-mid-right',
+        'prop-floor prop-right'];
 
     //Paintings
     let painting = document.createElement('div');
-    painting.id = wallPositions[0];
-    painting.classList = 'prop painting';
+    painting.classList = 'prop ' + wallPositions[0];
+    painting.style.backgroundImage = 'url(./assets/images/game/paintings/painting-man.png)';
     gameContainer.appendChild(painting);
 }
 

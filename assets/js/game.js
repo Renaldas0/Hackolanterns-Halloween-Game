@@ -13,7 +13,8 @@ const paintingImages = [
     'paintings/painting-woman-zombie',
     'paintings/painting-woman',
     'paintings/painting-zombie-head',
-]
+];
+const shelfImages = ['shelves/shelf-empty', 'shelves/shelf-eyeball', 'shelves/shelf-witch-hat'];
 
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
@@ -249,9 +250,10 @@ function barricadeDoor(doorId) {
 }
 
 
+/**
+ * Adds a selection of new props to the room
+ */
 function populateRoom() {
-    let gameContainer = document.getElementById('game-grid');
-
     // Setting positions where props can be placed. These will be ids assigned to the components
     let wallPositions = [
         'prop-wall prop-left',
@@ -267,13 +269,31 @@ function populateRoom() {
         'prop-floor prop-right'
     ];
     //Paintings
-    let painting = document.createElement('div');
-    let chosenPosition = chooseFromArray(wallPositions, true);
-    painting.classList = 'prop ' + chosenPosition;
-    let paintingType = chooseFromArray(paintingImages, false);
-    painting.style.backgroundImage = `url(./assets/images/game/${paintingType}.png)`;
-    gameContainer.appendChild(painting);
+    setProp(paintingImages, wallPositions);
+    setProp(shelfImages, wallPositions);
+    console.log(wallPositions);
 }
+
+
+/**
+ * Adds a new prop into the room
+ * @param {Array} imageArray The array of all the images this prop will have
+ * @param {Array} positionArray An array of all possible positions the prop could be placed
+ */
+function setProp(imageArray, positionArray) {
+    let gameContainer = document.getElementById('game-grid');
+    let newProp = document.createElement('div');
+
+    // Getting the prop's position
+    let chosenPosition = chooseFromArray(positionArray, true);
+    newProp.classList = 'prop ' + chosenPosition;
+
+    // Getting the image for the prop
+    let propImage = chooseFromArray(imageArray, false);
+    newProp.style.backgroundImage = `url(./assets/images/game/${propImage}.png)`;
+    gameContainer.appendChild(newProp);
+}
+
 
 // Function to open the question modal
 const door = document.querySelector('.door');

@@ -43,12 +43,20 @@ body {
 
 #game-grid {
     display: grid;
+    position: relative;
 }
 
-#floor {
+/* Floors */
+
+.floor {
     width: 100%;
     background-image: url('../images/game/floor.png');
     background-repeat: repeat-x;
+}
+
+#floor-1, #floor-2 {
+    display: none;
+    position: absolute;
 }
 
 /* Doors */
@@ -151,5 +159,10 @@ body {
 
     .prop {
         display: none;
+    }
+
+    #floor-1, #floor-2 {
+        display: inline-block;
+        width: 100%;
     }
 }

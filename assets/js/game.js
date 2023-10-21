@@ -31,7 +31,8 @@ window.onload = gameInit();
  * Is called when the page is loaded. Sets up the game
  */
 function gameInit() {
-    randomizeWallpaper();
+    //randomizeWallpaper();
+    setWallpaper('ribbon');
     updateScreenSize();
 
     setImageById('door-1', getRandomDoor());
@@ -47,16 +48,19 @@ function gameInit() {
  */
 function updateScreenSize() {
     let gameContainer = document.getElementById('game-grid');
-    let floor = document.getElementById('floor');
+    let floors = document.getElementsByClassName('floor');
     let width = window.innerWidth;
+    let screen = '';
 
     let cellWidth = 0;
     let cellHeight = 0;
     if (width <= 700) {
+        screen = 'mobile';
         cellWidth = xCells.mobile;
         cellHeight = yCells.mobile;
     }
     else {
+        screen = 'desktop';
         cellWidth = xCells.desktop;
         cellHeight = yCells.desktop;
     }
@@ -83,8 +87,20 @@ function updateScreenSize() {
     gameContainer.style.backgroundSize = `${cellSize * 2}px`;
 
     // Adjusting the floor
-    floor.style.height = `${cellSize / 8}px`;
-    floor.style.backgroundSize = `${cellSize * 2}px`;
+    for (let floor of floors) {
+        floor.style.height = `${cellSize / 8}px`;
+        floor.style.backgroundSize = `${cellSize * 2}px`;
+
+        // Positiong the other 2 doors on mobile devices
+        if (screen === 'mobile') {
+            if (floor.id === 'floor-1') {
+                floor.style.top = `${getYCellPosition(4)}px`;
+            }
+            else if (floor.id === 'floor-2') {
+                floor.style.top = `${getYCellPosition(8)}px`;
+            } 
+        }
+    }
 
     // Then updating the rest of the room components to match the new grid
     updateWallpaper(getWallpaper());
@@ -108,27 +124,6 @@ function chooseFromArray(myArray, deleteElement) {
 
 
 /**
- * Gets the information of the grid
- * @returns {Object} { width: The width of the grid in cells, height: The height of the grid in cells,
- * cellSize: How big a cell is in pixels }
- */
-function getGridSize() {
-    let gameContainer = document.getElementById('game-grid');
-    let gridCols = gameContainer.style.gridTemplateColumns;
-    let gridRows = gameContainer.style.gridTemplateRows;
-
-    gridCols = gridCols.split(' ');
-    gridRows = gridRows.split(' ');
-
-    return {
-        width: gridCols.length,
-        height: gridRows.length,
-        cellSize: gridCols[0]
-    };
-}
-
-
-/**
  * Gets the real coordinate of a cell in pixels
  * @param {Integer} index The Y position of the cell in the grid. Negative numbers start at the end
  * of the grid and move backwards
@@ -148,21 +143,6 @@ function getYCellPosition(index) {
 
 
 /**
- * Gets the position of an element in the game grid
- * @param {Object} element The element that you want to get the coordinates from
- */
-function getElementGridPosition(element) {
-    let x = element.style.gridColumnStart;
-    let y = element.style.gridRowStart;
-
-    return {
-        x: x,
-        y: y
-    };
-}
-
-
-/**
  * Chooses a random wallpaper and applies it
  */
 function randomizeWallpaper() {
@@ -178,8 +158,10 @@ function randomizeWallpaper() {
  */
 function setWallpaper(wallpaperName) {
     let gameContainer = document.getElementById('game-grid');
-    gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
-
+    //if (wallpaperName !== 'ribbon') {
+        gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
+    //}
+    
     updateWallpaper(wallpaperName);
 }
 
@@ -190,10 +172,6 @@ function setWallpaper(wallpaperName) {
  */
 function updateWallpaper(wallpaperName) {
     let gameContainer = document.getElementById('game-grid');
-
-    // Clearing any previously set variables
-    gameContainer.style.backgroundRepeat = 'repeat';
-    gameContainer.style.backgroundColor = 'rgba(0, 0, 0, 0)';
 
     // The ribbon wallpaper only repeats along the Y axis once and sits at the bottom of the wall
     if (wallpaperName === 'ribbon') {

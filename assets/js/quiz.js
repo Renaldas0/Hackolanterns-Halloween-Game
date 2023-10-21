@@ -2,6 +2,10 @@ const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-box')
 const submitButtonElement = document.getElementById('submit')
 
+const easyDoor = document.getElementById('door-1')
+const mediumDoor = document.getElementById('door-2')
+const hardDoor = document.getElementById('door-3')
+
 const questions = [
     // Easy Questions
    {

@@ -137,11 +137,29 @@ body {
 
 /* Media Queries */
 
-/* Media query for mobile devices (the grid will change to 6x12) */
-@media screen and (max-width: 400px) {
-    #game-grid>.door {
+/* Media query for large screen widths */
+@media screen and (max-width: 1200px) {
+    #door-1 {
         grid-column-start: 3;
         grid-column-end: 5;
+    }
+
+    #door-2 {
+        grid-column-start: 7;
+        grid-column-end: 9;
+    }
+
+    #door-3 {
+        grid-column-start: 11;
+        grid-column-end: 13;
+    }
+}
+
+/* Media query for medium screen widths (the grid will change to 8x12) */
+@media screen and (max-width: 600px) {
+    #game-grid>.door {
+        grid-column-start: 4;
+        grid-column-end: 6;
     }
 
     #door-1 {
@@ -172,5 +190,13 @@ body {
     .wallpaper-mobile {
         background-image: url('../images/game/wallpapers/wallpaper-ribbon.png');
         position: relative;
+    }
+}
+
+/* Media query for small screen widths (the grid will change to 6x12) */
+@media screen and (max-width: 400px) {
+    #game-grid>.door {
+        grid-column-start: 3;
+        grid-column-end: 5;
     }
 }

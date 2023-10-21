@@ -2,7 +2,7 @@
 const xCells = {
     xtraLarge: 16,
     large: 14,
-    medium: 10,
+    medium: 8,
     small: 6
 };
 const yCells = {
@@ -60,7 +60,7 @@ function updateScreenSize() {
     if (width <= 400) {
         screen = 'small';
     }
-    else if (width <= 800) {
+    else if (width <= 600) {
         screen = 'medium';
     }
     else if (width <= 1200) {
@@ -101,7 +101,7 @@ function updateScreenSize() {
 
         // Positiong the other 2 floors on mobile devices
         if (floor.id !== 'floor-3') {
-            if (screen === 'small') {
+            if (width <= 600) {
                 if (floor.id === 'floor-1') {
                     floor.style.top = numberPixels(getYCellPosition(4));
                 }

@@ -1,6 +1,12 @@
 // How many cells span across the width and height of the screen
-const xCells = 16;
-const yCells = 7;
+const xCells = {
+    desktop: 16,
+    mobile: 6
+};
+const yCells = {
+    desktop: 7,
+    mobile: 12
+};
 
 // List of image files
 const doorImages = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
@@ -43,20 +49,32 @@ function updateScreenSize() {
     let gameContainer = document.getElementById('game-grid');
     let floor = document.getElementById('floor');
     let width = window.innerWidth;
-    let cellSize = width / xCells;
+
+    let cellWidth = 0;
+    let cellHeight = 0;
+    if (width <= 700) {
+        cellWidth = xCells.mobile;
+        cellHeight = yCells.mobile;
+    }
+    else {
+        cellWidth = xCells.desktop;
+        cellHeight = yCells.desktop;
+    }
+
+    let cellSize = width / cellWidth;
 
     // Adjusting the css grid
     let columnStyle = ""
     let rowStyle = "";
-    for (let i = 0; i < xCells; i++) {
+    for (let i = 0; i < cellWidth; i++) {
         columnStyle += `${cellSize}px`;
-        if (i < xCells - 1) {
+        if (i < cellWidth - 1) {
             columnStyle += " ";
         }
     }
-    for (let i = 0; i < yCells; i++) {
+    for (let i = 0; i < cellHeight; i++) {
         rowStyle += `${cellSize}px`;
-        if (i < yCells - 1) {
+        if (i < cellHeight - 1) {
             rowStyle += " ";
         }
     }
@@ -293,7 +311,7 @@ function setProp(imageArray, positionArray) {
 
     // Getting the image for the prop
     let propImage = chooseFromArray(imageArray, false);
-    newProp.style.backgroundImage = `url(./assets/images/game/${propImage}.png)`;
+    setImage(newProp, propImage);
     gameContainer.appendChild(newProp);
 }
 

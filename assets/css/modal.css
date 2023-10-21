@@ -33,7 +33,7 @@
     text-align: center;
 }
 
-.answer-box {
+#answer-box {
     height: 75%;
     width: 75%;
     display: flex;
@@ -42,7 +42,7 @@
     gap: 3rem;
 }
 
-.answer-box button {
+#answer-box button {
     border-radius: 2rem;
     font-size: 1.5rem;
     font-weight: 600;
@@ -52,7 +52,7 @@
     transition: .5s ease;
 }
 
-.answer-box button:hover {
+#answer-box button:hover {
     scale: 1.05;
     box-shadow: 0 0 1rem var(--main-orange);
 }

@@ -9,6 +9,11 @@
     text-decoration: none;
 }
 
+.clickable:hover {
+    cursor: pointer;
+}
+
+
 body {
     font-family: 'Playpen Sans', cursive;
 }
@@ -31,9 +36,13 @@ body {
 #game-outer {
     height: 100vh;
     background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-#game-container {
+#game-grid {
     display: grid;
 }
 
@@ -47,4 +56,19 @@ body {
     width: 100%;
     background-image: url('../images/game/floor.png');
     background-repeat: repeat-x;
+}
+
+.door {
+    background-size: cover;
+}
+
+.barricade {
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/game/doors/door-boards.png');
+    background-size: cover;
+}
+
+.prop {
+    background-size: cover;
 }

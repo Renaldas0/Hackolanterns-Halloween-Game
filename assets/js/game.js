@@ -252,7 +252,6 @@ function setDoors() {
         let currentDoor = document.getElementById(`door-${i}`);
         let chosenDoor = chooseFromArray(availableDoors, true);
         currentDoor.className = `door clickable ${chosenDoor}`;
-        setImage(currentDoor, `doors/${chosenDoor}`);
     }
 }
 
@@ -317,9 +316,33 @@ function setProp(imageArray, positionArray) {
 
 
 // Function to open the question modal
-const door = document.querySelector('.door');
+const doors = document.getElementsByClassName('door');
 const divElement = document.querySelector('#overlay');
-function showOverlay(door) {
-    divElement.classList.remove('hide');
+
+/**
+ * Is called when a door is clicked
+ * @param {Object} doorId The door that was clicked
+ */
+function clickDoor(event) {
+    let door = event.target;
+    let doorClass = door.classList;
+
+    if (doorClass.contains('door-easy')) {
+        // Easy question logic goes here
+        divElement.classList.remove('hide');
+    }
+    else if (doorClass.contains('door-medium')) {
+        // Medium question logic goes here
+        divElement.classList.remove('hide');
+    }
+    else if (doorClass.contains('door-hard')) {
+        // Hard question logic goes here
+        divElement.classList.remove('hide');
+    }
+    else {
+        // Puzzle logic goes here
+    }
 }
-door.addEventListener('click', showOverlay);
+for (let door of doors) {
+    door.addEventListener('click', clickDoor);
+}

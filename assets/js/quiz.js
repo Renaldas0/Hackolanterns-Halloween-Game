@@ -1,3 +1,7 @@
+const questionElement = document.getElementById('question')
+const answerButtonsElement = document.getElementById('answer-box')
+const submitButtonElement = document.getElementById('submit')
+
 const questions = [
     // Easy Questions
    {

@@ -1,10 +1,28 @@
 const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-box')
+let answerButtonsElement = document.getElementById('answer-btn')
 const submitButtonElement = document.getElementById('submit')
 
 const easyDoor = document.getElementById('door-1')
 const mediumDoor = document.getElementById('door-2')
 const hardDoor = document.getElementById('door-3')
+
+let shuffledQuestions, currentQuestionIndex
+
+let userScore = 0
+
+easyDoor.addEventListener('click', startQuiz)
+
+// Main quiz
+function startQuiz() {
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+
+// Show questions and answers
+function showQuestion(question) {
+    questionElement.innerText = question.question
+}
 
 const questions = [
     // Easy Questions

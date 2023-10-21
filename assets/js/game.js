@@ -1,11 +1,15 @@
 // How many cells span across the width and height of the screen
 const xCells = {
-    desktop: 16,
-    mobile: 6
+    xtraLarge: 16,
+    large: 14,
+    medium: 10,
+    small: 6
 };
 const yCells = {
-    desktop: 7,
-    mobile: 12
+    xtraLarge: 7,
+    large: 7,
+    medium: 12,
+    small: 12
 };
 
 // List of image files
@@ -31,8 +35,7 @@ window.onload = gameInit();
  * Is called when the page is loaded. Sets up the game
  */
 function gameInit() {
-    //randomizeWallpaper();
-    setWallpaper('ribbon');
+    randomizeWallpaper();
     updateScreenSize();
 
     setImageById('door-1', getRandomDoor());
@@ -51,22 +54,26 @@ function updateScreenSize() {
     let floors = document.getElementsByClassName('floor');
     let width = window.innerWidth;
     let currentWallpaper = getWallpaper();
-    let screen = '';
 
-    let cellWidth = 0;
-    let cellHeight = 0;
-    if (width <= 700) {
-        screen = 'mobile';
-        cellWidth = xCells.mobile;
-        cellHeight = yCells.mobile;
+    // Media queries that the script will use to rearrange the grid
+    let screen = '';
+    if (width <= 400) {
+        screen = 'small';
+    }
+    else if (width <= 800) {
+        screen = 'medium';
+    }
+    else if (width <= 1200) {
+        screen = 'large';
     }
     else {
-        screen = 'desktop';
-        cellWidth = xCells.desktop;
-        cellHeight = yCells.desktop;
+        screen = 'xtraLarge';
+        
     }
-
+    let cellWidth = xCells[screen];
+    let cellHeight = yCells[screen];
     let cellSize = width / cellWidth;
+    
 
     // Adjusting the css grid
     let columnStyle = ""
@@ -94,7 +101,7 @@ function updateScreenSize() {
 
         // Positiong the other 2 floors on mobile devices
         if (floor.id !== 'floor-3') {
-            if (screen === 'mobile') {
+            if (screen === 'small') {
                 if (floor.id === 'floor-1') {
                     floor.style.top = numberPixels(getYCellPosition(4));
                 }

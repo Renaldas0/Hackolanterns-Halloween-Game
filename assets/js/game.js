@@ -11,7 +11,7 @@ const screenLarge = {
     cells: 16,
     floorHeight: 1,
 }
-window.addEventListener('resize', updateScreenSize);
+// window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
 
 
@@ -34,7 +34,7 @@ function gameInit() {
  * Repositions the grid cells depending on the screen size
  */
 function updateScreenSize() {
-    let gameContainer = document.getElementById('game-container');
+    let gameContainer = document.getElementById('game-grid');
     let floor = document.getElementById('floor');
     let width = window.innerWidth;
     let height = window.innerHeight;
@@ -90,7 +90,7 @@ function updateScreenSize() {
  * cellSize: How big a cell is in pixels }
  */
 function getGridSize() {
-    let gameContainer = document.getElementById('game-container');
+    let gameContainer = document.getElementById('game-grid');
     let gridCols = gameContainer.style.gridTemplateColumns;
     let gridRows = gameContainer.style.gridTemplateRows;
 
@@ -112,7 +112,7 @@ function getGridSize() {
  * @returns {Float} The Y coordinate of the cell
  */
 function getYCellPosition(index) {
-    let gameContainer = document.getElementById('game-container');
+    let gameContainer = document.getElementById('game-grid');
     let gridInfo = gameContainer.style.gridTemplateRows;
     gridInfo = gridInfo.split(' ');
     // Converting 
@@ -154,7 +154,7 @@ function randomizeWallpaper() {
  * @param {String} wallpaperName The name of the wallpaper
  */
 function setWallpaper(wallpaperName) {
-    let gameContainer = document.getElementById('game-container');
+    let gameContainer = document.getElementById('game-grid');
     gameContainer.style.backgroundImage = `url(./assets/images/game/wallpapers/wallpaper-${wallpaperName}.png)`;
 
     updateWallpaper(wallpaperName);
@@ -166,7 +166,7 @@ function setWallpaper(wallpaperName) {
  * @param {String} wallpaperName The name of the wallpaper that is set
  */
 function updateWallpaper(wallpaperName) {
-    let gameContainer = document.getElementById('game-container');
+    let gameContainer = document.getElementById('game-grid');
 
     // Clearing any previously set variables
     gameContainer.style.backgroundRepeat = 'repeat';
@@ -190,7 +190,7 @@ function updateWallpaper(wallpaperName) {
  * @returns {String} The found wallpaper
  */
 function getWallpaper() {
-    let gameContainer = document.getElementById('game-container');
+    let gameContainer = document.getElementById('game-grid');
     let wallpaperStyle = gameContainer.style.backgroundImage;
 
     if (wallpaperStyle === '') {
@@ -276,7 +276,7 @@ function barricadeDoor(doorId) {
 
 
 function populateRoom() {
-    let gameContainer = document.getElementById('game-container');
+    let gameContainer = document.getElementById('game-grid');
 
     // Setting positions where props can be placed. These will be ids assigned to the components
     let wallPositions = ['wall-left', 'wall-mid-left', 'wall-mid', 'wall-mid-right', 'wall-right'];

@@ -36,9 +36,13 @@ body {
 #game-outer {
     height: 100vh;
     background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-#game-container {
+#game-grid {
     display: grid;
 }
 

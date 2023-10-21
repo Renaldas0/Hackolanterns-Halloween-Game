@@ -84,6 +84,22 @@ body {
     grid-column-end: 14;
 }
 
+.door-easy {
+    background-image: url('../images/game/doors/door-easy.png');
+}
+
+.door-medium {
+    background-image: url('../images/game/doors/door-medium.png');
+}
+
+.door-hard {
+    background-image: url('../images/game/doors/door-hard.png');
+}
+
+.door-puzzle {
+    background-image: url('../images/game/doors/door-puzzle.png');
+}
+
 .barricade {
     width: 100%;
     height: 100%;

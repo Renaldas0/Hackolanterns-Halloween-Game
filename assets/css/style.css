@@ -289,4 +289,23 @@ body {
         grid-column-start: 3;
         grid-column-end: 5;
     }
+
+    /* Props */
+    .prop-wall.prop-mid-left,
+    .prop-wall.prop-mid,
+    .prop-floor.prop-mid-right,
+    .prop-floor.prop-right {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+
+    .prop-wall.prop-right {
+        grid-column-start: 4;
+        grid-column-end: 6;
+    }
+
+    .prop-floor.prop-mid-left {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
 }

@@ -137,11 +137,58 @@ body {
 
 /* Media Queries */
 
-/* Media query for mobile devices (the grid will change to 6x12) */
-@media screen and (max-width: 700px) {
-    #game-grid>.door {
+/* Media query for large screen widths */
+@media screen and (max-width: 1200px) {
+
+    /* Doors */
+
+    #door-1 {
         grid-column-start: 3;
         grid-column-end: 5;
+    }
+
+    #door-2 {
+        grid-column-start: 7;
+        grid-column-end: 9;
+    }
+
+    #door-3 {
+        grid-column-start: 11;
+        grid-column-end: 13;
+    }
+
+    /* Props */
+    .prop-left {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .prop-mid-left {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+
+    .prop-mid {
+        grid-column-start: 7;
+        grid-column-end: 9;
+    }
+
+    .prop-mid-right {
+        grid-column-start: 9;
+        grid-column-end: 11;
+    }
+
+    .prop-right {
+        grid-column-start: 13;
+        grid-column-end: 15;
+    }
+}
+
+/* Media query for medium screen widths (the grid will change to 8x12) */
+@media screen and (max-width: 600px) {
+    #game-grid>.door {
+        grid-column-start: 4;
+        grid-column-end: 6;
     }
 
     #door-1 {
@@ -159,10 +206,6 @@ body {
         grid-row-end: 13;
     }
 
-    .prop {
-        display: none;
-    }
-
     #floor-1, #floor-2 {
         display: inline-block;
         width: 100%;
@@ -172,5 +215,97 @@ body {
     .wallpaper-mobile {
         background-image: url('../images/game/wallpapers/wallpaper-ribbon.png');
         position: relative;
+    }
+
+    /* Wall Props */
+    .prop-wall.prop-left {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+
+    .prop-wall.prop-mid-left {
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 2;
+        grid-row-end: 4;
+    }
+
+    .prop-wall.prop-mid {
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 7;
+    }
+
+    .prop-wall.prop-mid-right {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 10;
+        grid-row-end: 12;
+    }
+
+    .prop-wall.prop-right {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 9;
+        grid-row-end: 11;
+    }
+
+    /* Floor Props */
+    .prop-floor.prop-left {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    .prop-floor.prop-mid-left {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 7;
+        grid-row-end: 9;
+    }
+
+    .prop-floor.prop-mid-right {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 7;
+        grid-row-end: 9;
+    }
+
+    .prop-floor.prop-right {
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 11;
+        grid-row-end: 13;
+    }
+}
+
+/* Media query for small screen widths (the grid will change to 6x12) */
+@media screen and (max-width: 400px) {
+    #game-grid>.door {
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+
+    /* Props */
+    .prop-wall.prop-mid-left,
+    .prop-wall.prop-mid,
+    .prop-floor.prop-mid-right,
+    .prop-floor.prop-right {
+        grid-column-start: 5;
+        grid-column-end: 7;
+    }
+
+    .prop-wall.prop-right {
+        grid-column-start: 4;
+        grid-column-end: 6;
+    }
+
+    .prop-floor.prop-mid-left {
+        grid-column-start: 1;
+        grid-column-end: 3;
     }
 }

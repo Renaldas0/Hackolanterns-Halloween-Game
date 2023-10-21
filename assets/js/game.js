@@ -4,6 +4,7 @@ const yCells = 7;
 
 // List of image files
 const doorImages = ['doors/door-easy', 'doors/door-medium', 'doors/door-hard', 'doors/door-puzzle'];
+const bookshelfImages = ['bookshelves/bookshelf-empty', 'bookshelves/bookshelf-broom', 'bookshelves/bookshelf-pumpkin'];
 const paintingImages = [
     'paintings/painting-blank',
     'paintings/painting-man-headless',
@@ -268,10 +269,12 @@ function populateRoom() {
         'prop-floor prop-mid-right',
         'prop-floor prop-right'
     ];
-    //Paintings
+    // Paintings
     setProp(paintingImages, wallPositions);
+    // Shelves
     setProp(shelfImages, wallPositions);
-    console.log(wallPositions);
+    // Bookshelves
+    setProp(bookshelfImages, floorPositions);
 }
 
 

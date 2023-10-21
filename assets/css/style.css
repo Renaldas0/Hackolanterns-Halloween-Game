@@ -43,17 +43,26 @@ body {
 
 #game-grid {
     display: grid;
+    position: relative;
 }
 
-#floor {
+/* Floors */
+
+.floor {
     width: 100%;
     background-image: url('../images/game/floor.png');
     background-repeat: repeat-x;
 }
 
+#floor-1, #floor-2 {
+    display: none;
+    position: absolute;
+}
+
 /* Doors */
 
 .door {
+    display: inline-block;
     background-size: cover;
     grid-row-start: 6;
     grid-row-end: 8;
@@ -122,4 +131,38 @@ body {
 .prop-right {
     grid-column-start: 14;
     grid-column-end: 16;
+}
+
+/* Media Queries */
+
+/* Media query for mobile devices (the grid will change to 6x12) */
+@media screen and (max-width: 700px) {
+    #game-grid>.door {
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+
+    #door-1 {
+        grid-row-start: 3;
+        grid-row-end: 5;
+    }
+
+    #door-2 {
+        grid-row-start: 7;
+        grid-row-end: 9;
+    }
+
+    #door-3 {
+        grid-row-start: 11;
+        grid-row-end: 13;
+    }
+
+    .prop {
+        display: none;
+    }
+
+    #floor-1, #floor-2 {
+        display: inline-block;
+        width: 100%;
+    }
 }

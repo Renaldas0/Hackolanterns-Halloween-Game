@@ -31,7 +31,7 @@ body {
 /* Landing Page */
 
 .home-image {
-    background: url(/assets/images/walkway.jpg)no-repeat center center;
+    background: url(../images/walkway.jpg)no-repeat center center;
     background-attachment: fixed;
     background-size: cover;
 }
@@ -76,7 +76,7 @@ body {
     position: relative;
     width: 100%;
     height: 1500px;
-    background: url(/assets/images/mansion.png) no-repeat center center;
+    background: url(../images/mansion.png) no-repeat center center;
     background-size: cover;
     z-index: 100;
 }

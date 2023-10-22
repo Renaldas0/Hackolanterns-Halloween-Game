@@ -94,13 +94,17 @@ function createPanels(panelSize) {
     outputBoard.style.gridTemplateRows = gridStyle;
     
     // Creating the panels for each board
-    for (let i = 0; i < Math.pow(panelSize, 2); i++) {
-        let inputPanel = document.createElement('div');
-        inputPanel.className = 'panel panel-input off';
-        inputBoard.appendChild(inputPanel);
+    for (let i = 0; i < panelSize; i++) {
+        for (let j = 0; j < panelSize; j++) {
+            let panelDecision = chosenPanel[i][j] === 1 ? 'panel-light' : 'panel-dark';
 
-        let outputPanel = document.createElement('div');
-        outputPanel.className = 'panel panel-output off';
-        outputBoard.appendChild(outputPanel);
+            let inputPanel = document.createElement('div');
+            inputPanel.className = `panel panel-input ${panelDecision} clickable`;
+            inputBoard.appendChild(inputPanel);
+
+            let outputPanel = document.createElement('div');
+            outputPanel.className = `panel panel-input ${panelDecision}`;
+            outputBoard.appendChild(outputPanel);
+        }
     }
 }

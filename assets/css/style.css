@@ -293,12 +293,20 @@ body {
 .panel-board {
     width: 45%;
     aspect-ratio: 1/1;
-    background-color: white;
     display: grid;
 }
 
 .panel {
-    border: 1px solid black;
+    margin: 3%;
+    background-size: cover;
+}
+
+.panel-light {
+    background-image: url('../images/game/panels/panel-light.png');
+}
+
+.panel-dark {
+    background-image: url('../images/game/panels/panel-dark.png');
 }
 
 

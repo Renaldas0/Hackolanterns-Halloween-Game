@@ -204,8 +204,8 @@ function createPanels(panelSize) {
 
 
 /**
- * Rearranges the 
- * @param {*} attempts 
+ * Rearranges the input panels to be different to the output panels
+ * @param {Integer} panelSize The size of the panel. Is between 3 and 5 
  */
 function rearrangePanels(panelSize) {
     // Calculating how many times the player has to flip to match the panels
@@ -280,6 +280,10 @@ function panelClick(event) {
                 for (let panel of panels) {
                     panel.className += ' won-game-cards';
                 }
+                setTimeout(startFade, 1000, true, progress, 'door-puzzle');
+            }
+            else {
+                setTimeout(startFade, 1000, true, failRoom, 'door-puzzle');
             }
         }
     }

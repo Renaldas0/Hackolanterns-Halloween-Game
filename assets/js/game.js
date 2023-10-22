@@ -126,11 +126,15 @@ function updateScreenSize() {
                 else if (floor.id === 'floor-2') {
                     floor.style.top = numberPixels(getYCellPosition(8));
                 }
+                let wallpaperChild = floor.children[0];
                 if (currentWallpaper === 'ribbon') {
-                    let wallpaperChild = floor.children[0];
+                    wallpaperChild.style.display = 'block';
                     wallpaperChild.style.height = numberPixels(cellSize * 2);
                     wallpaperChild.style.top = numberPixels(-cellSize * 2);
                     wallpaperChild.style.backgroundSize = numberPixels(cellSize * 2);
+                }
+                else {
+                    wallpaperChild.style.display = 'none';
                 }
             }
         }

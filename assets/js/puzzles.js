@@ -134,6 +134,13 @@ function panelClick(event) {
 
     // Finding the panel in the activePanels array
     let coords = getPanelPosition(clickedPanel);
+    flipPanel(clickedPanel);
+
+    for (let i = 0; i < activePanels.inputs.length; i++) {
+        for (let j = 0; j < activePanels.inputs.length; j++) {
+
+        }
+    }
 }
 
 
@@ -163,4 +170,20 @@ function getPanelPosition(panelElement) {
         x: xPosition,
         y: yPosition
     }
+}
+
+
+function flipPanel(panelElement) {
+    let classes = panelElement.className;
+    console.log(classes);
+
+    if (classes.includes('panel-light')) {
+        classes = classes.replace(' panel-light', '');
+        classes += ' panel-dark';
+    }
+    else if (classes.includes('panel-dark')) {
+        classes = classes.replace(' panel-dark', '');
+        classes += ' panel-light';
+    }
+    panelElement.classList = classes;
 }

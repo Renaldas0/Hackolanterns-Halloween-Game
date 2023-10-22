@@ -614,7 +614,6 @@ body {
 #puzzle-pairs {
     background: #5e32ba;
     height: auto;
-    display: flex;
     flex-direction: column;
     justify-content: start;
     position: relative;

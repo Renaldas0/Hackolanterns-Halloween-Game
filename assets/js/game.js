@@ -359,6 +359,7 @@ function fadeOut(startingTime, callback, ...args) {
  * Starts the puzzle sequence
  */
 const startPuzzle = () => {
+    generateCards()
     let panelPuzzle = document.getElementById('puzzle-pairs');
     panelPuzzle.style.display = 'flex';
     // createPanels(3 + Math.floor(Math.random() * 3));
@@ -401,14 +402,13 @@ for (let door of doors) {
 let playerSteps = 4; // need to change this to what it is currently
 let ghostSteps = 6; // need to change this to what it is currently
 let stepsDifference = playerSteps - ghostSteps;
-let points = 20; // need to change this to what it is currently
 const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
 const restart = document.getElementById('end-game-restart');
 
 function endGame() {
     // check to see if the timer reaches zero
-    if (stepsDifference < 0 || points >= 16) {
+    if (stepsDifference < 0 || userScore >= 20) {
         // end page to appear
         endPage.classList.remove('hide');
         endPage.classList.add('end-page-show');
@@ -420,7 +420,7 @@ function endTextShow() {
     endMessage.classList.remove('hide');
     endMessage.classList.add('end-text-show');
     restart.classList.remove('hide');
-    if (points >= 20) {
+    if (userScore >= 20) {
         endMessage.textContent = `Congratulations. You have escaped from the haunted mansion You win!`;
     }
     else if (stepsDifference < 0) {
@@ -428,7 +428,7 @@ function endTextShow() {
     }
 }
 
-endGame();
+// endGame();
 
 // should restart game when in main??
 restart.addEventListener('click', function() {

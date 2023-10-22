@@ -293,8 +293,20 @@ body {
 .panel-board {
     width: 45%;
     aspect-ratio: 1/1;
-    background-color: white;
     display: grid;
+}
+
+.panel {
+    margin: 3%;
+    background-size: cover;
+}
+
+.panel-light {
+    background-image: url('../images/game/panels/panel-light.png');
+}
+
+.panel-dark {
+    background-image: url('../images/game/panels/panel-dark.png');
 }
 
 
@@ -443,6 +455,18 @@ body {
         grid-column-end: 8;
         grid-row-start: 11;
         grid-row-end: 13;
+    }
+
+    /* Puzzles */
+
+    #puzzle-panels {
+        flex-direction: column-reverse;
+        align-items: center;
+        row-gap: 32px;
+    }
+    
+    .panel-board {
+        width: 80%;
     }
 }
 

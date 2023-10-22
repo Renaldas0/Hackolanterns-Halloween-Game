@@ -203,6 +203,7 @@ function setWallpaper(wallpaperName) {
  */
 function updateWallpaper(wallpaperName) {
     let gameContainer = document.getElementById('game-grid');
+    
 
     // The ribbon wallpaper only repeats along the Y axis once and sits at the bottom of the wall
     if (wallpaperName === 'ribbon') {
@@ -213,6 +214,11 @@ function updateWallpaper(wallpaperName) {
         gridInfo = gridInfo.split(' ');
         let bottomCellPosition = getYCellPosition(-1);
         gameContainer.style.backgroundPositionY = numberPixels(bottomCellPosition);
+    }
+    else {
+        gameContainer.style.removeProperty('background-position-y');
+        gameContainer.style.removeProperty('background-color');
+        gameContainer.style.removeProperty('background-repeat');
     }
 }
 
@@ -385,7 +391,9 @@ function startFade(isIn, callback, ...args) {
         // Making all the components invisible again
         let components = fadeOverlay.children;
         for (let component of components) {
-            component.style.display = 'none';
+            if (component.id !== 'overlay') {
+                component.style.display = 'none';
+            }
         }
     }
     fade(currentTime, isIn, callback, ...args);
@@ -549,7 +557,7 @@ function progress(doorClass) {
 }
 
 /**
- * 
+ * Returns to the game after the player fails a door, and barricades it
  */
 function failRoom(doorClass) {
     console.log(doorClass);

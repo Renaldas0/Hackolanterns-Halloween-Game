@@ -17,7 +17,18 @@ const fadeMilliseconds = 800;
 
 // List of image files
 const doorImages = ['door-easy', 'door-medium', 'door-hard', 'door-puzzle'];
-const bookshelfImages = ['bookshelves/bookshelf-empty', 'bookshelves/bookshelf-broom', 'bookshelves/bookshelf-pumpkin'];
+const bookshelfImages = [
+    'bookshelves/bookshelf-empty',
+    'bookshelves/bookshelf-broom',
+    'bookshelves/bookshelf-pumpkin',
+    'bookshelves/bookshelf-plant'
+];
+const tallShelfImages = [
+    'bookshelves/bookshelf-tall',
+    'bookshelves/bookshelf-door',
+    'bookshelves/bookshelf-egg',
+    'bookshelves/bookshelf-cobweb'
+]
 const paintingImages = [
     'paintings/painting-blank',
     'paintings/painting-man-headless',
@@ -28,7 +39,9 @@ const paintingImages = [
     'paintings/painting-woman',
     'paintings/painting-zombie-head',
 ];
-const shelfImages = ['shelves/shelf-empty', 'shelves/shelf-eyeball', 'shelves/shelf-witch-hat'];
+const shelfImages = ['shelves/shelf-empty', 'shelves/shelf-eyeball', 'shelves/shelf-witch-hat', 'shelves/shelf-cat'];
+const lampImages = ['lamps/lamp-normal', 'lamps/lamp-crooked', 'lamps/lamp-alive'];
+const corpseImages = ['corpses/corpse-regular', 'corpses/corpse-bloody', 'corpses/corpse-awake'];
 
 window.addEventListener('resize', updateScreenSize);
 window.onload = gameInit();
@@ -298,6 +311,12 @@ function populateRoom() {
     setProp(shelfImages, wallPositions);
     // Bookshelves
     setProp(bookshelfImages, floorPositions);
+    // Tall bookshelves
+    setProp(tallShelfImages, floorPositions);
+    // Lamps
+    setProp(lampImages, floorPositions);
+    // Corpses
+    setProp(corpseImages, floorPositions);
 }
 
 
@@ -404,6 +423,7 @@ function clickDoor(event) {
         startFadeOut(startPuzzle);
     }
 }
+
 for (let door of doors) {
     door.addEventListener('click', clickDoor);
 }

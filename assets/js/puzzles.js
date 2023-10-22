@@ -1,8 +1,8 @@
 // Stores all the possible panel combinations
 const panel3x3 = [
-    [[0, 0, 0],
-     [0, 0, 0],
-     [0, 0, 0]],
+    [[1, 1, 1],
+     [0, 1, 0],
+     [1, 1, 1]],
 
     [[0, 1, 0],
      [1, 1, 1],
@@ -43,6 +43,31 @@ const panel4x4 = [
      [0, 1, 1, 0],
      [0, 1, 1, 0],
      [1, 0, 0, 1]],
+    
+    [[1, 0, 0, 1],
+     [1, 0, 1, 1],
+     [1, 1, 0, 1],
+     [1, 0, 0, 1]],
+    
+    [[0, 1, 0, 1],
+     [0, 1, 0, 1],
+     [0, 1, 0, 1],
+     [0, 1, 0, 1]],
+    
+    [[1, 1, 1, 1],
+     [0, 0, 0, 0],
+     [0, 0, 0, 0],
+     [1, 1, 1, 1]],
+    
+    [[0, 1, 1, 0],
+     [0, 1, 1, 0],
+     [0, 1, 1, 0],
+     [0, 1, 1, 0]],
+    
+    [[0, 1, 1, 0],
+     [1, 1, 0, 1],
+     [1, 0, 1, 1],
+     [0, 1, 1, 0]],
 ];
 const panel5x5 = [
     [[0, 0, 0, 0, 0],
@@ -50,11 +75,60 @@ const panel5x5 = [
      [0, 0, 0, 0, 0],
      [0, 0, 0, 0, 0],
      [0, 0, 0, 0, 0]],
+    
+    [[1, 1, 0, 0, 1],
+     [1, 1, 1, 0, 0],
+     [0, 1, 1, 1, 0],
+     [0, 0, 1, 1, 1],
+     [1, 0, 0, 1, 1]],
+    
+    [[1, 1, 1, 1, 1],
+     [0, 1, 1, 1, 0],
+     [0, 1, 1, 1, 0],
+     [0, 0, 0, 0, 0],
+     [1, 1, 1, 1, 1]],
+    
+    [[0, 0, 0, 1, 0],
+     [1, 1, 1, 0, 0],
+     [1, 0, 0, 0, 1],
+     [1, 1, 1, 0, 0],
+     [0, 0, 0, 1, 0]],
+    
+    [[1, 0, 1, 0, 1],
+     [0, 1, 1, 1, 0],
+     [1, 1, 0, 1, 1],
+     [0, 1, 1, 1, 0],
+     [1, 0, 1, 0, 1]],
+    
+    [[0, 1, 0, 1, 0],
+     [1, 0, 1, 0, 1],
+     [0, 1, 0, 1, 0],
+     [1, 0, 1, 0, 1],
+     [0, 1, 0, 1, 0]],
+    
+    [[0, 1, 0, 1, 0],
+     [0, 1, 0, 1, 0],
+     [1, 1, 1, 1, 1],
+     [1, 0, 1, 0, 1],
+     [1, 0, 1, 0, 1]],
+    
+    [[1, 0, 0, 0, 1],
+     [1, 1, 0, 1, 1],
+     [1, 0, 1, 0, 1],
+     [1, 0, 1, 0, 1],
+     [1, 1, 1, 1, 1]],
+    
+    [[0, 1, 0, 1, 0],
+     [0, 0, 0, 0, 0],
+     [1, 1, 0, 1, 1],
+     [0, 1, 1, 1, 0],
+     [0, 1, 0, 1, 0]],
 ];
 
 const activePanels = {
     inputs: [],
-    outputs: []
+    outputs: [],
+    attempts: 0
 };
 
 
@@ -149,12 +223,28 @@ function rearrangePanels(panelSize) {
         default:
             throw 'Error: Panel size must be between 3 and 5!';
     }
+    activePanels.attempts = attempts;
+    let previousMoves = [];
 
-    for (let i = 0; i < attempts; i++) {
+    while (attempts > 0) {
         let x = Math.floor(Math.random() * panelSize);
         let y = Math.floor(Math.random() * panelSize);
 
-        activatePanels(activePanels.inputs[x][y]);
+        let hasSameInput = false;
+        for (let move of previousMoves) {
+            if (x === move.x && y === move.y) {
+                hasSameInput = true;
+                break;
+            }
+        }
+        if (!hasSameInput) {
+            activatePanels(activePanels.inputs[x][y]);
+            previousMoves.push({
+                x: x,
+                y: y
+            });
+            attempts--;
+        }
     }
 }
 
@@ -164,8 +254,35 @@ function rearrangePanels(panelSize) {
  * @param {Object} event The information about the click event
  */
 function panelClick(event) {
-    let clickedPanel = event.target;
-    activatePanels(clickedPanel);
+    if (activePanels.attempts > 0) {
+        let clickedPanel = event.target;
+        activatePanels(clickedPanel);
+        activePanels.attempts--;
+
+        if (activePanels.attempts === 0) {
+            // Check if the player has won or lost
+            let hasWon = true;
+            for (let i = 0; i < activePanels.inputs.length && hasWon; i++) {
+                for (let j = 0; j < activePanels.inputs.length && hasWon; j++) {
+                    let inputPanel = activePanels.inputs[i][j];
+                    let outputPanel = activePanels.outputs[i][j];
+
+                    let inIsLight = inputPanel.className.includes('panel-light');
+                    let outIsLight = outputPanel.className.includes('panel-light');
+
+                    if (inIsLight !== outIsLight) {
+                        hasWon = false;
+                    }
+                }
+            }
+            if (hasWon) {
+                let panels = document.getElementsByClassName('panel');
+                for (let panel of panels) {
+                    panel.className += ' won-game-cards';
+                }
+            }
+        }
+    }
 }
 
 

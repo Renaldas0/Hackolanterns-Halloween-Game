@@ -53,6 +53,16 @@
     transition: .5s ease;
 }
 
+#incorrect-answer {
+    background-color: #E71D36 !important;
+    color: var(--main-black) !important;
+}
+
+#correct-answer {
+    background-color: #29bf12 !important;
+    color: var(--main-black) !important;
+}
+
 #answer-box button:hover {
     scale: 1.05;
     box-shadow: 0 0 1rem var(--main-orange);

@@ -269,8 +269,6 @@ const timeCount = document.getElementById('time');
 let time = '60';
 timeCount.textContent = time;
 
-// to run generateCards function when the DOM has loaded
-document.addEventListener('DOMContentLoaded', generateCards);
 
 /**
  *  Generates cards into the game-container section

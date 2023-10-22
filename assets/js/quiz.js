@@ -39,12 +39,12 @@ function showQuestion(question) {
     button.addEventListener('click', () => {
         if (answer.correct) {
             console.log("Correct"); // Remove before submission
-            button.setAttribute('id','correct-answer')
+            button.setAttribute('id','correct-answer');
             userScore += question.points;
-            console.log(userScore);
+            console.log(userScore); // Remove before submission
         } else {
             console.log("Incorrect"); // Remove before submission
-            button.setAttribute('id','incorrect-answer')
+            button.setAttribute('id','incorrect-answer');
         }
     });
     answerButtonsElement.appendChild(button);

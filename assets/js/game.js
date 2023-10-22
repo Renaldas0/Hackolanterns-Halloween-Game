@@ -359,10 +359,20 @@ function fadeOut(startingTime, callback, ...args) {
  * Starts the puzzle sequence
  */
 const startPuzzle = () => {
-    generateCards()
-    let panelPuzzle = document.getElementById('puzzle-pairs');
-    panelPuzzle.style.display = 'flex';
-    // createPanels(3 + Math.floor(Math.random() * 3));
+    let puzzleChoice = Math.floor(Math.random() * 2);
+
+    if (puzzleChoice === 0) {
+        // For the pairs game
+        generateCards()
+        let pairPuzzle = document.getElementById('puzzle-pairs');
+        pairPuzzle.style.display = 'flex';
+    }
+    else {
+        // For the panels game
+        let panelPuzzle = document.getElementById('puzzle-panels');
+        panelPuzzle.style.display = 'flex';
+        createPanels(3 + Math.floor(Math.random() * 3));
+    }
 }
 
 
@@ -427,8 +437,6 @@ function endTextShow() {
         endMessage.textContent = `Unfortunately you didn't outrun the ghost. You lose!`;
     }
 }
-
-// endGame();
 
 // should restart game when in main??
 restart.addEventListener('click', function() {

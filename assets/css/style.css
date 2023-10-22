@@ -263,10 +263,10 @@ body {
     grid-column-end: 16;
 }
 
-/* Puzzles */
+/* Quizes/Puzzles */
 
 /* Overlay that covers the entire screen */
-#puzzle-overlay {
+#room-overlay {
     position: absolute;
     display: none;
     top: 0;
@@ -274,6 +274,10 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: 2;
+}
+
+.puzzle {
+    display: none;
 }
 
 

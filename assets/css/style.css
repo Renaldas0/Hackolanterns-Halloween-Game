@@ -297,6 +297,10 @@ body {
     display: grid;
 }
 
+.panel {
+    border: 1px solid black;
+}
+
 
 /* Media Queries */
 

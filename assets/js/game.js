@@ -361,6 +361,7 @@ function fadeOut(startingTime, callback, ...args) {
 const startPuzzle = () => {
     let panelPuzzle = document.getElementById('puzzle-panels');
     panelPuzzle.style.display = 'flex';
+    createPanels(3 + Math.floor(Math.random() * 3));
 }
 
 

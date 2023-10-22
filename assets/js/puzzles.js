@@ -54,7 +54,8 @@ const panel5x5 = [
 
 const activePanels = {
     inputs: [],
-    outputs: []
+    outputs: [],
+    attempts: 0
 };
 
 
@@ -149,6 +150,7 @@ function rearrangePanels(panelSize) {
         default:
             throw 'Error: Panel size must be between 3 and 5!';
     }
+    activePanels.attempts = attempts;
 
     for (let i = 0; i < attempts; i++) {
         let x = Math.floor(Math.random() * panelSize);
@@ -164,8 +166,35 @@ function rearrangePanels(panelSize) {
  * @param {Object} event The information about the click event
  */
 function panelClick(event) {
-    let clickedPanel = event.target;
-    activatePanels(clickedPanel);
+    if (activePanels.attempts > 0) {
+        let clickedPanel = event.target;
+        activatePanels(clickedPanel);
+        activePanels.attempts--;
+
+        if (activePanels.attempts === 0) {
+            // Check if the player has won or lost
+            let hasWon = true;
+            for (let i = 0; i < activePanels.inputs.length && hasWon; i++) {
+                for (let j = 0; j < activePanels.inputs.length && hasWon; j++) {
+                    let inputPanel = activePanels.inputs[i][j];
+                    let outputPanel = activePanels.outputs[i][j];
+
+                    let inIsLight = inputPanel.className.includes('panel-light');
+                    let outIsLight = outputPanel.className.includes('panel-light');
+
+                    if (inIsLight !== outIsLight) {
+                        hasWon = false;
+                    }
+                }
+            }
+            if (hasWon) {
+                let panels = document.getElementsByClassName('panel');
+                for (let panel of panels) {
+                    panel.className += ' won-game-cards';
+                }
+            }
+        }
+    }
 }
 
 

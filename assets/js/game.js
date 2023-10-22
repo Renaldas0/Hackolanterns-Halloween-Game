@@ -404,6 +404,7 @@ function clickDoor(event) {
         startFadeOut(startPuzzle);
     }
 }
+
 for (let door of doors) {
     door.addEventListener('click', clickDoor);
 }

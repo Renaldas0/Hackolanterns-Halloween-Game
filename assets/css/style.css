@@ -510,7 +510,7 @@ body {
     animation: end-grow 5s forwards;
     position: absolute;
     top: 0;
-    left: 0;   
+    left: 0;
 }
 
 @keyframes end-grow {
@@ -549,6 +549,15 @@ body {
     }
 }
 
+#end-text {
+    height: 50vh;
+    width: 50%;
+    color: #18181a;
+    font-size: 4em;
+    text-align: center;
+    margin: auto;
+}
+
 #end-game-restart {
     width: 25vw;
     border-radius: 50px;
@@ -572,7 +581,7 @@ body {
 
 /* For screens smaller than 1024px */
 @media (max-width: 1024px) {
-
+  
     .end-text-show, #end-game-restart {
         font-size: 2em;
     }

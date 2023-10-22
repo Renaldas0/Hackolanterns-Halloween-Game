@@ -433,7 +433,7 @@ endGame();
 // should restart game when in main??
 restart.addEventListener('click', function() {
     window.location.href = "game.html";
-  }) 
+  })
 
 function generateQuestion(difficulty) {
     switch (difficulty) {
@@ -449,3 +449,4 @@ function generateQuestion(difficulty) {
     }
     divElement.classList.remove('hide');
 }
+

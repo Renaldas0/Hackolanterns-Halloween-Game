@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Borel&family=Playpen+Sans:wght@400;600;800&family=Poppins:wght@400;500&family=Roboto&family=Ubuntu:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Metal+Mania&display=swap');
 
 * {
     padding: 0;
@@ -30,6 +31,7 @@ body {
 
 /* Landing Page */
 
+/* Mansion image */
 .home-image {
     background: url(../images/walkway.jpg)no-repeat center center;
     background-attachment: fixed;
@@ -43,6 +45,14 @@ body {
     font-size: 1.5rem;
     margin-top: 250px;
     margin-bottom: 350px;
+    font-family: playpen;
+    letter-spacing: 1px;
+}
+
+/* Welcome to styling */
+.container h1 {
+    font-family: Metal Mania;
+    letter-spacing: 6px;
 }
 
 /* Scroll down arrow icon styling */
@@ -81,65 +91,101 @@ body {
     z-index: 100;
 }
 
-/* Style the modal */
+/* Dare to enter quote */
+.quote {
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-align: center;
+    font-family: Metal Mania;
+    letter-spacing: 6px;
+}
+
+/* Overall modal styling */
 .modal {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(94, 50, 186, 0.2);
     font-size: 1.3rem;
+    border-radius: 3rem;
 }
 
-/* Modal content */
+/* Content for modal */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: rgba(94, 50, 186, 0.98) !important;
+    margin: 15px auto;
     padding: 20px;
     border: 1px solid black;
-    width: 50%;
+    max-width: 75% !important;
+    max-height: 80vh;
+    /* Limiting the height of the modal content */
+    overflow-y: auto;
+    /* Adding vertical scroll when content exceeds the height */
 }
 
-/* Modal content list items */
-.modal-content li {
-    margin-bottom: 15px;
-}
-
-/* Close button */
+/* Modal close button */
 .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-/* Close button animation */
-.close:hover,
-.close:focus {
-    color: rgb(228, 211, 134);
-    text-decoration: none;
+    color: #eb6123 !important;
     cursor: pointer;
 }
 
+/* Game rules header */
+.game-rules {
+    text-align: center;
+    font-size: 2.2rem;
+    background-color: #eb6123;
+    color: black;
+    border-radius: 10px;
+    width: 55%;
+    margin: 5px auto;
+    padding: 5px;
+    font-family: Metal Mania;
+    letter-spacing: 6px;
+}
+
+/* Modal list items */
+.modal-content li {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    margin: 5px auto;
+    max-height: 80%;
+    font-family: playpen;
+    letter-spacing: 1px;
+}
+
+
 /* Modal Open button */
 #openModalBtn {
-    color: white;
+    color: #eb6123;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
     position: absolute;
-    width: 30%;
-    border-radius: 10px;
+    height: 75px;
+    width: 100%;
     background-color: black;
-    z-index: 1000;
+    font-family: Metal Mania;
+    letter-spacing: 6px;
 }
 
 /* Start Quiz Button */
 #startQuizBtn {
+    color: black;
+    text-align: center;
+    font-size: 2rem;
     border-radius: 10px;
-    text-decoration: none;
+    background-color: #eb6123;
+    width: 55%;
+    margin: 5px auto;
+    font-family: Metal Mania;
+    letter-spacing: 6px;
 }
 
 /* Game */

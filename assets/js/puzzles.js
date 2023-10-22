@@ -52,9 +52,16 @@ const panel5x5 = [
      [0, 0, 0, 0, 0]],
 ];
 
+const activePanels = {
+    inputs: [],
+    outputs: []
+};
+
 
 function createPanels(panelSize) {
     // First, delete any existing panels that have been created from previous puzzles
+    activePanels.inputs = [];
+    activePanels.outputs = [];
     let panels = document.getElementsByClassName('panel');
     while (panels.length > 0) {
         panels[0].remove();
@@ -95,16 +102,20 @@ function createPanels(panelSize) {
     
     // Creating the panels for each board
     for (let i = 0; i < panelSize; i++) {
+        activePanels.inputs.push([]);
+        activePanels.outputs.push([]);
         for (let j = 0; j < panelSize; j++) {
             let panelDecision = chosenPanel[i][j] === 1 ? 'panel-light' : 'panel-dark';
 
             let inputPanel = document.createElement('div');
             inputPanel.className = `panel panel-input ${panelDecision} clickable`;
             inputBoard.appendChild(inputPanel);
+            activePanels.inputs[i].push(inputPanel);
 
             let outputPanel = document.createElement('div');
             outputPanel.className = `panel panel-input ${panelDecision}`;
             outputBoard.appendChild(outputPanel);
+            activePanels.outputs[i].push(outputPanel);
         }
     }
 }

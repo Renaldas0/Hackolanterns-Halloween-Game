@@ -456,6 +456,18 @@ body {
         grid-row-start: 11;
         grid-row-end: 13;
     }
+
+    /* Puzzles */
+
+    #puzzle-panels {
+        flex-direction: column-reverse;
+        align-items: center;
+        row-gap: 32px;
+    }
+    
+    .panel-board {
+        width: 80%;
+    }
 }
 
 /* Media query for small screen widths (the grid will change to 6x12) */

@@ -38,14 +38,14 @@ In this section, we will briefly discuss how our team addressed the applicable c
 Two seperate colour palettes have been used through this website. The first colour palette was used for the landing page
 and is a range of blues:
 
-![blue colour image](assets/images/readme-images/blue-colours.jng)
+![blue colour image](assets/images/readme-images/blue-colours.png)
 
 These colours fit well with the night theme of the landing page and set the spooky tone.
 
 The second colour palette we chose was four colours more traditionally associated with Halloween, to fit in with the
 Halloween theme of this hackathon:
 
-![halloween colour image](assets/images/readme-images/halloween-colours.jng)
+![halloween colour image](assets/images/readme-images/halloween-colours.png)
 
 ### Fonts
 

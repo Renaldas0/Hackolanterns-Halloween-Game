@@ -323,30 +323,43 @@ function setProp(imageArray, positionArray) {
 
 /**
  * Starts the puzzle overlay fadeout
+ * @param {Function} callback The function that will be called when the fadeout is complete
+ * @param {Any} args Any arguments needed for the function
  */
-function startFadeOut() {
-    let fadeOverlay = document.getElementById('puzzle-overlay');
+function startFadeOut(callback, ...args) {
+    let fadeOverlay = document.getElementById('room-overlay');
     fadeOverlay.style.display = 'block';
     let currentTime = Date.now();
-    fadeOut(currentTime);
+    fadeOut(currentTime, callback, ...args);
 }
 
 
 /**
  * Iterates through a fadeout animation until it has completely faded to black
  * @param {Integer} startingTime The date.now() time the fadeout started
+ * @param {Function} callback The function that will be called when the fadeout is complete
+ * @param {Any} args Any arguments needed for the function
  */
-function fadeOut(startingTime) {
-    let fadeOverlay = document.getElementById('puzzle-overlay');
+function fadeOut(startingTime, callback, ...args) {
+    let fadeOverlay = document.getElementById('room-overlay');
     let currentTime = Date.now();
     if (currentTime >= startingTime + fadeMilliseconds) {
         fadeOverlay.style.backgroundColor = 'black';
+        callback(...args);
     }
     else {
-        setTimeout(fadeOut, 1, startingTime);
+        setTimeout(fadeOut, 1, startingTime, callback, ...args);
         let fadeAmount = (currentTime - startingTime) / fadeMilliseconds;
         fadeOverlay.style.backgroundColor = `rgba(0, 0, 0, ${fadeAmount})`;
     }
+}
+
+
+/**
+ * Starts the puzzle sequence
+ */
+const startPuzzle = () => {
+    console.log("Puzzle Started!");
 }
 
 
@@ -376,7 +389,7 @@ function clickDoor(event) {
     }
     else {
         // Puzzle logic goes here
-        startFadeOut();
+        startFadeOut(startPuzzle);
     }
 }
 for (let door of doors) {

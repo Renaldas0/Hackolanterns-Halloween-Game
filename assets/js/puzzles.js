@@ -58,6 +58,10 @@ const activePanels = {
 };
 
 
+/**
+ * Sets up the panel puzzle game
+ * @param {Integer} panelSize The size of the panel. Should be between 3 and 5
+ */
 function createPanels(panelSize) {
     // First, delete any existing panels that have been created from previous puzzles
     activePanels.inputs = [];
@@ -111,11 +115,52 @@ function createPanels(panelSize) {
             inputPanel.className = `panel panel-input ${panelDecision} clickable`;
             inputBoard.appendChild(inputPanel);
             activePanels.inputs[i].push(inputPanel);
+            inputPanel.addEventListener('click', panelClick);
 
             let outputPanel = document.createElement('div');
             outputPanel.className = `panel panel-input ${panelDecision}`;
             outputBoard.appendChild(outputPanel);
             activePanels.outputs[i].push(outputPanel);
         }
+    }
+}
+
+/**
+ * Is called when a panel is clicked
+ * @param {Object} event The information about the click event
+ */
+function panelClick(event) {
+    let clickedPanel = event.target;
+
+    // Finding the panel in the activePanels array
+    let coords = getPanelPosition(clickedPanel);
+}
+
+
+/**
+ * Finds the coordinates of a specific input panel element
+ * @param {Object} panelElement The element whose coordinates you wish to find
+ * @returns {Object} { x, y }
+ */
+function getPanelPosition(panelElement) {
+    let xPosition = 0;
+    let yPosition = 0;
+    
+    while (xPosition < activePanels.inputs.length) {
+        yPosition = 0;
+        while (yPosition < activePanels.inputs.length) {
+            if (panelElement === activePanels.inputs[xPosition][yPosition]) {
+                break;
+            }
+            yPosition++;
+        }
+        if (panelElement === activePanels.inputs[xPosition][yPosition]) {
+            break;
+        }
+        xPosition++;
+    }
+    return {
+        x: xPosition,
+        y: yPosition
     }
 }

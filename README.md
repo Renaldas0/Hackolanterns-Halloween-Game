@@ -4,7 +4,7 @@ difficulty. Be sure to escape the haunted house ALIVE *evil-laugh-noises.mp3*.
 
 ADD IMAGE
 
-Visit the deployed site here: [Hackolanterns-Halloween](TBC)
+Visit the deployed site here: [Hackolanterns-Halloween](https://renaldas0.github.io/Hackolanterns-Halloween-Game/)
 
 # Contents
 

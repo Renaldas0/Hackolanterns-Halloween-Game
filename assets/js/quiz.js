@@ -7,17 +7,32 @@ const easyDoor = document.getElementById('door-1')
 const mediumDoor = document.getElementById('door-2')
 const hardDoor = document.getElementById('door-3')
 
-let shuffledQuestions, currentQuestionIndex
+let randomEasyQuestion, randomMediumQuestion, randomHardQuestion
 
 let userScore = 0
 
-easyDoor.addEventListener('click', startQuiz)
+easyDoor.addEventListener('click', generateEasyQuestion)
 
-// Main quiz
-function startQuiz() {
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+mediumDoor.addEventListener('click', generateMediumQuestion)
+
+hardDoor.addEventListener('click', generateHardQuestion)
+
+// Generate random easy Quiz Question
+function generateEasyQuestion() {
+    randomEasyQuestion = easyQuestions[Math.floor(Math.random() * easyQuestions.length)];
+    showQuestion(randomEasyQuestion)
+}
+
+// Generate random medium Quiz Question
+function generateMediumQuestion() {
+    randomMediumQuestion = mediumQuestions[Math.floor(Math.random() * mediumQuestions.length)];
+    showQuestion(randomMediumQuestion)
+}
+
+// Generate random hard Quiz Question
+function generateHardQuestion() {
+    randomHardQuestion = hardQuestions[Math.floor(Math.random() * hardQuestions.length)];
+    showQuestion(randomHardQuestion)
 }
 
 // Show questions and answers
@@ -32,7 +47,7 @@ function showQuestion(question) {
   })
 }
 
-const questions = [
+const easyQuestions = [
     // Easy Questions
    {
     question: 'Which friendly ghost is known for being a classic Halloween character?',
@@ -133,7 +148,10 @@ const questions = [
     ],
     points: 1,
    },
-   // Medium Questions
+]
+
+const mediumQuestions = [
+    // Medium Questions
    {
     question: "What is the name of the town where the events of Washington Irving's 'The Legend of Sleepy Hollow' take place?",
     answers : [
@@ -233,7 +251,10 @@ const questions = [
     ],
     points: 2,
    },
-   // Hard Questions
+]
+
+const hardQuestions = [
+    // Hard Questions
    {
     question: 'What is the name of the ancient Celtic festival that is believed to have inspired Halloween?',
     answers : [

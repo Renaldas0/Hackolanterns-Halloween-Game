@@ -285,15 +285,16 @@ body {
 
 #puzzle-panels {
     width: 80%;
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .panel-board {
-    width: 40%;
+    width: 45%;
     aspect-ratio: 1/1;
     background-color: white;
+    display: grid;
 }
 
 

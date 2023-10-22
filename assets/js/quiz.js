@@ -11,13 +11,28 @@ let shuffledQuestions, currentQuestionIndex
 
 let userScore = 0
 
-easyDoor.addEventListener('click', startQuiz)
+easyDoor.addEventListener('click', generateEasyQuestion)
 
-// Main quiz
-function startQuiz() {
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
-    currentQuestionIndex = 0
-    showQuestion(shuffledQuestions[currentQuestionIndex])
+mediumDoor.addEventListener('click', generateMediumQuestion)
+
+hardDoor.addEventListener('click', generateHardQuestion)
+
+// Generate random easy Quiz Question
+function generateEasyQuestion() {
+    randomEasyQuestion = easyQuestions[Math.floor(Math.random() * easyQuestions.length)];
+    showQuestion(randomEasyQuestion)
+}
+
+// Generate random medium Quiz Question
+function generateMediumQuestion() {
+    randomMediumQuestion = mediumQuestions[Math.floor(Math.random() * mediumQuestions.length)];
+    showQuestion(randomMediumQuestion)
+}
+
+// Generate random hard Quiz Question
+function generateHardQuestion() {
+    randomHardQuestion = hardQuestions[Math.floor(Math.random() * hardQuestions.length)];
+    showQuestion(randomHardQuestion)
 }
 
 // Show questions and answers

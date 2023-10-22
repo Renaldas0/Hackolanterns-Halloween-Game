@@ -359,9 +359,9 @@ function fadeOut(startingTime, callback, ...args) {
  * Starts the puzzle sequence
  */
 const startPuzzle = () => {
-    let panelPuzzle = document.getElementById('puzzle-panels');
+    let panelPuzzle = document.getElementById('puzzle-pairs');
     panelPuzzle.style.display = 'flex';
-    createPanels(3 + Math.floor(Math.random() * 3));
+    // createPanels(3 + Math.floor(Math.random() * 3));
 }
 
 
@@ -431,7 +431,9 @@ function endTextShow() {
 endGame();
 
 // should restart game when in main??
-restart.addEventListener('click', gameInit()) 
+restart.addEventListener('click', function() {
+    window.location.href = "game.html";
+  })
 
 function generateQuestion(difficulty) {
     switch (difficulty) {

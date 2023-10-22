@@ -31,21 +31,24 @@ function generateHardQuestion() {
 
 // Show questions and answers and add to score if correct
 function showQuestion(question) {
+  let hasAnswered = false;
   questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.innerText = answer.text;
     button.classList.add("btn");
-    button.addEventListener('click', () => {
+    button.addEventListener("click", () => {
+      if (!hasAnswered) {
+        hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
-            console.log("Correct"); // Remove before submission
-            button.setAttribute('id','correct-answer');
-            userScore += question.points;
-            console.log(userScore); // Remove before submission
+          console.log("Correct");
+          button.setAttribute("id", "correct-answer");
+          userScore += question.points;
         } else {
-            console.log("Incorrect"); // Remove before submission
-            button.setAttribute('id','incorrect-answer');
+          console.log("Incorrect");
+          button.setAttribute("id", "incorrect-answer");
         }
+      }
     });
     answerButtonsElement.appendChild(button);
   });

@@ -1,40 +1,41 @@
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-box')
-const submitButtonElement = document.getElementById('submit')
+/* jshint esversion: 11 */
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-box');
+const submitButtonElement = document.getElementById('submit');
 
-let randomEasyQuestion, randomMediumQuestion, randomHardQuestion
+let randomEasyQuestion, randomMediumQuestion, randomHardQuestion;
 
-let userScore = 0
+let userScore = 0;
 
 // Generate random easy Quiz Question
 function generateEasyQuestion() {
     randomEasyQuestion = easyQuestions[Math.floor(Math.random() * easyQuestions.length)];
-    showQuestion(randomEasyQuestion)
+    showQuestion(randomEasyQuestion);
 }
 
 // Generate random medium Quiz Question
 function generateMediumQuestion() {
     randomMediumQuestion = mediumQuestions[Math.floor(Math.random() * mediumQuestions.length)];
-    showQuestion(randomMediumQuestion)
+    showQuestion(randomMediumQuestion);
 }
 
 // Generate random hard Quiz Question
 function generateHardQuestion() {
     randomHardQuestion = hardQuestions[Math.floor(Math.random() * hardQuestions.length)];
-    showQuestion(randomHardQuestion)
+    showQuestion(randomHardQuestion);
 }
 
 // Show questions and answers
 function showQuestion(question) {
   questionElement.innerText = question.question;
   question.answers.forEach(answer => {
-    const button = document.createElement('button')
-    button.innerText = answer.text
-    button.classList.add('btn')
-    answerButtonsElement.appendChild(button)
-    console.log(answer.text)
-  })
+    const button = document.createElement('button');
+    button.innerText = answer.text;
+    button.classList.add('btn');
+    answerButtonsElement.appendChild(button);
+    console.log(answer.text);
+  });
 }
 
 const easyQuestions = [
@@ -138,7 +139,7 @@ const easyQuestions = [
     ],
     points: 1,
    },
-]
+];
 
 const mediumQuestions = [
     // Medium Questions
@@ -241,7 +242,7 @@ const mediumQuestions = [
     ],
     points: 2,
    },
-]
+];
 
 const hardQuestions = [
     // Hard Questions
@@ -353,4 +354,4 @@ const hardQuestions = [
     ],
     points: 3,
    },
-]
+];

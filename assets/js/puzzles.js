@@ -280,6 +280,10 @@ function panelClick(event) {
                 for (let panel of panels) {
                     panel.className += ' won-game-cards';
                 }
+                setTimeout(startFade, 1000, true, progress, 'door-puzzle');
+            }
+            else {
+                setTimeout(startFade, 1000, true, failRoom, 'door-puzzle');
             }
         }
     }

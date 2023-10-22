@@ -290,6 +290,7 @@ function barricadeDoor(doorId) {
     let barricade = document.createElement('div');
     barricade.className = 'barricade';
     door.appendChild(barricade);
+    door.classList.remove('clickable');
 }
 
 
@@ -370,6 +371,7 @@ function createProp(imageArray, positionArray, deleteImageElement) {
 
 /**
  * Starts the puzzle overlay fadeout
+ * @param {Boolean} isIn Fades in if true and out if false
  * @param {Function} callback The function that will be called when the fadeout is complete
  * @param {Any} args Any arguments needed for the function
  */
@@ -377,8 +379,14 @@ function startFade(isIn, callback, ...args) {
     let fadeOverlay = document.getElementById('room-overlay');
     fadeOverlay.style.display = 'flex';
     let currentTime = Date.now();
+    // Calls the function immediately if the effect is fade in
     if (isIn) {
-        callback();
+        callback(...args);
+        // Making all the components invisible again
+        let components = fadeOverlay.children;
+        for (let component of components) {
+            component.style.display = 'none';
+        }
     }
     fade(currentTime, isIn, callback, ...args);
 }
@@ -387,6 +395,7 @@ function startFade(isIn, callback, ...args) {
 /**
  * Iterates through a fadeout animation until it has completely faded to black
  * @param {Integer} startingTime The date.now() time the fadeout started
+ * @param {Boolean} isIn Fades in if true and out if false
  * @param {Function} callback The function that will be called when the fadeout is complete
  * @param {Any} args Any arguments needed for the function
  */
@@ -420,6 +429,7 @@ function fade(startingTime, isIn, callback, ...args) {
  */
 const startPuzzle = () => {
     let puzzleChoice = Math.floor(Math.random() * 2);
+    puzzleChoice = 1;
 
     if (puzzleChoice === 0) {
         // For the pairs game
@@ -446,22 +456,24 @@ const divElement = document.querySelector('#overlay');
  */
 function clickDoor(event) {
     let door = event.target;
-    let doorClass = door.classList;
 
-    if (doorClass.contains('door-easy')) {
-        startFade(false, generateQuestion, 'easy');
-    }
-    else if (doorClass.contains('door-medium')) {
-        // Medium question logic goes here
-        startFade(false, generateQuestion, 'medium');
-    }
-    else if (doorClass.contains('door-hard')) {
-        // Hard question logic goes here
-        startFade(false, generateQuestion, 'hard');
-    }
-    else {
-        // Puzzle logic goes here
-        startFade(false, startPuzzle);
+    if (!door.className.includes('barricade')) {
+        let doorClass = door.classList;
+        if (doorClass.contains('door-easy')) {
+            startFade(false, generateQuestion, 'easy');
+        }
+        else if (doorClass.contains('door-medium')) {
+            // Medium question logic goes here
+            startFade(false, generateQuestion, 'medium');
+        }
+        else if (doorClass.contains('door-hard')) {
+            // Hard question logic goes here
+            startFade(false, generateQuestion, 'hard');
+        }
+        else {
+            // Puzzle logic goes here
+            startFade(false, startPuzzle);
+        }
     }
 }
 
@@ -502,7 +514,7 @@ function endTextShow() {
 // should restart game when in main??
 restart.addEventListener('click', function() {
     window.location.href = "game.html";
-  })
+  });
 
 function generateQuestion(difficulty) {
     switch (difficulty) {
@@ -529,7 +541,9 @@ function progress(doorClass) {
     //Adding points goes here
     switch (doorClass) {
         case 'easy':
-
+            break;
+        default:
+            break;
     }
     gameInit();
 }
@@ -538,7 +552,10 @@ function progress(doorClass) {
  * 
  */
 function failRoom(doorClass) {
+    console.log(doorClass);
     let door = document.getElementsByClassName(doorClass)[0];
+    console.log(document.getElementsByClassName(doorClass));
+    console.log(door);
 
     barricadeDoor(door.id);
 }

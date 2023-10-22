@@ -123,7 +123,41 @@ function createPanels(panelSize) {
             activePanels.outputs[i].push(outputPanel);
         }
     }
+
+    // Arranging the input panels to be different from the output
+    rearrangePanels(panelSize);
 }
+
+
+/**
+ * Rearranges the 
+ * @param {*} attempts 
+ */
+function rearrangePanels(panelSize) {
+    // Calculating how many times the player has to flip to match the panels
+    let attempts = 0;
+    switch(panelSize) {
+        case 3:
+            attempts = 1;
+            break;
+        case 4:
+            attempts = 1 + Math.floor(Math.random() * 2);
+            break;
+        case 5:
+            attempts = 2;
+            break;
+        default:
+            throw 'Error: Panel size must be between 3 and 5!';
+    }
+
+    for (let i = 0; i < attempts; i++) {
+        let x = Math.floor(Math.random() * panelSize);
+        let y = Math.floor(Math.random() * panelSize);
+
+        activatePanels(activePanels.inputs[x][y]);
+    }
+}
+
 
 /**
  * Is called when a panel is clicked
@@ -131,9 +165,17 @@ function createPanels(panelSize) {
  */
 function panelClick(event) {
     let clickedPanel = event.target;
+    activatePanels(clickedPanel);
+}
 
+
+/**
+ * Flips a panel and all the panels that surround it
+ * @param {Object} panelElement The panel to flip
+ */
+function activatePanels(panelElement) {
     // Finding the panel in the activePanels array
-    let coords = getPanelPosition(clickedPanel);
+    let coords = getPanelPosition(panelElement);
 
     for (let i = 0; i < activePanels.inputs.length; i++) {
         for (let j = 0; j < activePanels.inputs.length; j++) {

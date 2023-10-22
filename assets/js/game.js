@@ -12,6 +12,12 @@ const yCells = {
     small: 12
 };
 
+// Player steps vs. ghost steps
+const steps = {
+    player: 3,
+    ghost: 0
+}
+
 // How many milliseconds does the fadeout take
 const fadeMilliseconds = 800;
 
@@ -291,6 +297,12 @@ function barricadeDoor(doorId) {
  * Adds a selection of new props to the room
  */
 function populateRoom() {
+    // Delete all the old props first
+    let props = document.getElementsByClassName('prop');
+    while (props.length > 0) {
+        props[0].remove();
+    }
+
     // Setting positions where props can be placed. These will be ids assigned to the components
     let wallPositions = [
         'prop-wall prop-left',
@@ -361,11 +373,14 @@ function createProp(imageArray, positionArray, deleteImageElement) {
  * @param {Function} callback The function that will be called when the fadeout is complete
  * @param {Any} args Any arguments needed for the function
  */
-function startFadeOut(callback, ...args) {
+function startFade(isIn, callback, ...args) {
     let fadeOverlay = document.getElementById('room-overlay');
     fadeOverlay.style.display = 'flex';
     let currentTime = Date.now();
-    fadeOut(currentTime, callback, ...args);
+    if (isIn) {
+        callback();
+    }
+    fade(currentTime, isIn, callback, ...args);
 }
 
 
@@ -375,17 +390,27 @@ function startFadeOut(callback, ...args) {
  * @param {Function} callback The function that will be called when the fadeout is complete
  * @param {Any} args Any arguments needed for the function
  */
-function fadeOut(startingTime, callback, ...args) {
+function fade(startingTime, isIn, callback, ...args) {
     let fadeOverlay = document.getElementById('room-overlay');
     let currentTime = Date.now();
     if (currentTime >= startingTime + fadeMilliseconds) {
-        fadeOverlay.style.backgroundColor = 'black';
-        callback(...args);
+        if (isIn) {
+            fadeOverlay.style.display = 'none';
+        }
+        else {
+            fadeOverlay.style.backgroundColor = 'black';
+            callback(...args);
+        }
     }
     else {
-        setTimeout(fadeOut, 1, startingTime, callback, ...args);
+        setTimeout(fade, 1, startingTime, isIn, callback, ...args);
         let fadeAmount = (currentTime - startingTime) / fadeMilliseconds;
-        fadeOverlay.style.backgroundColor = `rgba(0, 0, 0, ${fadeAmount})`;
+        if (isIn) {
+            fadeOverlay.style.backgroundColor = `rgba(0, 0, 0, ${1 - fadeAmount})`;
+        }
+        else {
+            fadeOverlay.style.backgroundColor = `rgba(0, 0, 0, ${fadeAmount})`;
+        }
     }
 }
 
@@ -424,19 +449,19 @@ function clickDoor(event) {
     let doorClass = door.classList;
 
     if (doorClass.contains('door-easy')) {
-        startFadeOut(generateQuestion, 'easy');
+        startFade(false, generateQuestion, 'easy');
     }
     else if (doorClass.contains('door-medium')) {
         // Medium question logic goes here
-        startFadeOut(generateQuestion, 'medium');
+        startFade(false, generateQuestion, 'medium');
     }
     else if (doorClass.contains('door-hard')) {
         // Hard question logic goes here
-        startFadeOut(generateQuestion, 'hard');
+        startFade(false, generateQuestion, 'hard');
     }
     else {
         // Puzzle logic goes here
-        startFadeOut(startPuzzle);
+        startFade(false, startPuzzle);
     }
 }
 
@@ -494,3 +519,26 @@ function generateQuestion(difficulty) {
     divElement.classList.remove('hide');
 }
 
+// Progression through the game
+
+/**
+ * Adds points to the player's score and continues through the game
+ * @param {Integer} points The amount of points to be added to the player's score
+ */
+function progress(doorClass) {
+    //Adding points goes here
+    switch (doorClass) {
+        case 'easy':
+
+    }
+    gameInit();
+}
+
+/**
+ * 
+ */
+function failRoom(doorClass) {
+    let door = document.getElementsByClassName(doorClass)[0];
+
+    barricadeDoor(door.id);
+}

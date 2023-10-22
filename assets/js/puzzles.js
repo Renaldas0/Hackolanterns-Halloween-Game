@@ -204,8 +204,8 @@ function createPanels(panelSize) {
 
 
 /**
- * Rearranges the 
- * @param {*} attempts 
+ * Rearranges the input panels to be different to the output panels
+ * @param {Integer} panelSize The size of the panel. Is between 3 and 5 
  */
 function rearrangePanels(panelSize) {
     // Calculating how many times the player has to flip to match the panels

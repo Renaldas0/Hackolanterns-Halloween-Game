@@ -497,28 +497,20 @@ body {
     }
 }
 
-
 /* end of game winning / losing page */
-
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.hide {
-    display: none;
-} */
 
 .end-page-show {
     height: 100vh;
     width: 100vw;
     margin: 0;
-    background: url(./images/game/creepy-girl-doll.jpg);
+    background: url(../images/game/creepy-girl-doll.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     animation: end-grow 5s forwards;
+    position: absolute;
+    top: 0;
+    left: 0;   
 }
 
 @keyframes end-grow {
@@ -535,7 +527,7 @@ body {
     width: 50vw;
     border-radius: 50px;
     background-color: #eb6123;
-    font-size: 70px;
+    font-size: 3em;
     text-align: center;
     z-index: 1;
     margin-left: 25vw;
@@ -555,15 +547,6 @@ body {
     to {
         opacity: 0.8;
     }
-}
-
-#end-text {
-    height: 50vh;
-    width: 50%;
-    color: #18181a;
-    font-size: 4em;
-    text-align: center;
-    margin: auto;
 }
 
 #end-game-restart {
@@ -590,14 +573,9 @@ body {
 /* For screens smaller than 1024px */
 @media (max-width: 1024px) {
 
-    .end-text-show {
-        font-size: 50px;
-    }
-
-    #end-game-restart {
+    .end-text-show, #end-game-restart {
         font-size: 2em;
     }
-
 }
 
 /* For screens smaller than 700px */
@@ -617,15 +595,11 @@ body {
 /* For screens smaller than 470px */
 @media (max-width: 470px) {
 
-    .end-tex
-t-show {
-        font-size: 30px;
-    }
-
-    #end-game-restart {
+    .end-text-show, #end-game-restart {
         font-size: 1.5em;
     }
 }
+
 /* matching pairs game */
 
 #puzzle-pairs {

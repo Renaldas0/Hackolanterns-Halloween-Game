@@ -1,8 +1,8 @@
 // Stores all the possible panel combinations
 const panel3x3 = [
-    [[0, 0, 0],
-     [0, 0, 0],
-     [0, 0, 0]],
+    [[1, 1, 1],
+     [0, 1, 0],
+     [1, 1, 1]],
 
     [[0, 1, 0],
      [1, 1, 1],
@@ -43,6 +43,31 @@ const panel4x4 = [
      [0, 1, 1, 0],
      [0, 1, 1, 0],
      [1, 0, 0, 1]],
+    
+    [[1, 0, 0, 1],
+     [1, 0, 1, 1],
+     [1, 1, 0, 1],
+     [1, 0, 0, 1]],
+    
+    [[0, 1, 0, 1],
+     [0, 1, 0, 1],
+     [0, 1, 0, 1],
+     [0, 1, 0, 1]],
+    
+    [[1, 1, 1, 1],
+     [0, 0, 0, 0],
+     [0, 0, 0, 0],
+     [1, 1, 1, 1]],
+    
+    [[0, 1, 1, 0],
+     [0, 1, 1, 0],
+     [0, 1, 1, 0],
+     [0, 1, 1, 0]],
+    
+    [[0, 1, 1, 0],
+     [1, 1, 0, 1],
+     [1, 0, 1, 1],
+     [0, 1, 1, 0]],
 ];
 const panel5x5 = [
     [[0, 0, 0, 0, 0],
@@ -50,6 +75,54 @@ const panel5x5 = [
      [0, 0, 0, 0, 0],
      [0, 0, 0, 0, 0],
      [0, 0, 0, 0, 0]],
+    
+    [[1, 1, 0, 0, 1],
+     [1, 1, 1, 0, 0],
+     [0, 1, 1, 1, 0],
+     [0, 0, 1, 1, 1],
+     [1, 0, 0, 1, 1]],
+    
+    [[1, 1, 1, 1, 1],
+     [0, 1, 1, 1, 0],
+     [0, 1, 1, 1, 0],
+     [0, 0, 0, 0, 0],
+     [1, 1, 1, 1, 1]],
+    
+    [[0, 0, 0, 1, 0],
+     [1, 1, 1, 0, 0],
+     [1, 0, 0, 0, 1],
+     [1, 1, 1, 0, 0],
+     [0, 0, 0, 1, 0]],
+    
+    [[1, 0, 1, 0, 1],
+     [0, 1, 1, 1, 0],
+     [1, 1, 0, 1, 1],
+     [0, 1, 1, 1, 0],
+     [1, 0, 1, 0, 1]],
+    
+    [[0, 1, 0, 1, 0],
+     [1, 0, 1, 0, 1],
+     [0, 1, 0, 1, 0],
+     [1, 0, 1, 0, 1],
+     [0, 1, 0, 1, 0]],
+    
+    [[0, 1, 0, 1, 0],
+     [0, 1, 0, 1, 0],
+     [1, 1, 1, 1, 1],
+     [1, 0, 1, 0, 1],
+     [1, 0, 1, 0, 1]],
+    
+    [[1, 0, 0, 0, 1],
+     [1, 1, 0, 1, 1],
+     [1, 0, 1, 0, 1],
+     [1, 0, 1, 0, 1],
+     [1, 1, 1, 1, 1]],
+    
+    [[0, 1, 0, 1, 0],
+     [0, 0, 0, 0, 0],
+     [1, 1, 0, 1, 1],
+     [0, 1, 1, 1, 0],
+     [0, 1, 0, 1, 0]],
 ];
 
 const activePanels = {
@@ -151,12 +224,27 @@ function rearrangePanels(panelSize) {
             throw 'Error: Panel size must be between 3 and 5!';
     }
     activePanels.attempts = attempts;
+    let previousMoves = [];
 
-    for (let i = 0; i < attempts; i++) {
+    while (attempts > 0) {
         let x = Math.floor(Math.random() * panelSize);
         let y = Math.floor(Math.random() * panelSize);
 
-        activatePanels(activePanels.inputs[x][y]);
+        let hasSameInput = false;
+        for (let move of previousMoves) {
+            if (x === move.x && y === move.y) {
+                hasSameInput = true;
+                break;
+            }
+        }
+        if (!hasSameInput) {
+            activatePanels(activePanels.inputs[x][y]);
+            previousMoves.push({
+                x: x,
+                y: y
+            });
+            attempts--;
+        }
     }
 }
 

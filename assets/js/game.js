@@ -328,7 +328,7 @@ function setProp(imageArray, positionArray) {
  */
 function startFadeOut(callback, ...args) {
     let fadeOverlay = document.getElementById('room-overlay');
-    fadeOverlay.style.display = 'block';
+    fadeOverlay.style.display = 'flex';
     let currentTime = Date.now();
     fadeOut(currentTime, callback, ...args);
 }
@@ -359,7 +359,8 @@ function fadeOut(startingTime, callback, ...args) {
  * Starts the puzzle sequence
  */
 const startPuzzle = () => {
-    console.log("Puzzle Started!");
+    let panelPuzzle = document.getElementById('puzzle-panels');
+    panelPuzzle.style.display = 'flex';
 }
 
 

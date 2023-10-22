@@ -496,3 +496,123 @@ body {
         grid-column-end: 3;
     }
 }
+
+
+/* end of game winning / losing page */
+
+/* 
+.end-page-show {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background: url(./images/game/creepy-girl-doll.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    animation: end-grow 5s forwards;
+}
+
+@keyframes end-grow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.end-text-show {
+    width: 50vw;
+    border-radius: 50px;
+    background-color: #eb6123;
+    font-size: 70px;
+    text-align: center;
+    z-index: 1;
+    margin-left: 25vw;
+    margin-top: 20vh;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: end-grow-text 2s forwards;
+}
+
+@keyframes end-grow-text {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+#end-text {
+    height: 50vh;
+    width: 50%;
+    color: #18181a;
+    font-size: 4em;
+    text-align: center;
+    margin: auto;
+}
+
+#end-game-restart {
+    width: 25vw;
+    border-radius: 50px;
+    background-color: #eb6123;
+    font-size: 3em;
+    z-index: 1;
+    margin-left: 37.5vw;
+    margin-top: 70vh;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: end-grow-text 2s forwards;
+}
+
+#end-game-restart:hover {
+    background-color: #5e32ba;
+}
+
+/* Media Queries */
+
+/* For screens smaller than 1024px */
+@media (max-width: 1024px) {
+
+    .end-text-show {
+        font-size: 50px;
+    }
+
+    #end-game-restart {
+        font-size: 2em;
+    }
+
+}
+
+/* For screens smaller than 700px */
+@media (max-width: 700px) {
+
+    .end-text-show {
+        width: 70vw;
+        margin-left: 15vw;
+    }
+
+    #end-game-restart {
+        width: 50vw;
+        margin-left: 25vw;
+    }
+}
+
+/* For screens smaller than 470px */
+@media (max-width: 470px) {
+
+    .end-text-show {
+        font-size: 30px;
+    }
+
+    #end-game-restart {
+        font-size: 1.5em;
+    }
+}

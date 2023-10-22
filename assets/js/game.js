@@ -397,3 +397,39 @@ function clickDoor(event) {
 for (let door of doors) {
     door.addEventListener('click', clickDoor);
 }
+
+// end of game winning / losing page
+let playerSteps = 4; // need to change this to what it is currently
+let ghostSteps = 6; // need to change this to what it is currently
+let stepsDifference = playerSteps - ghostSteps;
+let points = 20; // need to change this to what it is currently
+const endPage = document.getElementById('end-page');
+const endMessage = document.getElementById('end-message');
+const restart = document.getElementById('end-game-restart');
+
+function endGame() {
+    // check to see if the timer reaches zero
+    if (stepsDifference < 0 || points >= 16) {
+        // end page to appear
+        endPage.classList.remove('hide');
+        endPage.classList.add('end-page-show');
+        setTimeout(endTextShow, 3000);
+    }
+}
+
+function endTextShow() {
+    endMessage.classList.remove('hide');
+    endMessage.classList.add('end-text-show');
+    restart.classList.remove('hide');
+    if (points >= 20) {
+        endMessage.textContent = `Congratulations. You have escaped from the haunted mansion You win!`;
+    }
+    else if (stepsDifference < 0) {
+        endMessage.textContent = `Unfortunately you didn't outrun the ghost. You lose!`;
+    }
+}
+
+endGame();
+
+// should restart game when in main??
+restart.addEventListener('click', gameInit()) 

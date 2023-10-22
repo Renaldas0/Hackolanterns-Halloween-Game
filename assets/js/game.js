@@ -306,26 +306,42 @@ function populateRoom() {
         'prop-floor prop-right'
     ];
     // Paintings
-    setProp(paintingImages, wallPositions);
+    setProp(paintingImages, wallPositions, 80, 30);
     // Shelves
-    setProp(shelfImages, wallPositions);
+    setProp(shelfImages, wallPositions, 80, 10);
     // Bookshelves
-    setProp(bookshelfImages, floorPositions);
+    setProp(bookshelfImages, floorPositions, 70, 10);
     // Tall bookshelves
-    setProp(tallShelfImages, floorPositions);
+    setProp(tallShelfImages, floorPositions, 40, 5);
     // Lamps
-    setProp(lampImages, floorPositions);
+    setProp(lampImages, floorPositions, 40, 4);
     // Corpses
-    setProp(corpseImages, floorPositions);
+    setProp(corpseImages, floorPositions, 10, 0);
 }
 
 
 /**
- * Adds a new prop into the room
+ * Adds a new prop type into the room. Can place 0-2 props of this type
  * @param {Array} imageArray The array of all the images this prop will have
  * @param {Array} positionArray An array of all possible positions the prop could be placed
  */
-function setProp(imageArray, positionArray) {
+function setProp(imageArray, positionArray, percentageFirst, percentageSecond) {
+    let tempArray = [...imageArray]
+    if (Math.random() * 100 < percentageFirst) {
+        createProp(tempArray, positionArray, true);
+        if (Math.random() * 100 < percentageSecond) {
+            createProp(tempArray, positionArray, true);
+        }
+    }
+}
+
+/**
+ * 
+ * @param {Array} imageArray A list of images to set the prop to
+ * @param {Array} positionArray A list of positions to put the prop
+ * @param {Boolean} deleteImageElement True if you don't want any repeating images
+ */
+function createProp(imageArray, positionArray, deleteImageElement) {
     let gameContainer = document.getElementById('game-grid');
     let newProp = document.createElement('div');
 
@@ -334,7 +350,7 @@ function setProp(imageArray, positionArray) {
     newProp.classList = 'prop ' + chosenPosition;
 
     // Getting the image for the prop
-    let propImage = chooseFromArray(imageArray, false);
+    let propImage = chooseFromArray(imageArray, deleteImageElement);
     setImage(newProp, propImage);
     gameContainer.appendChild(newProp);
 }

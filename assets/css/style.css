@@ -527,12 +527,12 @@ body {
     }
     
     .panel-board {
-        width: 80%;
+        width: 60%;
     }
 
     .arrow-panel {
         width: 100%;
-        height: 10%;
+        height: 10vw;
     }
     
     .arrow-panel>div {
@@ -567,6 +567,16 @@ body {
     .prop-floor.prop-mid-left {
         grid-column-start: 1;
         grid-column-end: 3;
+    }
+
+    /* Panel puzzle */
+
+    .panel-board {
+        width: 80%;
+    }
+
+    .arrow-panel {
+        height: 20vw;
     }
 }
 

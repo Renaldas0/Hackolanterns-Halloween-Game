@@ -7,7 +7,7 @@ const easyDoor = document.getElementById('door-1')
 const mediumDoor = document.getElementById('door-2')
 const hardDoor = document.getElementById('door-3')
 
-let shuffledQuestions, currentQuestionIndex
+let randomEasyQuestion, randomMediumQuestion, randomHardQuestion
 
 let userScore = 0
 

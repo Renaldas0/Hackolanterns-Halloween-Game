@@ -378,16 +378,15 @@ function clickDoor(event) {
     let doorClass = door.classList;
 
     if (doorClass.contains('door-easy')) {
-        // Easy question logic goes here
-        divElement.classList.remove('hide');
+        startFadeOut(generateQuestion, 'easy');
     }
     else if (doorClass.contains('door-medium')) {
         // Medium question logic goes here
-        divElement.classList.remove('hide');
+        startFadeOut(generateQuestion, 'medium');
     }
     else if (doorClass.contains('door-hard')) {
         // Hard question logic goes here
-        divElement.classList.remove('hide');
+        startFadeOut(generateQuestion, 'hard');
     }
     else {
         // Puzzle logic goes here
@@ -396,4 +395,19 @@ function clickDoor(event) {
 }
 for (let door of doors) {
     door.addEventListener('click', clickDoor);
+}
+
+function generateQuestion(difficulty) {
+    switch (difficulty) {
+        case 'easy':
+            generateEasyQuestion();
+            break;
+        case 'medium':
+            generateMediumQuestion();
+            break;
+        case 'hard':
+            generateHardQuestion();
+            break;
+    }
+    divElement.classList.remove('hide');
 }

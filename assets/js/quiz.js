@@ -44,14 +44,25 @@ function showQuestion(question) {
           console.log("Correct");
           button.setAttribute("id", "correct-answer");
           userScore += question.points;
+          setTimeout(startFade, 1000, true, progress, 'door-puzzle');
         } else {
           console.log("Incorrect");
           button.setAttribute("id", "incorrect-answer");
+          setTimeout(startFade, 1000, true, failRoom, 'door-puzzle');
         }
+        setTimeout(() => {
+          clearAnswers();
+        }, 1000);
       }
     });
     answerButtonsElement.appendChild(button);
   });
+}
+
+function clearAnswers() {
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  };
 }
 
 const easyQuestions = [

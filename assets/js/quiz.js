@@ -32,7 +32,7 @@ function showQuestion(question) {
   })
 }
 
-const questions = [
+const easyQuestions = [
     // Easy Questions
    {
     question: 'Which friendly ghost is known for being a classic Halloween character?',
@@ -133,7 +133,10 @@ const questions = [
     ],
     points: 1,
    },
-   // Medium Questions
+]
+
+const mediumQuestions = [
+    // Medium Questions
    {
     question: "What is the name of the town where the events of Washington Irving's 'The Legend of Sleepy Hollow' take place?",
     answers : [
@@ -233,7 +236,10 @@ const questions = [
     ],
     points: 2,
    },
-   // Hard Questions
+]
+
+const hardQuestions = [
+    // Hard Questions
    {
     question: 'What is the name of the ancient Celtic festival that is believed to have inspired Halloween?',
     answers : [

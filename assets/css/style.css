@@ -189,7 +189,7 @@ body {
 }
 
 /* Start Quiz Button */
-#startQuizBtn {
+.startQuizBtn {
     color: black;
     text-align: center;
     font-size: 2rem;

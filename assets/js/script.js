@@ -25,6 +25,9 @@ window.addEventListener("click", function (event) {
 });
 
 // Event listener to allow the user to start the quiz via the start button in modal
-document.getElementById("startQuizBtn").addEventListener("click", function() {
-  window.location.href = "game.html";
-});
+let startButtons = document.getElementsByClassName('startQuizBtn');
+for (let startButton of startButtons) {
+    startButton.addEventListener("click", function() {
+        window.location.href = "game.html";
+      });
+}

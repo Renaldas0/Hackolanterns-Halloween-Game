@@ -12,25 +12,25 @@ let userScore = 0;
 function generateEasyQuestion() {
   randomEasyQuestion =
     easyQuestions[Math.floor(Math.random() * easyQuestions.length)];
-  showQuestion(randomEasyQuestion);
+  showEasyQuestion(randomEasyQuestion);
 }
 
 // Generate random medium Quiz Question
 function generateMediumQuestion() {
   randomMediumQuestion =
     mediumQuestions[Math.floor(Math.random() * mediumQuestions.length)];
-  showQuestion(randomMediumQuestion);
+  showMediumQuestion(randomMediumQuestion);
 }
 
 // Generate random hard Quiz Question
 function generateHardQuestion() {
   randomHardQuestion =
     hardQuestions[Math.floor(Math.random() * hardQuestions.length)];
-  showQuestion(randomHardQuestion);
+  showHardQuestion(randomHardQuestion);
 }
 
-// Show questions and answers and add to score if correct
-function showQuestion(question) {
+// Show easy questions and answers and add to score if correct
+function showEasyQuestion(question) {
   let hasAnswered = false;
   questionElement.innerText = question.question;
   question.answers.forEach((answer) => {
@@ -44,11 +44,71 @@ function showQuestion(question) {
           console.log("Correct");
           button.setAttribute("id", "correct-answer");
           userScore += question.points;
-          setTimeout(startFade, 1000, true, progress, 'door-puzzle');
+          setTimeout(startFade, 1000, true, progress, 'door-easy');
         } else {
           console.log("Incorrect");
           button.setAttribute("id", "incorrect-answer");
-          setTimeout(startFade, 1000, true, failRoom, 'door-puzzle');
+          setTimeout(startFade, 1000, true, failRoom, 'door-easy');
+        }
+        setTimeout(() => {
+          clearAnswers();
+        }, 1000);
+      }
+    });
+    answerButtonsElement.appendChild(button);
+  });
+}
+
+// Show medium questions and answers and add to score if correct
+function showMediumQuestion(question) {
+  let hasAnswered = false;
+  questionElement.innerText = question.question;
+  question.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.innerText = answer.text;
+    button.classList.add("btn");
+    button.addEventListener("click", () => {
+      if (!hasAnswered) {
+        hasAnswered = true; // Set the flag to true to indicate the user has answered
+        if (answer.correct) {
+          console.log("Correct");
+          button.setAttribute("id", "correct-answer");
+          userScore += question.points;
+          setTimeout(startFade, 1000, true, progress, 'door-medium');
+        } else {
+          console.log("Incorrect");
+          button.setAttribute("id", "incorrect-answer");
+          setTimeout(startFade, 1000, true, failRoom, 'door-medium');
+        }
+        setTimeout(() => {
+          clearAnswers();
+        }, 1000);
+      }
+    });
+    answerButtonsElement.appendChild(button);
+  });
+}
+
+// Show hard questions and answers and add to score if correct
+function showHardQuestion(question) {
+  let hasAnswered = false;
+  questionElement.innerText = question.question;
+  question.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.innerText = answer.text;
+    button.classList.add("btn");
+    button.addEventListener("click", () => {
+      if (!hasAnswered) {
+        hasAnswered = true; // Set the flag to true to indicate the user has answered
+        if (answer.correct) {
+          console.log("Correct");
+          button.setAttribute("id", "correct-answer");
+          userScore += question.points;
+          setTimeout(startFade, 1000, true, progress, 'door-hard');
+        } else {
+          console.log("Incorrect");
+          button.setAttribute("id", "incorrect-answer");
+          setTimeout(startFade, 1000, true, failRoom, 'door-hard');
         }
         setTimeout(() => {
           clearAnswers();

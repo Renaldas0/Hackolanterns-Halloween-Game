@@ -18,6 +18,7 @@
 
 body {
     font-family: 'Playpen Sans', cursive;
+    background-color: black;
 }
 
 :root {
@@ -343,7 +344,7 @@ body {
 }
 
 #puzzle-panels {
-    width: 80%;
+    width: 70%;
     height: 100vh;
     display: none;
     flex-direction: column;
@@ -552,6 +553,10 @@ body {
     }
 
     /* Puzzles */
+
+    #puzzle-panels {
+        width: 80%;
+    }
 
     #panel-boards {
         flex-direction: column-reverse;

@@ -200,6 +200,7 @@ function createPanels(panelSize) {
 
     // Arranging the input panels to be different from the output
     rearrangePanels(panelSize);
+    updateMovesLeft();
 }
 
 
@@ -258,6 +259,7 @@ function panelClick(event) {
         let clickedPanel = event.target;
         activatePanels(clickedPanel);
         activePanels.attempts--;
+        updateMovesLeft();
 
         if (activePanels.attempts === 0) {
             // Check if the player has won or lost
@@ -336,6 +338,7 @@ function getPanelPosition(panelElement) {
     }
 }
 
+
 /**
  * Flips a panel between light and dark
  * @param {Object} panelElement The panel to flip
@@ -352,6 +355,15 @@ function flipPanel(panelElement) {
         classes += ' panel-light';
     }
     panelElement.classList = classes;
+}
+
+
+/**
+ * Updates the amount of moves remaining for the panels game
+ */
+function updateMovesLeft() {
+    let movesText = document.getElementById('panel-attempts');
+    movesText.innerText = `Moves remaining: ${activePanels.attempts}`;
 }
 
 // Matching pair game

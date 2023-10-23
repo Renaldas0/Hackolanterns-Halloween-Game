@@ -504,13 +504,10 @@ const endMessage = document.getElementById('end-message');
 const restart = document.getElementById('end-game-restart');
 
 function endGame() {
-    // check to see if the timer reaches zero
-    if (stepsDifference < 0 || userScore >= 20) {
-        // end page to appear
-        endPage.classList.remove('hide');
-        endPage.classList.add('end-page-show');
-        setTimeout(endTextShow, 3000);
-    }
+    // end page to appear
+    endPage.classList.remove('hide');
+    endPage.classList.add('end-page-show');
+    setTimeout(endTextShow, 3000);
 }
 
 function endTextShow() {
@@ -571,10 +568,11 @@ function progress(doorClass) {
  * Returns to the game after the player fails a door, and barricades it
  */
 function failRoom(doorClass) {
-    console.log(doorClass);
     let door = document.getElementsByClassName(doorClass)[0];
-    console.log(document.getElementsByClassName(doorClass));
-    console.log(door);
-
     barricadeDoor(door.id);
+
+    let barricades = document.getElementsByClassName('barricade');
+    if (barricades.length >= 3) {
+        endGame();
+    }
 }

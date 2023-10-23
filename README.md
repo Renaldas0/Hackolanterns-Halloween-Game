@@ -4,7 +4,7 @@ difficulty. Be sure to escape the haunted house ALIVE *evil-laugh-noises.mp3*.
 
 ADD IMAGE
 
-Visit the deployed site here: [Hackolanterns-Halloween](https://renaldas0.github.io/Hackolanterns-Halloween-Game/)
+Visit the deployed site here: [Hackton Manor](https://renaldas0.github.io/Hackolanterns-Halloween-Game/)
 
 # Contents
 
@@ -35,8 +35,7 @@ In this section, we will briefly discuss how our team addressed the applicable c
 
 ### Colour Scheme
 
-Two seperate colour palettes have been used through this website. The first colour palette was used for the landing page
-and is a range of blues:
+Two seperate colour palettes have been used through this website. The first colour palette was used for the landing page and is a range of blues:
 
 ![blue colour image](assets/images/readme-images/blue-colours.png)
 
@@ -49,9 +48,11 @@ Halloween theme of this hackathon:
 
 ### Fonts
 
-The fonts chosen were ...
+[Metal Mania](https://fonts.google.com/specimen/Metal+Mania?query=metal+mania)
 
-TBC
+[Playpen Sans](https://fonts.google.com/specimen/Playpen+Sans)
+
+We felt these fonts captured the gothic feel for our haunted mansion.
 
 ### Wireframes
 

@@ -658,7 +658,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 4;
+    z-index: 100;
 }
 
 @keyframes end-grow {
@@ -706,14 +706,12 @@ body {
     margin: auto;
 }
 
-#end-game-restart {
+#restart-game-end {
     width: 25vw;
     border-radius: 50px;
     background-color: #eb6123;
     font-size: 3em;
     z-index: 1;
-    margin-left: 37.5vw;
-    margin-top: 70vh;
     padding: 20px;
     position: absolute;
     top: 0;
@@ -721,7 +719,7 @@ body {
     animation: end-grow-text 2s forwards;
 }
 
-#end-game-restart:hover {
+#restart-game-end:hover {
     background-color: #5e32ba;
 }
 
@@ -729,9 +727,9 @@ body {
 
 /* For screens smaller than 1024px */
 @media (max-width: 1024px) {
+  
+    .end-text-show, #restart-game-end {
 
-    .end-text-show,
-    #end-game-restart {
         font-size: 2em;
     }
 }
@@ -744,7 +742,7 @@ body {
         margin-left: 15vw;
     }
 
-    #end-game-restart {
+    #restart-game-end {
         width: 50vw;
         margin-left: 25vw;
     }
@@ -753,8 +751,7 @@ body {
 /* For screens smaller than 470px */
 @media (max-width: 470px) {
 
-    .end-text-show,
-    #end-game-restart {
+    .end-text-show, #restart-game-end {
         font-size: 1.5em;
     }
 }
@@ -947,4 +944,30 @@ body {
 #time-div h2 {
     font-size: 4em;
     color: #18181a;
+}
+
+/* display to show player, ghost scores and restart button */
+
+#score-info {
+    display: grid;
+    grid-template-columns: repeat(3, 30vw);
+    text-align: center;
+    align-items: center;
+    margin: 2vh 5vw;
+}
+
+#score-info h2 {
+    font-size: 1em;
+    color: #96c457;
+}
+
+#restart {
+    border-radius: 50px;
+    background-color: #96c457;
+    font-size: 1em;
+    padding: 20px;
+}
+
+#restart:hover {
+    background-color: #5e32ba;
 }

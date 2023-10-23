@@ -443,7 +443,7 @@ function fade(startingTime, isIn, callback, ...args) {
  */
 const startPuzzle = () => {
     let puzzleChoice = Math.floor(Math.random() * 2);
-    puzzleChoice = 1;
+    puzzleChoice = 0;
 
     if (puzzleChoice === 0) {
         // For the pairs game
@@ -495,12 +495,16 @@ for (let door of doors) {
 }
 
 // end of game winning / losing page
-let playerSteps = 4; // need to change this to what it is currently
-let ghostSteps = 6; // need to change this to what it is currently
-let stepsDifference = playerSteps - ghostSteps;
+const playerScore = document.getElementById('player-score')
+const ghostScore = document.getElementById('ghost-score')
+let playerScoreSpan = 4;
+let ghostScoreSpan = 0;
+playerScore.textContent = playerScoreSpan;
+ghostScore.textContent = ghostScoreSpan;
+let stepsDifference = playerScore - ghostScore;
 const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
-const restart = document.getElementById('end-game-restart');
+const restartEnd = document.getElementById('restart-game-end');
 
 window.addEventListener('DOMContentLoaded', generateCards);
 
@@ -514,19 +518,21 @@ function endGame() {
 function endTextShow() {
     endMessage.classList.remove('hide');
     endMessage.classList.add('end-text-show');
-    restart.classList.remove('hide');
-    if (userScore >= 20) {
+    restartEnd.classList.remove('hide');
+    if (playerScoreSpan >= 30) {
         endMessage.textContent = `Congratulations. You have escaped from the haunted mansion You win!`;
     }
     else if (stepsDifference < 0) {
-        endMessage.textContent = `Unfortunately you didn't outrun the ghost. You lose!`;
+        endMessage.textContent = `Unfortunately you didn't outrun the ghosrestartt. You lose!`;
     }
 }
 
-// should restart game when in main??
-restart.addEventListener('click', function() {
+// restart game from endpage
+restartEnd.addEventListener('click', function() {
     window.location.href = "game.html";
   });
+
+
 
 function generateQuestion(difficulty) {
     switch (difficulty) {
@@ -571,6 +577,13 @@ function progress(doorClass) {
 function failRoom(doorClass) {
     let door = document.getElementsByClassName(doorClass)[0];
     barricadeDoor(door.id);
+
+
+    // for score and restart button
+    const restartGame = document.getElementById('restart')
+    restartGame.addEventListener('click', function() {
+        window.location.href = "game.html";
+      });
 
     let barricades = document.getElementsByClassName('barricade');
     if (barricades.length >= 3) {

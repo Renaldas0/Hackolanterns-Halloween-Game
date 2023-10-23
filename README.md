@@ -2,7 +2,7 @@
 Halloween themed Hackathon - Quiz game with multiple choice answers to questions where you get to choose their
 difficulty. Be sure to escape the haunted house ALIVE *evil-laugh-noises.mp3*.
 
-ADD IMAGE
+![main page image](assets/images/readme-images/start-page.png)
 
 Visit the deployed site here: [Hackton Manor](https://renaldas0.github.io/Hackolanterns-Halloween-Game/)
 
@@ -62,7 +62,7 @@ TBC - the version used to be added
 
 The website was designed to be responsive on a range of devices:
 
-ADD IMAGE FROM AM I RESPONSIVE
+![quiz page image](assets/images/readme-images/quiz-page.png)
 
 We considered only allowing the game to be played in landscape mode on smaller devices but, decided against this as we
 thought it would impact the user experience and they may not want to play it if they had to take the extra step of

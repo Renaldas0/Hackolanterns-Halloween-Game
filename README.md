@@ -101,7 +101,7 @@ This is a fun game to play for all users but is primarily geared towards Hallowe
 
 ### Benefits
 
-Entertains the user and improves their knowledge through answering the questions
+Entertains the user and improve their knowledge through answering the questions
 
 # Tech
 
@@ -132,3 +132,12 @@ We would like to acknowledge the following people for their help in completing o
 - Sawyer and Kenan for arranging the Hackathon and hosting the welcome call
 - Jaime Rodriguez and Alexis Maupin for judging the event
 - All the facilitators for donating their time and experties. Especially Sean whom we had the pleasure of working with
+
+## Team Members
+
+- Renaldas
+- Gail
+- AE
+- Adam Gilroy
+- Shane Byrne
+- Aws Sabah Gheni

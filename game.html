@@ -11,6 +11,11 @@
 </head>
 <body>
     <div id="game-outer">
+        <div id="score-info">
+            <h2>Player Score: <span id="player-score"></span></h2>
+            <button id="restart" class="restart-game">Restart Game</button>
+            <h2>Ghost Score: <span id="ghost-score"></span></h2>
+        </div>
         <div id="game-frame">
             <div id="game-grid">
                 <div class="floor" id="floor-1">
@@ -79,7 +84,7 @@
     <!-- end of game winning / losing page -->
     <div id="end-page" class="hide">
         <p id="end-message"></p>
-        <button id="end-game-restart" class="hide">Restart Game</button>
+        <button id="restart-game-end" class="restart-game" class="hide">Restart Game</button>
     </div>
     
     <!-- JavaScript file -->

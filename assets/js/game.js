@@ -447,7 +447,6 @@ const startPuzzle = () => {
 
     if (puzzleChoice === 0) {
         // For the pairs game
-        generateCards()
         let pairPuzzle = document.getElementById('puzzle-pairs');
         pairPuzzle.style.display = 'flex';
     }
@@ -502,6 +501,8 @@ let stepsDifference = playerSteps - ghostSteps;
 const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
 const restart = document.getElementById('end-game-restart');
+
+window.addEventListener('DOMContentLoaded', generateCards);
 
 function endGame() {
     // end page to appear

@@ -330,10 +330,19 @@ body {
 }
 
 #puzzle-panels {
+    color: white;
     width: 80%;
+    height: 100vh;
     display: none;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+
+#panel-boards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .panel-board {
@@ -520,10 +529,11 @@ body {
 
     /* Puzzles */
 
-    #puzzle-panels {
+    #panel-boards {
         flex-direction: column-reverse;
-        align-items: center;
         column-gap: 32px;
+        align-items: center;
+        justify-content: center;
     }
     
     .panel-board {

@@ -41,12 +41,10 @@ function showEasyQuestion(question) {
       if (!hasAnswered) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
-          console.log("Correct");
           button.setAttribute("id", "correct-answer");
           userScore += question.points;
           setTimeout(startFade, 1000, true, progress, 'door-easy');
         } else {
-          console.log("Incorrect");
           button.setAttribute("id", "incorrect-answer");
           setTimeout(startFade, 1000, true, failRoom, 'door-easy');
         }
@@ -71,12 +69,10 @@ function showMediumQuestion(question) {
       if (!hasAnswered) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
-          console.log("Correct");
           button.setAttribute("id", "correct-answer");
           userScore += question.points;
           setTimeout(startFade, 1000, true, progress, 'door-medium');
         } else {
-          console.log("Incorrect");
           button.setAttribute("id", "incorrect-answer");
           setTimeout(startFade, 1000, true, failRoom, 'door-medium');
         }
@@ -101,12 +97,10 @@ function showHardQuestion(question) {
       if (!hasAnswered) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
-          console.log("Correct");
           button.setAttribute("id", "correct-answer");
           userScore += question.points;
           setTimeout(startFade, 1000, true, progress, 'door-hard');
         } else {
-          console.log("Incorrect");
           button.setAttribute("id", "incorrect-answer");
           setTimeout(startFade, 1000, true, failRoom, 'door-hard');
         }
@@ -122,7 +116,7 @@ function showHardQuestion(question) {
 function clearAnswers() {
   while (answerButtonsElement.firstChild) {
     answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-  };
+  }
 }
 
 const easyQuestions = [

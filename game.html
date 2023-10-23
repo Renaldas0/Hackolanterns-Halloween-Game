@@ -60,12 +60,20 @@
 
         <!-- Panel puzzle -->
         <div class="puzzle" id="puzzle-panels">
-            <div class="panel-board" id="board-input"></div>
-            <div class="arrow-panel">
-                <!-- Empty div is used to store the arrow image -->
-                <div></div>
+            <div id="panel-text">
+                <h1>Panel Game!</h1>
+                <p>Make the two sets of panels match.</p>
+                <p>Click on one of the tiles to flip them. Be careful, because you also flip all tiles that surround the one you clicked on!</p>
+                <p id="panel-attempts">Moves left: </p>
             </div>
-            <div class="panel-board" id="board-output"></div>
+            <div id="panel-boards">
+                <div class="panel-board" id="board-input"></div>
+                <div class="arrow-panel">
+                    <!-- Empty div is used to store the arrow image -->
+                    <div></div>
+                </div>
+                <div class="panel-board" id="board-output"></div>
+            </div>
         </div>
     </div>
 

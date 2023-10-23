@@ -18,6 +18,7 @@
 
 body {
     font-family: 'Playpen Sans', cursive;
+    background-color: black;
 }
 
 :root {
@@ -343,10 +344,29 @@ body {
 }
 
 #puzzle-panels {
-    width: 80%;
+    width: 70%;
+    height: 100vh;
     display: none;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+
+#panel-text {
+    font-size: 1.3em;
+    color: white;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#panel-boards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#panel-attempts {
+    margin-top: 2vw;
 }
 
 .panel-board {
@@ -367,6 +387,22 @@ body {
 
 .panel-dark {
     background-image: url('../images/game/panels/panel-dark.png');
+}
+
+.panel-success.panel-light {
+    background-image: url('../images/game/panels/panel-success-light.png');
+}
+
+.panel-success.panel-dark {
+    background-image: url('../images/game/panels/panel-success-dark.png');
+}
+
+.panel-fail.panel-light {
+    background-image: url('../images/game/panels/panel-fail-light.png');
+}
+
+.panel-fail.panel-dark {
+    background-image: url('../images/game/panels/panel-fail-dark.png');
 }
 
 .arrow-panel {
@@ -535,9 +571,23 @@ body {
     /* Puzzles */
 
     #puzzle-panels {
+        width: 80%;
+    }
+
+    #panel-boards {
         flex-direction: column-reverse;
-        align-items: center;
         column-gap: 32px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #panel-text {
+        font-size: 1em;
+        margin-bottom: 10vw;
+    }
+
+    #panel-attempts {
+        margin-top: 5vw;
     }
 
     .panel-board {

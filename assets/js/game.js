@@ -399,6 +399,8 @@ function startFade(isIn, callback, ...args) {
                 component.style.display = 'none';
             }
         }
+        // Hiding the quiz modal
+        divElement.classList.add('hide');
     }
     fade(currentTime, isIn, callback, ...args);
 }
@@ -556,6 +558,11 @@ function progress(doorClass) {
             break;
         default:
             break;
+    }
+    // Removing all the barricades
+    let barricades = document.getElementsByClassName('barricade');
+    while (barricades.length > 0) {
+        barricades[0].remove();
     }
     gameInit();
 }

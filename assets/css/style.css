@@ -584,6 +584,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100;
 }
 
 @keyframes end-grow {
@@ -886,16 +887,10 @@ body {
 }
 
 #restart {
-    /* width: 25vw; */
     border-radius: 50px;
     background-color: #96c457;
     font-size: 1em;
-    /* z-index: 1; */
     padding: 20px;
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
-    /* animation: end-grow-text 2s forwards; */
 }
 
 #restart:hover {

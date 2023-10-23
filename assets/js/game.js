@@ -441,7 +441,7 @@ function fade(startingTime, isIn, callback, ...args) {
  */
 const startPuzzle = () => {
     let puzzleChoice = Math.floor(Math.random() * 2);
-    puzzleChoice = 1;
+    puzzleChoice = 0;
 
     if (puzzleChoice === 0) {
         // For the pairs game

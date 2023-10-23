@@ -74,7 +74,7 @@ The project was planned through several huddles and messages through our Slack c
 
 ![screenshot of project board](assets/images/readme-images/project-board.png)
 
-# About Hackathon Halloween
+# About Hackton Manor
 
 ## Introduction
 
@@ -84,8 +84,8 @@ Hackton Manor is an interactive game where the player must make their way throug
 
 - To be responsive on a range of devices
 - For there to be three different difficulty levels for the user to choose from
-- The website to be intuative to use and easy to navigate
-- The user to have an enjoyable game playing experience
+- For the website to be intuitive to use and easy to navigate
+- For the user to have an enjoyable game playing experience
 
 ### Problem Statement
 
@@ -119,11 +119,11 @@ HTML, CSS, Bootstrap and JavaScript were used to create this website.
 
 ## Content
 
-All content was written by team Hackolanterns
+All content was written by members of the Hack O' Lanterns team
 
 ## Media
 
-Photos and audio were taken from Pixabay and Upsplash
+Photos and audio were taken from Pixabay and Unsplash
 
 ## Acknowledgements
 

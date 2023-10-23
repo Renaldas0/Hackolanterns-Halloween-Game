@@ -518,7 +518,7 @@ function endTextShow() {
     endMessage.classList.remove('hide');
     endMessage.classList.add('end-text-show');
     restartEnd.classList.remove('hide');
-    if (userScore >= 30) {
+    if (playerScoreSpan >= 30) {
         endMessage.textContent = `Congratulations. You have escaped from the haunted mansion You win!`;
     }
     else if (stepsDifference < 0) {

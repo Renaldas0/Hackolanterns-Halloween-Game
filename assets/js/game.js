@@ -495,12 +495,12 @@ for (let door of doors) {
 }
 
 // end of game winning / losing page
-const playerScore = document.getElementById('player-score')
-const ghostScore = document.getElementById('ghost-score')
-let playerScoreSpan = 4;
-let ghostScoreSpan = 0;
-playerScore.textContent = playerScoreSpan;
-ghostScore.textContent = ghostScoreSpan;
+const playerScoreSpan = document.getElementById('player-score');
+const ghostScoreSpan = document.getElementById('ghost-score');
+let playerScore = 4;
+let ghostScore = 0;
+playerScoreSpan.textContent = playerScore;
+ghostScoreSpan.textContent = ghostScore;
 let stepsDifference = playerScore - ghostScore;
 const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
@@ -557,11 +557,22 @@ function generateQuestion(difficulty) {
 function progress(doorClass) {
     //Adding points goes here
     switch (doorClass) {
-        case 'easy':
+        case 'door-easy':
+            playerScore += 1;
+            break;
+        case 'door-medium':
+            playerScore += 2;
+            break;
+        case 'door-hard':
+            playerScore += 3;
+            break;
+        case 'door-puzzle':
+            playerScore += 2;
             break;
         default:
             break;
     }
+    afterRoom();
     // Removing all the barricades
     let barricades = document.getElementsByClassName('barricade');
     while (barricades.length > 0) {
@@ -574,18 +585,29 @@ function progress(doorClass) {
  * Returns to the game after the player fails a door, and barricades it
  */
 function failRoom(doorClass) {
+    afterRoom();
     let door = document.getElementsByClassName(doorClass)[0];
     barricadeDoor(door.id);
-
-
-    // for score and restart button
-    const restartGame = document.getElementById('restart')
-    restartGame.addEventListener('click', function() {
-        window.location.href = "game.html";
-      });
+    
 
     let barricades = document.getElementsByClassName('barricade');
-    if (barricades.length >= 3) {
+    if (barricades.length >= 3 || ghostScore >= playerScore) {
         endGame();
     }
 }
+
+/**
+ * Is called after leaving a room
+ */
+function afterRoom() {
+    ghostScore++;
+    playerScoreSpan.textContent = playerScore;
+    ghostScoreSpan.textContent = ghostScore;
+}
+
+// for score and restart button
+const restartGame = document.getElementById('restart')
+restartGame.addEventListener('click', function() {
+    window.location.href = "game.html";
+  });
+

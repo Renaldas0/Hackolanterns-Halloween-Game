@@ -42,15 +42,9 @@ function showEasyQuestion(question) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
           button.setAttribute("id", "correct-answer");
-          playerScoreSpan += question.points;
-          playerScore.textContent = playerScoreSpan
-          endGame()
           setTimeout(startFade, 1000, true, progress, 'door-easy');
         } else {
           button.setAttribute("id", "incorrect-answer");
-          ghostScoreSpan += 1;
-          ghostScore.textContent = ghostScoreSpan;
-          endGame()
           setTimeout(startFade, 1000, true, failRoom, 'door-easy');
         }
         setTimeout(() => {
@@ -75,15 +69,9 @@ function showMediumQuestion(question) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
           button.setAttribute("id", "correct-answer");
-          playerScoreSpan += question.points;
-          playerScore.textContent = playerScoreSpan
-          endGame()
           setTimeout(startFade, 1000, true, progress, 'door-medium');
         } else {
           button.setAttribute("id", "incorrect-answer");
-          ghostScoreSpan += 1;
-          ghostScore.textContent = ghostScoreSpan;
-          endGame()
           setTimeout(startFade, 1000, true, failRoom, 'door-medium');
         }
         setTimeout(() => {
@@ -108,15 +96,9 @@ function showHardQuestion(question) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
           button.setAttribute("id", "correct-answer");
-          playerScoreSpan += question.points;
-          playerScore.textContent = playerScoreSpan
-          endGame()
           setTimeout(startFade, 1000, true, progress, 'door-hard');
         } else {
           button.setAttribute("id", "incorrect-answer");
-          ghostScoreSpan += 1;
-          ghostScore.textContent = ghostScoreSpan;
-          endGame()
           setTimeout(startFade, 1000, true, failRoom, 'door-hard');
         }
         setTimeout(() => {

@@ -490,6 +490,7 @@ function wonGame() {
     // checks how many cards are in the matchedCards array. If this equals the number of cards in game the user has won
     if (matchedCards.length === gameCards.length) {
         abort = true;
+        playerScoreSpan += 2;
         // delays animation by half a second to improve user experience
         setTimeout(function () {
             // adds the won-game-bears class which causes the cards to have a wiggle animation
@@ -569,5 +570,13 @@ function difficulty() {
     } else {
         time = 30;
         timeCount.textContent = '30';
+    }
+}
+
+function lostGame() {
+    // check to see if the timer reaches zero
+    if (timeCount.textContent === '0') {
+        // end page to appear
+        
     }
 }

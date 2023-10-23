@@ -6,7 +6,7 @@ const submitButtonElement = document.getElementById("submit");
 
 let randomEasyQuestion, randomMediumQuestion, randomHardQuestion;
 
-let userScore = 0;
+// let userScore = 0;
 
 // Generate random easy Quiz Question
 function generateEasyQuestion() {
@@ -42,10 +42,15 @@ function showEasyQuestion(question) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
           button.setAttribute("id", "correct-answer");
-          userScore += question.points;
+          playerScoreSpan += question.points;
+          playerScore.textContent = playerScoreSpan
+          endGame()
           setTimeout(startFade, 1000, true, progress, 'door-easy');
         } else {
           button.setAttribute("id", "incorrect-answer");
+          ghostScoreSpan += 1;
+          ghostScore.textContent = ghostScoreSpan;
+          endGame()
           setTimeout(startFade, 1000, true, failRoom, 'door-easy');
         }
         setTimeout(() => {
@@ -70,10 +75,15 @@ function showMediumQuestion(question) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
           button.setAttribute("id", "correct-answer");
-          userScore += question.points;
+          playerScoreSpan += question.points;
+          playerScore.textContent = playerScoreSpan
+          endGame()
           setTimeout(startFade, 1000, true, progress, 'door-medium');
         } else {
           button.setAttribute("id", "incorrect-answer");
+          ghostScoreSpan += 1;
+          ghostScore.textContent = ghostScoreSpan;
+          endGame()
           setTimeout(startFade, 1000, true, failRoom, 'door-medium');
         }
         setTimeout(() => {
@@ -98,10 +108,15 @@ function showHardQuestion(question) {
         hasAnswered = true; // Set the flag to true to indicate the user has answered
         if (answer.correct) {
           button.setAttribute("id", "correct-answer");
-          userScore += question.points;
+          playerScoreSpan += question.points;
+          playerScore.textContent = playerScoreSpan
+          endGame()
           setTimeout(startFade, 1000, true, progress, 'door-hard');
         } else {
           button.setAttribute("id", "incorrect-answer");
+          ghostScoreSpan += 1;
+          ghostScore.textContent = ghostScoreSpan;
+          endGame()
           setTimeout(startFade, 1000, true, failRoom, 'door-hard');
         }
         setTimeout(() => {

@@ -496,8 +496,8 @@ for (let door of doors) {
 // end of game winning / losing page
 const playerScore = document.getElementById('player-score')
 const ghostScore = document.getElementById('ghost-score')
-let playerScoreSpan = 0;
-let ghostScoreSpan = 4;
+let playerScoreSpan = 4;
+let ghostScoreSpan = 0;
 playerScore.textContent = playerScoreSpan;
 ghostScore.textContent = ghostScoreSpan;
 let stepsDifference = playerScore - ghostScore;
@@ -506,8 +506,7 @@ const endMessage = document.getElementById('end-message');
 const restartEnd = document.getElementById('restart-game-end');
 
 function endGame() {
-    // check to see if the timer reaches zero
-    if (stepsDifference < 0 || userScore >= 30) {
+    if (stepsDifference < 0 || playerScoreSpan >= 30) {
         // end page to appear
         endPage.classList.remove('hide');
         endPage.classList.add('end-page-show');
@@ -532,7 +531,7 @@ restartEnd.addEventListener('click', function() {
     window.location.href = "game.html";
   });
 
-endGame()
+
 
 function generateQuestion(difficulty) {
     switch (difficulty) {

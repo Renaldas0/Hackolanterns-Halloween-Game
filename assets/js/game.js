@@ -497,7 +497,7 @@ for (let door of doors) {
 // end of game winning / losing page
 const playerScoreSpan = document.getElementById('player-score');
 const ghostScoreSpan = document.getElementById('ghost-score');
-let playerScore = 4;
+let playerScore = 3;
 let ghostScore = 0;
 playerScoreSpan.textContent = playerScore;
 ghostScoreSpan.textContent = ghostScore;
@@ -517,11 +517,11 @@ function endTextShow() {
     endMessage.classList.remove('hide');
     endMessage.classList.add('end-text-show');
     restartEnd.classList.remove('hide');
-    if (playerScoreSpan >= 30) {
+    if (playerScore >= 30) {
         endMessage.textContent = `Congratulations. You have escaped from the haunted mansion You win!`;
     }
-    else if (stepsDifference < 0) {
-        endMessage.textContent = `Unfortunately you didn't outrun the ghosrestartt. You lose!`;
+    else {
+        endMessage.textContent = `Unfortunately you didn't outrun the ghost. You lose!`;
     }
 }
 
@@ -579,6 +579,10 @@ function progress(doorClass) {
         barricades[0].remove();
     }
     gameInit();
+
+    if (playerScore >= 20) {
+        endGame();
+    }
 }
 
 /**

@@ -443,12 +443,12 @@ function fade(startingTime, isIn, callback, ...args) {
  */
 const startPuzzle = () => {
     let puzzleChoice = Math.floor(Math.random() * 2);
-    puzzleChoice = 0;
-
     if (puzzleChoice === 0) {
         // For the pairs game
         let pairPuzzle = document.getElementById('puzzle-pairs');
+        timeCount.textContent = time;
         pairPuzzle.style.display = 'flex';
+        generateCards();
     }
     else {
         // For the panels game
@@ -505,7 +505,6 @@ let stepsDifference = playerScore - ghostScore;
 const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
 const restartEnd = document.getElementById('restart-game-end');
-generateCards();
 
 function endGame() {
     // end page to appear
@@ -555,6 +554,7 @@ function generateQuestion(difficulty) {
  * @param {Integer} points The amount of points to be added to the player's score
  */
 function progress(doorClass) {
+    destroyCards();
     //Adding points goes here
     switch (doorClass) {
         case 'door-easy':
@@ -585,10 +585,10 @@ function progress(doorClass) {
  * Returns to the game after the player fails a door, and barricades it
  */
 function failRoom(doorClass) {
+    destroyCards();
     afterRoom();
     let door = document.getElementsByClassName(doorClass)[0];
     barricadeDoor(door.id);
-    
 
     let barricades = document.getElementsByClassName('barricade');
     if (barricades.length >= 3 || ghostScore >= playerScore) {

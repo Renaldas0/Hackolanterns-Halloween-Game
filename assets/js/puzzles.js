@@ -456,6 +456,16 @@ function generateCards() {
 }
 
 /**
+ * Destroys all the cards for the pairs
+ */
+function destroyCards() {
+    let cards = document.getElementsByClassName('card');
+    while (cards.length > 0) {
+        cards[0].remove();
+    }
+}
+
+/**
  * Adds or removes the class 'toggleCard' whenever a card is clicked
  */
 function turnCard() {
@@ -524,8 +534,9 @@ function wonGame() {
                 card.classList.add('won-game-cards');
             }
         }, 500);
-        setTimeout(startFade, 2000, true, progress, 'door-medium');
-        playerScoreSpan += 2;
+        clearTimeout(gameTimer);
+        setTimeout(startFade, 2000, true, progress, 'door-puzzle');
+        playerScore += 2;
     }
 }
 
@@ -569,30 +580,20 @@ function audioFlipPlay() {
 /**
  * Decreases the timer by one every second
  */
-let abort = false;
+let gameTimer = null;
 function timeGame() {
-    if (abort) {
-        return;
-    } else {
-        let currentTime = timeCount.innerHTML;
-        currentTime--;
-        timeCount.innerHTML = currentTime;
-        setTimeout(timeGame, 1000);
-        // to stop the function being called with every click
-        for (let card of gameCards) {
-            card.removeEventListener('click', timeGame);
-        }
-    }
-}
-
-function lostGame() {
-    // check to see if the timer reaches zero
-    if (timeCount.textContent === '0') {
+    let currentTime = timeCount.innerHTML;
+    currentTime--;
+    timeCount.innerHTML = currentTime;
+    if (currentTime <= 0) {
         // end page to appear
-        ghostScoreSpan += 1;
-        setTimeout(startFade, 1000, true, failRoom, 'door-medium');
+        setTimeout(startFade, 1000, true, failRoom, 'door-puzzle');
+    }
+    else {
+        gameTimer = setTimeout(timeGame, 1000);
+    }
+    // to stop the function being called with every click
+    for (let card of gameCards) {
+        card.removeEventListener('click', timeGame);
     }
 }
-
-// to check each half a second if the timer has reached zero
-setInterval(lostGame, 500);

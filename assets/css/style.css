@@ -656,6 +656,11 @@ body {
     background-position: center center;
     animation: end-grow 5s forwards;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 64px;
     top: 0;
     left: 0;
     z-index: 100;
@@ -678,12 +683,7 @@ body {
     font-size: 3em;
     text-align: center;
     z-index: 1;
-    margin-left: 25vw;
-    margin-top: 20vh;
     padding: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
     animation: end-grow-text 2s forwards;
 }
 
@@ -713,9 +713,6 @@ body {
     font-size: 3em;
     z-index: 1;
     padding: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
     animation: end-grow-text 2s forwards;
 }
 
@@ -739,12 +736,10 @@ body {
 
     .end-text-show {
         width: 70vw;
-        margin-left: 15vw;
     }
 
     #restart-game-end {
         width: 50vw;
-        margin-left: 25vw;
     }
 }
 

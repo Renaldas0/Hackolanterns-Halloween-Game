@@ -70,9 +70,7 @@ changing the view
 
 ## Planning
 
-The project was planned through several huddles and messages through our Slack channel. A project board was produced for
-team m emebers to have an overview of the project, to be able to assign tasks to team members and to be able to easily
-see what tasks are yet to be started, are in progress, or have been completed
+The project was planned through several huddles and messages through our Slack channel. A project board was created for team members to have an overview of the project, to be able to assign tasks to team members and to be able to easily see what tasks are yet to be started, are in progress, or have been completed.
 
 ![screenshot of project board](assets/images/readme-images/project-board.png)
 

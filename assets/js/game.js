@@ -505,8 +505,7 @@ let stepsDifference = playerScore - ghostScore;
 const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
 const restartEnd = document.getElementById('restart-game-end');
-
-window.addEventListener('DOMContentLoaded', generateCards);
+generateCards();
 
 function endGame() {
     // end page to appear

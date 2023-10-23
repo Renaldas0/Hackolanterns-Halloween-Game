@@ -948,12 +948,24 @@ body {
 
 /* display to show player, ghost scores and restart button */
 
+#score-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: black;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #score-info {
     display: grid;
     grid-template-columns: repeat(3, 30vw);
     text-align: center;
     align-items: center;
-    margin: 2vh 5vw;
+    padding: 2vh 0;
 }
 
 #score-info h2 {

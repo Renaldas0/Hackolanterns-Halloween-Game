@@ -443,12 +443,12 @@ function fade(startingTime, isIn, callback, ...args) {
  */
 const startPuzzle = () => {
     let puzzleChoice = Math.floor(Math.random() * 2);
-    puzzleChoice = 0;
-
     if (puzzleChoice === 0) {
         // For the pairs game
         let pairPuzzle = document.getElementById('puzzle-pairs');
+        timeCount.textContent = time;
         pairPuzzle.style.display = 'flex';
+        generateCards();
     }
     else {
         // For the panels game
@@ -495,18 +495,16 @@ for (let door of doors) {
 }
 
 // end of game winning / losing page
-const playerScore = document.getElementById('player-score')
-const ghostScore = document.getElementById('ghost-score')
-let playerScoreSpan = 4;
-let ghostScoreSpan = 0;
-playerScore.textContent = playerScoreSpan;
-ghostScore.textContent = ghostScoreSpan;
+const playerScoreSpan = document.getElementById('player-score');
+const ghostScoreSpan = document.getElementById('ghost-score');
+let playerScore = 4;
+let ghostScore = 0;
+playerScoreSpan.textContent = playerScore;
+ghostScoreSpan.textContent = ghostScore;
 let stepsDifference = playerScore - ghostScore;
 const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
 const restartEnd = document.getElementById('restart-game-end');
-
-window.addEventListener('DOMContentLoaded', generateCards);
 
 function endGame() {
     // end page to appear
@@ -556,13 +554,25 @@ function generateQuestion(difficulty) {
  * @param {Integer} points The amount of points to be added to the player's score
  */
 function progress(doorClass) {
+    destroyCards();
     //Adding points goes here
     switch (doorClass) {
-        case 'easy':
+        case 'door-easy':
+            playerScore += 1;
+            break;
+        case 'door-medium':
+            playerScore += 2;
+            break;
+        case 'door-hard':
+            playerScore += 3;
+            break;
+        case 'door-puzzle':
+            playerScore += 2;
             break;
         default:
             break;
     }
+    afterRoom();
     // Removing all the barricades
     let barricades = document.getElementsByClassName('barricade');
     while (barricades.length > 0) {
@@ -575,18 +585,29 @@ function progress(doorClass) {
  * Returns to the game after the player fails a door, and barricades it
  */
 function failRoom(doorClass) {
+    destroyCards();
+    afterRoom();
     let door = document.getElementsByClassName(doorClass)[0];
     barricadeDoor(door.id);
 
-
-    // for score and restart button
-    const restartGame = document.getElementById('restart')
-    restartGame.addEventListener('click', function() {
-        window.location.href = "game.html";
-      });
-
     let barricades = document.getElementsByClassName('barricade');
-    if (barricades.length >= 3) {
+    if (barricades.length >= 3 || ghostScore >= playerScore) {
         endGame();
     }
 }
+
+/**
+ * Is called after leaving a room
+ */
+function afterRoom() {
+    ghostScore++;
+    playerScoreSpan.textContent = playerScore;
+    ghostScoreSpan.textContent = ghostScore;
+}
+
+// for score and restart button
+const restartGame = document.getElementById('restart')
+restartGame.addEventListener('click', function() {
+    window.location.href = "game.html";
+  });
+

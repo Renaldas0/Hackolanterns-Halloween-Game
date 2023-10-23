@@ -499,6 +499,7 @@ function wonGame() {
             }
         }, 500);
     }
+    setTimeout(startFade, 1000, true, progress, 'door-medium');
 }
 
 /**
@@ -557,26 +558,11 @@ function timeGame() {
     }
 }
 
-/** 
- *  Gives different time limits depending on the difficulty selected
- */
-function difficulty() {
-    if (selectDifficulty.value === 'easy') {
-        time = 100;
-        timeCount.textContent = '100';
-    } else if (selectDifficulty.value === 'medium') {
-        time = 60;
-        timeCount.textContent = '60';
-    } else {
-        time = 30;
-        timeCount.textContent = '30';
-    }
-}
-
 function lostGame() {
     // check to see if the timer reaches zero
     if (timeCount.textContent === '0') {
         // end page to appear
-        
+        ghostScoreSpan += 1;
+        setTimeout(startFade, 1000, true, failRoom, 'door-medium');
     }
 }

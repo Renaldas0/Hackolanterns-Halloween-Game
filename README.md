@@ -97,8 +97,7 @@ There are simply not enough Halloween themed games where the user is being chase
 
 ### Target Audience
 
-This is a fun game to play for all users but is primarily geared towards adults (?? - depends on how hard the questions
-are. TBC)
+This is a fun game to play for all users but is primarily geared towards Halloween lovers to test their general knowledge of all things spooky
 
 ### Benefits
 

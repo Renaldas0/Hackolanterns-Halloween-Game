@@ -79,8 +79,7 @@ see what tasks are yet to be started, are in progress, or have been completed
 
 ## Introduction
 
-Hackthon Halloween is an interactive game where the player must go through a haunted mansion, keeping ahead of the angry
-ghost by answering mutiple choice questions, PUZZLES AND RIDDLES (?) in order to escape!
+Hackton Manor is an interactive game where the player must make their way through a haunted mansion via quiz questions and puzzles while keeping away from its resident ghost in order to escape!
 
 ## Goal
 

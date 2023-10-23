@@ -389,6 +389,22 @@ body {
     background-image: url('../images/game/panels/panel-dark.png');
 }
 
+.panel-success.panel-light {
+    background-image: url('../images/game/panels/panel-success-light.png');
+}
+
+.panel-success.panel-dark {
+    background-image: url('../images/game/panels/panel-success-dark.png');
+}
+
+.panel-fail.panel-light {
+    background-image: url('../images/game/panels/panel-fail-light.png');
+}
+
+.panel-fail.panel-dark {
+    background-image: url('../images/game/panels/panel-fail-dark.png');
+}
+
 .arrow-panel {
     display: flex;
     align-items: center;

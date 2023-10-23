@@ -283,9 +283,11 @@ function panelClick(event) {
                     panel.className += ' won-game-cards';
                 }
                 setTimeout(startFade, 1000, true, progress, 'door-puzzle');
+                setPanelFinal('success');
             }
             else {
                 setTimeout(startFade, 1000, true, failRoom, 'door-puzzle');
+                setPanelFinal('fail');
             }
         }
     }
@@ -365,6 +367,19 @@ function updateMovesLeft() {
     let movesText = document.getElementById('panel-attempts');
     movesText.innerText = `Moves remaining: ${activePanels.attempts}`;
 }
+
+
+/**
+ * Updates all the panels images depending on if the player won or lost
+ * @param {String} conclusion Must be either "fail" or "success" to work properly
+ */
+function setPanelFinal(conclusion) {
+    let panels = document.getElementsByClassName('panel');
+    for (let panel of panels) {
+        panel.classList.add(`panel-${conclusion}`);
+    }
+}
+
 
 // Matching pair game
 

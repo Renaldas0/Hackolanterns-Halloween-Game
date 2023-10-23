@@ -399,6 +399,8 @@ function startFade(isIn, callback, ...args) {
                 component.style.display = 'none';
             }
         }
+        // Hiding the quiz modal
+        divElement.classList.add('hide');
     }
     fade(currentTime, isIn, callback, ...args);
 }
@@ -445,7 +447,6 @@ const startPuzzle = () => {
 
     if (puzzleChoice === 0) {
         // For the pairs game
-        generateCards()
         let pairPuzzle = document.getElementById('puzzle-pairs');
         pairPuzzle.style.display = 'flex';
     }
@@ -505,13 +506,13 @@ const endPage = document.getElementById('end-page');
 const endMessage = document.getElementById('end-message');
 const restartEnd = document.getElementById('restart-game-end');
 
+window.addEventListener('DOMContentLoaded', generateCards);
+
 function endGame() {
-    if (stepsDifference < 0 || playerScoreSpan >= 30) {
-        // end page to appear
-        endPage.classList.remove('hide');
-        endPage.classList.add('end-page-show');
-        setTimeout(endTextShow, 3000);
-    }
+    // end page to appear
+    endPage.classList.remove('hide');
+    endPage.classList.add('end-page-show');
+    setTimeout(endTextShow, 3000);
 }
 
 function endTextShow() {
@@ -562,6 +563,11 @@ function progress(doorClass) {
         default:
             break;
     }
+    // Removing all the barricades
+    let barricades = document.getElementsByClassName('barricade');
+    while (barricades.length > 0) {
+        barricades[0].remove();
+    }
     gameInit();
 }
 
@@ -569,17 +575,18 @@ function progress(doorClass) {
  * Returns to the game after the player fails a door, and barricades it
  */
 function failRoom(doorClass) {
-    console.log(doorClass);
     let door = document.getElementsByClassName(doorClass)[0];
-    console.log(document.getElementsByClassName(doorClass));
-    console.log(door);
-
     barricadeDoor(door.id);
+
+
+    // for score and restart button
+    const restartGame = document.getElementById('restart')
+    restartGame.addEventListener('click', function() {
+        window.location.href = "game.html";
+      });
+
+    let barricades = document.getElementsByClassName('barricade');
+    if (barricades.length >= 3) {
+        endGame();
+    }
 }
-
-// for score and restart button
-const restartGame = document.getElementById('restart')
-restartGame.addEventListener('click', function() {
-    window.location.href = "game.html";
-  });
-

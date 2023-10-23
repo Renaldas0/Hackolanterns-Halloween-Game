@@ -8,6 +8,7 @@
     border: none;
     list-style: none;
     text-decoration: none;
+    scroll-behavior: smooth;
 }
 
 .clickable:hover {
@@ -17,6 +18,7 @@
 
 body {
     font-family: 'Playpen Sans', cursive;
+    background-color: black;
 }
 
 :root {
@@ -61,6 +63,17 @@ body {
     animation: bounce 2s infinite;
 }
 
+.to-rules {
+    text-decoration: none;
+    color: #fff;
+    transition: .5s ease;
+}
+
+.to-rules:hover {
+    text-decoration: none;
+    color: var(--main-orange);
+}
+
 /* Scroll down arrow animation */
 @keyframes bounce {
 
@@ -93,7 +106,7 @@ body {
 
 /* Dare to enter quote */
 .quote {
-    margin: 0;
+    margin-top: 2rem;
     padding: 0;
     color: white;
     text-align: center;
@@ -212,7 +225,8 @@ body {
     background-repeat: repeat-x;
 }
 
-#floor-1, #floor-2 {
+#floor-1,
+#floor-2 {
     display: none;
     position: absolute;
 }
@@ -330,10 +344,29 @@ body {
 }
 
 #puzzle-panels {
-    width: 80%;
+    width: 70%;
+    height: 100vh;
     display: none;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+
+#panel-text {
+    font-size: 1.3em;
+    color: white;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#panel-boards {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#panel-attempts {
+    margin-top: 2vw;
 }
 
 .panel-board {
@@ -354,6 +387,22 @@ body {
 
 .panel-dark {
     background-image: url('../images/game/panels/panel-dark.png');
+}
+
+.panel-success.panel-light {
+    background-image: url('../images/game/panels/panel-success-light.png');
+}
+
+.panel-success.panel-dark {
+    background-image: url('../images/game/panels/panel-success-dark.png');
+}
+
+.panel-fail.panel-light {
+    background-image: url('../images/game/panels/panel-fail-light.png');
+}
+
+.panel-fail.panel-dark {
+    background-image: url('../images/game/panels/panel-fail-dark.png');
 }
 
 .arrow-panel {
@@ -442,7 +491,8 @@ body {
         grid-row-end: 13;
     }
 
-    #floor-1, #floor-2 {
+    #floor-1,
+    #floor-2 {
         display: inline-block;
         width: 100%;
     }
@@ -521,20 +571,34 @@ body {
     /* Puzzles */
 
     #puzzle-panels {
-        flex-direction: column-reverse;
-        align-items: center;
-        column-gap: 32px;
-    }
-    
-    .panel-board {
         width: 80%;
+    }
+
+    #panel-boards {
+        flex-direction: column-reverse;
+        column-gap: 32px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #panel-text {
+        font-size: 1em;
+        margin-bottom: 10vw;
+    }
+
+    #panel-attempts {
+        margin-top: 5vw;
+    }
+
+    .panel-board {
+        width: 60%;
     }
 
     .arrow-panel {
         width: 100%;
-        height: 10%;
+        height: 10vw;
     }
-    
+
     .arrow-panel>div {
         background-image: url('../images/game/arrow-up.png');
         width: auto;
@@ -567,6 +631,16 @@ body {
     .prop-floor.prop-mid-left {
         grid-column-start: 1;
         grid-column-end: 3;
+    }
+
+    /* Panel puzzle */
+
+    .panel-board {
+        width: 80%;
+    }
+
+    .arrow-panel {
+        height: 20vw;
     }
 }
 
@@ -655,6 +729,7 @@ body {
 @media (max-width: 1024px) {
   
     .end-text-show, #restart-game-end {
+
         font-size: 2em;
     }
 }

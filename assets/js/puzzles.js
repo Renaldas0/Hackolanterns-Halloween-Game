@@ -200,6 +200,7 @@ function createPanels(panelSize) {
 
     // Arranging the input panels to be different from the output
     rearrangePanels(panelSize);
+    updateMovesLeft();
 }
 
 
@@ -258,6 +259,7 @@ function panelClick(event) {
         let clickedPanel = event.target;
         activatePanels(clickedPanel);
         activePanels.attempts--;
+        updateMovesLeft();
 
         if (activePanels.attempts === 0) {
             // Check if the player has won or lost
@@ -281,9 +283,11 @@ function panelClick(event) {
                     panel.className += ' won-game-cards';
                 }
                 setTimeout(startFade, 1000, true, progress, 'door-puzzle');
+                setPanelFinal('success');
             }
             else {
                 setTimeout(startFade, 1000, true, failRoom, 'door-puzzle');
+                setPanelFinal('fail');
             }
         }
     }
@@ -336,6 +340,7 @@ function getPanelPosition(panelElement) {
     }
 }
 
+
 /**
  * Flips a panel between light and dark
  * @param {Object} panelElement The panel to flip
@@ -353,6 +358,28 @@ function flipPanel(panelElement) {
     }
     panelElement.classList = classes;
 }
+
+
+/**
+ * Updates the amount of moves remaining for the panels game
+ */
+function updateMovesLeft() {
+    let movesText = document.getElementById('panel-attempts');
+    movesText.innerText = `Moves remaining: ${activePanels.attempts}`;
+}
+
+
+/**
+ * Updates all the panels images depending on if the player won or lost
+ * @param {String} conclusion Must be either "fail" or "success" to work properly
+ */
+function setPanelFinal(conclusion) {
+    let panels = document.getElementsByClassName('panel');
+    for (let panel of panels) {
+        panel.classList.add(`panel-${conclusion}`);
+    }
+}
+
 
 // Matching pair game
 
